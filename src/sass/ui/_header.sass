@@ -1,0 +1,25 @@
+header
+	+header-height(48px)
+	padding: 0px 10px
+	display: block
+	position: relative
+	> *
+		+header-height(48px)
+		font-size: 16px
+	img
+		position: absolute
+		top: 0px
+		left: 50%
+		margin-left: -24px
+	ul
+		+header-height(48px)
+		list-style: none
+		li
+			+header-height(48px)
+			cursor: pointer
+			width: 42px
+			text-align: center
+			&.active
+				background: #eee
+			i
+				+header-height(48px)

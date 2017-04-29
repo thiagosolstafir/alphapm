@@ -1,0 +1,9 @@
+@mixin no-margin-padding
+	margin: 0px
+	padding: 0px
+
+@mixin header-height($h)
+	+no-margin-padding
+	display: inline-block
+	height: $h
+	line-height: $h
