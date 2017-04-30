@@ -1,6 +1,9 @@
 @charset "UTF-8";
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
 @import url(//fonts.googleapis.com/css?family=PT+Mono);
+@import url(//fonts.googleapis.com/css?family=Oswald);
+@import url(//fonts.googleapis.com/css?family=Play);
+@import url(//fonts.googleapis.com/css?family=Jura);
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -2339,8 +2342,8 @@ html {
 body {
   margin: 0px;
   padding: 0px;
-  font-family: "PT Mono", monospace;
-  background: #ddd; }
+  font-family: "Jura";
+  background: #dfdfdf; }
 
 .left {
   float: left; }
@@ -2352,19 +2355,25 @@ header {
   margin: 0px;
   padding: 0px;
   display: inline-block;
-  height: 48px;
-  line-height: 48px;
+  height: 64px;
+  line-height: 64px;
   padding: 0px 10px;
   display: block;
-  position: relative; }
-  header > * {
+  position: relative;
+  font-size: 14px; }
+  header span {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 48px;
-    line-height: 48px;
-    font-size: 16px; }
+    height: 64px;
+    line-height: 64px;
+    margin: 0px 30px; }
   header img {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    height: 64px;
+    line-height: 64px;
     position: absolute;
     top: 0px;
     left: 50%;
@@ -2373,33 +2382,45 @@ header {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 48px;
-    line-height: 48px;
-    list-style: none; }
+    height: 36px;
+    line-height: 36px;
+    margin: 14px;
+    list-style: none;
+    box-shadow: 1px 1px 3px #aaa;
+    box-sizing: border-box;
+    border-radius: 3px; }
     header ul li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 48px;
-      line-height: 48px;
+      height: 36px;
+      line-height: 36px;
       cursor: pointer;
-      width: 42px;
-      text-align: center; }
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
+      transition: background .5s; }
+      header ul li:first-child {
+        border-radius: 3px 0px 0px 3px; }
+      header ul li:last-child {
+        border-radius: 0px 3px 3px 0px; }
       header ul li.active {
-        background: #eee; }
+        background: #ededed; }
+      header ul li:hover {
+        background: #f2f2f2; }
       header ul li i {
         margin: 0px;
         padding: 0px;
         display: inline-block;
-        height: 48px;
-        line-height: 48px; }
+        height: 36px;
+        line-height: 36px; }
 
 #view {
   width: 100%;
   overflow-y: scroll;
   position: absolute;
   padding: 20px;
-  top: 48px;
+  top: 64px;
   bottom: 0px;
   left: 0px;
   right: 0px; }
@@ -2415,19 +2436,24 @@ header {
     display: inline-block;
     margin: 0px 0px 7px 0px;
     padding: 0px;
-    box-shadow: 1px 1px 3px #aaa;
+    box-shadow: 1px 1px 3px #bbb;
     box-sizing: border-box;
     border-radius: 3px;
-    background: #fafafa; }
+    transition: background .5s, box-shadow .5s;
+    background: #ededed;
+    cursor: pointer; }
+    .tasks li.task:hover {
+      background: #f2f2f2;
+      box-shadow: 1px 1px 4px #aaa; }
     .tasks li.task > * {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 38px;
-      line-height: 38px;
+      height: 32px;
+      line-height: 32px;
       float: left;
       box-sizing: border-box;
-      padding: 0 15px; }
+      padding: 0 10px; }
 
 h2 {
   margin: 0px;
@@ -2438,31 +2464,38 @@ h2 {
   padding-top: 2px;
   line-height: 30px;
   margin: 0px 0px 11px 0px;
-  box-shadow: 1px 1px 3px #aaa;
+  box-shadow: 1px 1px 3px #999;
   box-sizing: border-box;
   border-radius: 3px;
   display: block;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
-  background: #eee; }
+  background: #d5d5d5;
+  color: #000; }
 
 #ui header {
   margin: 0px;
   padding: 0px;
   display: inline-block;
-  height: 48px;
-  line-height: 48px;
+  height: 64px;
+  line-height: 64px;
   padding: 0px 10px;
   display: block;
-  position: relative; }
-  #ui header > * {
+  position: relative;
+  font-size: 14px; }
+  #ui header span {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 48px;
-    line-height: 48px;
-    font-size: 16px; }
+    height: 64px;
+    line-height: 64px;
+    margin: 0px 30px; }
   #ui header img {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    height: 64px;
+    line-height: 64px;
     position: absolute;
     top: 0px;
     left: 50%;
@@ -2471,33 +2504,45 @@ h2 {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 48px;
-    line-height: 48px;
-    list-style: none; }
+    height: 36px;
+    line-height: 36px;
+    margin: 14px;
+    list-style: none;
+    box-shadow: 1px 1px 3px #aaa;
+    box-sizing: border-box;
+    border-radius: 3px; }
     #ui header ul li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 48px;
-      line-height: 48px;
+      height: 36px;
+      line-height: 36px;
       cursor: pointer;
-      width: 42px;
-      text-align: center; }
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
+      transition: background .5s; }
+      #ui header ul li:first-child {
+        border-radius: 3px 0px 0px 3px; }
+      #ui header ul li:last-child {
+        border-radius: 0px 3px 3px 0px; }
       #ui header ul li.active {
-        background: #eee; }
+        background: #ededed; }
+      #ui header ul li:hover {
+        background: #f2f2f2; }
       #ui header ul li i {
         margin: 0px;
         padding: 0px;
         display: inline-block;
-        height: 48px;
-        line-height: 48px; }
+        height: 36px;
+        line-height: 36px; }
 
 #ui #view {
   width: 100%;
   overflow-y: scroll;
   position: absolute;
   padding: 20px;
-  top: 48px;
+  top: 64px;
   bottom: 0px;
   left: 0px;
   right: 0px; }
@@ -2513,19 +2558,24 @@ h2 {
     display: inline-block;
     margin: 0px 0px 7px 0px;
     padding: 0px;
-    box-shadow: 1px 1px 3px #aaa;
+    box-shadow: 1px 1px 3px #bbb;
     box-sizing: border-box;
     border-radius: 3px;
-    background: #fafafa; }
+    transition: background .5s, box-shadow .5s;
+    background: #ededed;
+    cursor: pointer; }
+    #ui .tasks li.task:hover {
+      background: #f2f2f2;
+      box-shadow: 1px 1px 4px #aaa; }
     #ui .tasks li.task > * {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 38px;
-      line-height: 38px;
+      height: 32px;
+      line-height: 32px;
       float: left;
       box-sizing: border-box;
-      padding: 0 15px; }
+      padding: 0 10px; }
 
 #ui h2 {
   margin: 0px;
@@ -2536,20 +2586,23 @@ h2 {
   padding-top: 2px;
   line-height: 30px;
   margin: 0px 0px 11px 0px;
-  box-shadow: 1px 1px 3px #aaa;
+  box-shadow: 1px 1px 3px #999;
   box-sizing: border-box;
   border-radius: 3px;
   display: block;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
-  background: #eee; }
+  background: #d5d5d5;
+  color: #000; }
 
 #ui .table .task {
-  height: 38px;
+  height: 32px;
   clear: both;
   width: 100%; }
   #ui .table .task .task-title {
     width: 45%; }
+    #ui .table .task .task-title i.fa {
+      margin-right: 10px; }
   #ui .table .task .task-project {
     width: 20%; }
   #ui .table .task .task-status {
@@ -2574,7 +2627,7 @@ h2 {
   #ui .columns .tasks .task {
     display: inline-block;
     width: 100%;
-    font-size: 14px; }
+    font-size: 16px; }
     #ui .columns .tasks .task .task-title {
       width: 100%; }
     #ui .columns .tasks .task .task-project {

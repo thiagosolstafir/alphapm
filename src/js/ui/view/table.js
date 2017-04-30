@@ -12,7 +12,16 @@ const moment = require('moment');
 module.exports = ({state, actions}) => section('#view.table', [
 	ul('.tasks', state.tasks.map(task =>
 		li('.task', [
-			span('.task-title', task.title),
+			span('.task-title', [
+				i('.fa', {
+					class: {
+						'fa-code': task.type === 'dev',
+						'fa-bug': task.type === 'bug',
+						'fa-commenting-o': task.type === 'sync'
+					}
+				}),
+				task.title
+			]),
 			span('.task-project', task.project),
 			span('.task-status', task.status),
 			span('.task-time', [
