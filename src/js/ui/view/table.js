@@ -10,7 +10,9 @@ const {
 const moment = require('moment');
 
 module.exports = ({state, actions}) => section('#view.table', [
-	ul('.tasks', state.tasks.map(task =>
+	ul('.tasks', [
+		li('.add-task', input('[placeholder="Add Task"]'))
+	].concat(state.tasks.map(task =>
 		li('.task', [
 			span('.task-title', [
 				i('.fa', {
@@ -31,5 +33,5 @@ module.exports = ({state, actions}) => section('#view.table', [
 				span('.task-est', moment.utc(task.time.ass * 10000).format('H:mm'))
 			])
 		])
-	))
+	)))
 ]);

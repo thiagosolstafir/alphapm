@@ -15,14 +15,22 @@ module.exports = ({state, actions}) => section('#view.columns',
 	statuses.map(status =>
 		ul('.tasks', [
 			li(h2(status.toUpperCase()))
-		].concat(state.tasks.filter(task => task.status === status).map(task =>
-			li('.task', [
-				span('.task-title', task.title),
-				span('.task-project', task.project),
-				span('.task-status', task.status),
-				span('.task-est', moment.utc(task.time.ass * 10000).format('H:mm')),
-				span('.task-ass', moment.utc(task.time.est * 10000).format('H:mm'))
-			])
-		)))
+		].concat(
+			state.tasks.filter(task => task.status === status).map(task =>
+				li('.task', [
+					span('.task-title', task.title),
+					span('.task-project', task.project),
+					span('.task-status', task.status),
+					span('.task-time', [
+						i('.fa.fa-clock-o'),
+						span('task-ass', moment.utc(task.time.est * 10000).format('H:mm')),
+						'/',
+						span('.task-est', moment.utc(task.time.ass * 10000).format('H:mm'))
+					])
+				])),
+			[
+				li('.add-task', input('[placeholder="Add Task"]'))
+			]
+		))
 	)
 );

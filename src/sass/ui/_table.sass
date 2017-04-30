@@ -1,24 +1,27 @@
 .table
-	.task
+	li
 		height: 32px
 		clear: both
 		width: 100%
-		.task-title
-			width: 45%
-			i.fa
-				margin-right: 10px
-		.task-project
-			width: 20%
-		.task-status
-			width: 15%
-		.task-time
-			width: 20%
-			text-align: right
-			> *
-				margin: 0px 5px
-		.task-ass
-			width: 10%
-			text-align: right
-		.task-est
-			width: 10%
-			text-align: right
+		&.add-task
+			input
+		&.task
+			.task-title
+				width: 45%
+				i.fa
+					margin-right: 10px
+			.task-project
+				width: 20%
+			.task-status
+				width: 15%
+			.task-time
+				width: 20%
+				text-align: right
+				> *
+					margin: 0px 5px
+			.task-ass
+				width: 10%
+				text-align: right
+			.task-est
+				width: 10%
+				text-align: right
