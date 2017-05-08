@@ -1,0 +1,12 @@
+{
+	"port": 8080,
+	"jwt": {
+		"secret": "tumba-lumba-poker-face",
+		"options": {
+			"expiresIn": 86400
+		}
+	},
+	"db": {
+		"uri": "mongodb://localhost/alphapm"
+	}
+}

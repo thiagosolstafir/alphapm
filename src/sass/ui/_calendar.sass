@@ -1,0 +1,31 @@
+.calendar
+	.tasks
+		width: 14%
+		height: 100%
+		display: inline-block
+		vertical-align: top
+		background: #eee
+		border: 1px solid #ccc
+		li
+			label
+				+header-height(42px)
+				font-weight: bold
+				text-align: center
+				width: 100%
+				border-bottom: 1px dashed #aaa
+			display: inline-block
+			width: 100%
+			font-size: 16px
+			.task-title
+				width: 100%
+			.task-project
+				width: 50%
+			.task-status
+				display: none
+			.task-time
+				width: 50%
+				text-align: right
+				> *
+					margin: 0px 3px
+			.task-est, .task-ass
+				width: 50%

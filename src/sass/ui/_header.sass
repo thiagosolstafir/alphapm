@@ -14,19 +14,24 @@ header
 		left: 50%
 		margin-left: -24px
 	ul
-		+header-height(36px)
-		margin: 14px
+		+header-height(28px)
+		margin: 19px 14px
 		list-style: none
 		box-shadow: 1px 1px 3px #aaa
 		box-sizing: border-box
 		border-radius: 3px
 		li
-			+header-height(36px)
+			+header-height(28px)
+			padding: 0px 10px 0px 0px
 			cursor: pointer
-			width: 40px
 			text-align: center
 			font-size: 16px
 			transition: background .5s
+			> *
+				+header-height(28px)
+				float: left
+			i.fa
+				width: 28px
 			&:first-child
 				border-radius: 3px 0px 0px 3px
 			&:last-child
@@ -35,5 +40,3 @@ header
 				background: #ededed
 			&:hover
 				background: #f2f2f2
-			i
-				+header-height(36px)

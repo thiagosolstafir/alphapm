@@ -2344,7 +2344,7 @@ body {
   padding: 0px;
   background: #dfdfdf; }
 
-body, input {
+body, input, button, h1, h2, h3, h4 {
   font-family: "Jura"; }
 
 .left {
@@ -2352,6 +2352,9 @@ body, input {
 
 .right {
   float: right; }
+
+button, a {
+  cursor: pointer; }
 
 header {
   margin: 0px;
@@ -2384,9 +2387,9 @@ header {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 36px;
-    line-height: 36px;
-    margin: 14px;
+    height: 28px;
+    line-height: 28px;
+    margin: 19px 14px;
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
@@ -2395,13 +2398,22 @@ header {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 36px;
-      line-height: 36px;
+      height: 28px;
+      line-height: 28px;
+      padding: 0px 10px 0px 0px;
       cursor: pointer;
-      width: 40px;
       text-align: center;
       font-size: 16px;
       transition: background .5s; }
+      header ul li > * {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        float: left; }
+      header ul li i.fa {
+        width: 28px; }
       header ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
       header ul li:last-child {
@@ -2410,12 +2422,6 @@ header {
         background: #ededed; }
       header ul li:hover {
         background: #f2f2f2; }
-      header ul li i {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        height: 36px;
-        line-height: 36px; }
 
 #view {
   width: 100%;
@@ -2441,7 +2447,11 @@ header {
     box-sizing: border-box;
     border-radius: 3px;
     transition: background .5s, box-shadow .5s; }
+    .tasks li.placeholder {
+      opacity: 0.1;
+      margin-bottom: 7px; }
     .tasks li.task {
+      user-select: none;
       box-shadow: 1px 1px 3px #bbb;
       background: #ededed;
       cursor: pointer; }
@@ -2457,7 +2467,7 @@ header {
         float: left;
         box-sizing: border-box;
         padding: 0 10px; }
-    .tasks li.add-task input {
+    .tasks li.add-task button, .tasks li.add-task input {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2473,9 +2483,12 @@ header {
       background: #cfcfcf;
       opacity: 0.5;
       transition: opacity .3s; }
-      .tasks li.add-task input:hover, .tasks li.add-task input:focus, .tasks li.add-task input:active {
+      .tasks li.add-task button:hover, .tasks li.add-task input:hover {
         opacity: 1;
         outline: none; }
+    .tasks li.add-task input:focus, .tasks li.add-task input:active {
+      opacity: 1;
+      outline: none; }
 
 h2 {
   margin: 0px;
@@ -2526,9 +2539,9 @@ h2 {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 36px;
-    line-height: 36px;
-    margin: 14px;
+    height: 28px;
+    line-height: 28px;
+    margin: 19px 14px;
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
@@ -2537,13 +2550,22 @@ h2 {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 36px;
-      line-height: 36px;
+      height: 28px;
+      line-height: 28px;
+      padding: 0px 10px 0px 0px;
       cursor: pointer;
-      width: 40px;
       text-align: center;
       font-size: 16px;
       transition: background .5s; }
+      #ui header ul li > * {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        float: left; }
+      #ui header ul li i.fa {
+        width: 28px; }
       #ui header ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
       #ui header ul li:last-child {
@@ -2552,12 +2574,6 @@ h2 {
         background: #ededed; }
       #ui header ul li:hover {
         background: #f2f2f2; }
-      #ui header ul li i {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        height: 36px;
-        line-height: 36px; }
 
 #ui #view {
   width: 100%;
@@ -2583,7 +2599,11 @@ h2 {
     box-sizing: border-box;
     border-radius: 3px;
     transition: background .5s, box-shadow .5s; }
+    #ui .tasks li.placeholder {
+      opacity: 0.1;
+      margin-bottom: 7px; }
     #ui .tasks li.task {
+      user-select: none;
       box-shadow: 1px 1px 3px #bbb;
       background: #ededed;
       cursor: pointer; }
@@ -2599,7 +2619,7 @@ h2 {
         float: left;
         box-sizing: border-box;
         padding: 0 10px; }
-    #ui .tasks li.add-task input {
+    #ui .tasks li.add-task button, #ui .tasks li.add-task input {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2615,9 +2635,12 @@ h2 {
       background: #cfcfcf;
       opacity: 0.5;
       transition: opacity .3s; }
-      #ui .tasks li.add-task input:hover, #ui .tasks li.add-task input:focus, #ui .tasks li.add-task input:active {
+      #ui .tasks li.add-task button:hover, #ui .tasks li.add-task input:hover {
         opacity: 1;
         outline: none; }
+    #ui .tasks li.add-task input:focus, #ui .tasks li.add-task input:active {
+      opacity: 1;
+      outline: none; }
 
 #ui h2 {
   margin: 0px;
@@ -2682,6 +2705,41 @@ h2 {
       #ui .columns .tasks li .task-time > * {
         margin: 0px 3px; }
     #ui .columns .tasks li .task-est, #ui .columns .tasks li .task-ass {
+      width: 50%; }
+
+#ui .calendar .tasks {
+  width: 14%;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  background: #eee;
+  border: 1px solid #ccc; }
+  #ui .calendar .tasks li {
+    display: inline-block;
+    width: 100%;
+    font-size: 16px; }
+    #ui .calendar .tasks li label {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      height: 42px;
+      line-height: 42px;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      border-bottom: 1px dashed #aaa; }
+    #ui .calendar .tasks li .task-title {
+      width: 100%; }
+    #ui .calendar .tasks li .task-project {
+      width: 50%; }
+    #ui .calendar .tasks li .task-status {
+      display: none; }
+    #ui .calendar .tasks li .task-time {
+      width: 50%;
+      text-align: right; }
+      #ui .calendar .tasks li .task-time > * {
+        margin: 0px 3px; }
+    #ui .calendar .tasks li .task-est, #ui .calendar .tasks li .task-ass {
       width: 50%; }
 
 /*# sourceMappingURL=style.css.map */

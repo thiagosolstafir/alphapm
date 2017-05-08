@@ -1,0 +1,68 @@
+{
+	"collections": {
+		"users": {
+			"model": "User"
+		},
+		"tasks": {
+			"model": "Task",
+			"schema": {
+				"title" : { "type": "String", "required": true, "minLength": 1, "maxLength": 30 },
+				"story": "String",
+				"project": "String",
+				"time": {
+					"ass": "Number",
+					"est": "Number"
+				},
+				"type": "String",
+				"status": "String",
+				"milestone": "String",
+				"createdBy" : { "type": "ObjectId", "ref":"User", "required": false},
+				"createdOn": { "type": "Date", "default": "Date.now" }
+			}
+		},
+		"activities": {
+			"model": "Activity",
+			"schema": {
+				"date" : { "type": "Date", "default": "Date.now" },
+				"type" : "String",
+				"user" : {
+					"id" : { "type" : "ObjectId", "ref": "User" },
+					"name" : "String"
+				},
+				"subject": {
+					"collection": "String",
+					"id": "ObjectId"
+				},
+				"changes": "Mixed"
+			}
+		}
+	},
+	"routes": {
+		"api" : {
+			"_meta": {
+				"virtual": true,
+				"crud": true,
+				"contentType": "json"
+			},
+			"users": {
+				"_meta": {
+					"access": {
+						"admin": "all",
+						"publisher": "own",
+						"user": "list,view",
+						"anonymous": "create"
+					}
+				}
+			},
+			"tasks": {
+				"_meta": {
+					"access": {
+						"admin": "all",
+						"publisher": "own",
+						"user": "list,view"
+					}
+				}
+			}
+		}
+	}
+}

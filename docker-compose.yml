@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dev.Dockerfile
+    ports:
+      - '8089:8089'
+      - '35729:35729'
+      - '3123:3123'
+    volumes:
+      - .:/code
+      - /code/node_modules

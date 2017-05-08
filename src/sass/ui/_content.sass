@@ -20,7 +20,11 @@
 		box-sizing: border-box
 		border-radius: 3px
 		transition: background .5s, box-shadow .5s
+		&.placeholder
+			opacity: 0.1
+			margin-bottom: 7px
 		&.task
+			user-select: none
 			box-shadow: 1px 1px 3px #bbb
 			background: #ededed
 			cursor: pointer
@@ -33,7 +37,7 @@
 				box-sizing: border-box
 				padding: 0 10px
 		&.add-task
-			input
+			button, input
 				+header-height(32px)
 				width: 100%
 				font-size: inherit
@@ -45,7 +49,11 @@
 				background: #cfcfcf
 				opacity: 0.5
 				transition: opacity .3s
-				&:hover, &:focus, &:active
+				&:hover
+					opacity: 1
+					outline: none
+			input
+				&:focus, &:active
 					opacity: 1
 					outline: none
 h2

@@ -14,6 +14,7 @@ const time = require('./util/time');
 // app
 const app = require('./util/app');
 let actions = app.adapt(require('./actions'));
+window.actions = actions;
 let ui = require('./ui');
 let actions$;
 
@@ -43,5 +44,19 @@ const state$ = actions$
 	.share();
 
 // state -> ui
-const ui$ = time.loop(state$).map(({state}) => ui({state, actions}));
+// const ui$ = time.loop(state$).map(({state}) => ui({state, actions}));
+//	.map(uiPatch => (console.log({uiPatch}), uiPatch));
+// const ui$ = state$.map(state => ui({state, actions}));
+const ui$ = $.combineLatest(
+	state$,
+	$.interval(500),
+	(state, time) => ({state, time})
+)
+	.map(({state}) => ui({state, actions}));
+
 vdom.patchStream(ui$, '#ui');
+
+state$
+	.distinctUntilChanged(state => state.tasks.needsRefresh)
+	.filter(state => state.tasks.needsRefresh)
+	.subscribe(state => actions.tasks.refresh());

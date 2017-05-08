@@ -14,9 +14,12 @@ module.exports = ({state, actions, views}) => header([
 	ul('.left',
 		views.map(view =>
 			li({
-				class: {active: view === state.view},
-				on: {click: () => actions.set('view', view)}
-			}, i(`.fa.fa-${view}`))
+				class: {active: view.key === state.view},
+				on: {click: () => actions.set('view', view.key)}
+			}, [
+				i(`.fa.fa-${view.icon}`),
+				span(view.title)
+			])
 		)
 	),
 	img('[src="assets/img/logo-2.svg"]'),

@@ -12,21 +12,28 @@
     "watch:js": "watchify -p browserify-hmr src/js/index.js -o dist/js/app.js --debug",
     "watch:sass": "npm run build:sass -- --watch src/sass/**/*",
     "livereload": "livereload dist/**/*.css -d",
-    "start": "npm run build && serve --path dist & npm run watch"
+    "start": "npm run build && nodemon server & npm run watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bourbon": "^4.2.7",
     "bourbon-neat": "^1.8.0",
+    "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "iblokz-data": "^1.0.2",
+    "iblokz-rest-api": "^1.1.0",
     "iblokz-snabbdom-helpers": "^1.0.0",
+    "jsonwebtoken": "^7.3.0",
+    "method-override": "^2.3.6",
     "moment": "^2.18.1",
+    "mongoose": "^4.6.3",
     "raf-stream": "^3.0.0",
     "rx": "^4.1.0",
     "rx-node": "^1.0.2",
     "snabbdom": "^0.5.4",
+    "sortablejs": "^1.5.1",
     "superagent": "^3.3.1"
   },
   "devDependencies": {
@@ -36,7 +43,7 @@
     "eslint-config-google": "^0.6.0",
     "fs-extra": "^1.0.0",
     "livereload": "^0.6.0",
-    "node-sass": "^4.1.1",
+    "node-sass": "^4.5.2",
     "node-serve": "0.0.3",
     "watchify": "^3.8.0"
   }
