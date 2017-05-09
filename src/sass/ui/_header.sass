@@ -12,31 +12,38 @@ header
 		position: absolute
 		top: 0px
 		left: 50%
-		margin-left: -24px
+		margin-left: -32px
 	ul
-		+header-height(28px)
-		margin: 19px 14px
+		+header-height(32px)
+		margin: 17px 14px
 		list-style: none
 		box-shadow: 1px 1px 3px #aaa
 		box-sizing: border-box
 		border-radius: 3px
 		li
-			+header-height(28px)
-			padding: 0px 10px 0px 0px
+			+header-height(32px)
 			cursor: pointer
 			text-align: center
 			font-size: 16px
 			transition: background .5s
 			> *
-				+header-height(28px)
+				+header-height(32px)
 				float: left
 			i.fa
-				width: 28px
+				width: 32px
+			> span
+				display: inline-block
+				text-align: left
+				width: 0px
+				opacity: 0
+				transition: width .5s, opacity .2s .3s
 			&:first-child
 				border-radius: 3px 0px 0px 3px
 			&:last-child
 				border-radius: 0px 3px 3px 0px
 			&.active
 				background: #ededed
+				> span
+					opacity: 1
 			&:hover
 				background: #f2f2f2

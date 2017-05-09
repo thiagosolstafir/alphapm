@@ -18,7 +18,9 @@ module.exports = ({state, actions, views}) => header([
 				on: {click: () => actions.set('view', view.key)}
 			}, [
 				i(`.fa.fa-${view.icon}`),
-				span(view.title)
+				span({
+					style: {width: (view.key === state.view) ? ((view.title.length * 9) + 7) + 'px' : '0px'}
+				}, (view.key === state.view) ? view.title : '')
 			])
 		)
 	),

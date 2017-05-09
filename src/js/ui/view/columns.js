@@ -29,7 +29,7 @@ const labels = {
 const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
 module.exports = ({state, actions}) => section('#view.columns',
-	statuses.map(status =>
+	(state.tasks.needsRefresh === false) ? statuses.map(status =>
 		ul(`#tasks-${status}.tasks`, {
 			hook: {
 				insert: vnode =>
@@ -77,5 +77,5 @@ module.exports = ({state, actions}) => section('#view.columns',
 				}, input('[name="title"][placeholder="Добави Задача"]')))
 			]
 		))
-	)
+	) : []
 );

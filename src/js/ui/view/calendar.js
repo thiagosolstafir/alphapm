@@ -25,9 +25,12 @@ const getWeekdays = () => {
 
 const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
-module.exports = ({state, actions}) => section('#view.calendar', getWeekdays().map(day =>
+module.exports = ({state, actions}) => section('#view.calendar', getWeekdays().map((day, index) =>
 	ul('.tasks', [
 		li(label(capitalize(moment(day).format('dddd, D MMM')))),
-		li('.add-task', button('Добави ...'))
+		li('.add-task', [
+			button('Добави ...')
+			// (index === 3) ? div('.tooltip-container', div('.tooltip')) : ''
+		])
 	])
 ));

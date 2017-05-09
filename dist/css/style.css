@@ -2356,6 +2356,34 @@ body, input, button, h1, h2, h3, h4 {
 button, a {
   cursor: pointer; }
 
+.tooltip-container {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 0px; }
+  .tooltip-container .tooltip {
+    position: relative;
+    top: -20px;
+    left: 10px;
+    width: 400px;
+    height: 300px;
+    background: #eee;
+    border-radius: 2px;
+    z-index: 99;
+    box-shadow: 0px 0px 35px #999; }
+    .tooltip-container .tooltip::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 36px;
+      width: 0;
+      height: 0;
+      border: 14px solid transparent;
+      border-right-color: #eee;
+      border-left: 0;
+      margin-top: -14px;
+      margin-left: -14px; }
+
 header {
   margin: 0px;
   padding: 0px;
@@ -2382,14 +2410,14 @@ header {
     position: absolute;
     top: 0px;
     left: 50%;
-    margin-left: -24px; }
+    margin-left: -32px; }
   header ul {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 28px;
-    line-height: 28px;
-    margin: 19px 14px;
+    height: 32px;
+    line-height: 32px;
+    margin: 17px 14px;
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
@@ -2398,9 +2426,8 @@ header {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 28px;
-      line-height: 28px;
-      padding: 0px 10px 0px 0px;
+      height: 32px;
+      line-height: 32px;
       cursor: pointer;
       text-align: center;
       font-size: 16px;
@@ -2409,21 +2436,36 @@ header {
         margin: 0px;
         padding: 0px;
         display: inline-block;
-        height: 28px;
-        line-height: 28px;
+        height: 32px;
+        line-height: 32px;
         float: left; }
       header ul li i.fa {
-        width: 28px; }
+        width: 32px; }
+      header ul li > span {
+        display: inline-block;
+        text-align: left;
+        width: 0px;
+        opacity: 0;
+        transition: width .5s, opacity .2s .3s; }
       header ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
       header ul li:last-child {
         border-radius: 0px 3px 3px 0px; }
       header ul li.active {
         background: #ededed; }
+        header ul li.active > span {
+          opacity: 1; }
       header ul li:hover {
         background: #f2f2f2; }
 
+@keyframes fadein {
+  from {
+    opacity: 0.3; }
+  to {
+    opacity: 1; } }
+
 #view {
+  animation: fadein .7s;
   width: 100%;
   overflow-y: scroll;
   position: absolute;
@@ -2534,14 +2576,14 @@ h2 {
     position: absolute;
     top: 0px;
     left: 50%;
-    margin-left: -24px; }
+    margin-left: -32px; }
   #ui header ul {
     margin: 0px;
     padding: 0px;
     display: inline-block;
-    height: 28px;
-    line-height: 28px;
-    margin: 19px 14px;
+    height: 32px;
+    line-height: 32px;
+    margin: 17px 14px;
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
@@ -2550,9 +2592,8 @@ h2 {
       margin: 0px;
       padding: 0px;
       display: inline-block;
-      height: 28px;
-      line-height: 28px;
-      padding: 0px 10px 0px 0px;
+      height: 32px;
+      line-height: 32px;
       cursor: pointer;
       text-align: center;
       font-size: 16px;
@@ -2561,21 +2602,36 @@ h2 {
         margin: 0px;
         padding: 0px;
         display: inline-block;
-        height: 28px;
-        line-height: 28px;
+        height: 32px;
+        line-height: 32px;
         float: left; }
       #ui header ul li i.fa {
-        width: 28px; }
+        width: 32px; }
+      #ui header ul li > span {
+        display: inline-block;
+        text-align: left;
+        width: 0px;
+        opacity: 0;
+        transition: width .5s, opacity .2s .3s; }
       #ui header ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
       #ui header ul li:last-child {
         border-radius: 0px 3px 3px 0px; }
       #ui header ul li.active {
         background: #ededed; }
+        #ui header ul li.active > span {
+          opacity: 1; }
       #ui header ul li:hover {
         background: #f2f2f2; }
 
+@keyframes fadein {
+  from {
+    opacity: 0.3; }
+  to {
+    opacity: 1; } }
+
 #ui #view {
+  animation: fadein .7s;
   width: 100%;
   overflow-y: scroll;
   position: absolute;
@@ -2741,5 +2797,7 @@ h2 {
         margin: 0px 3px; }
     #ui .calendar .tasks li .task-est, #ui .calendar .tasks li .task-ass {
       width: 50%; }
+    #ui .calendar .tasks li.add-task {
+      position: relative; }
 
 /*# sourceMappingURL=style.css.map */

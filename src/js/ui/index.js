@@ -36,7 +36,7 @@ const header = require('./header');
 
 module.exports = ({state, actions}) => section('#ui', [
 	header({state, actions, views}),
-	section('.content', (state.tasks.needsRefresh === false) ? [
+	section('.content', [
 		uiViews[state.view]({state, actions})
-	] : [])
+	])
 ]);
