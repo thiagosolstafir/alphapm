@@ -28,6 +28,8 @@ const labels = {
 
 const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
+const getTimestamp = () => new Date().getTime() / 1000 | 0;
+
 module.exports = ({state, actions}) => section('#view.columns',
 	(state.tasks.needsRefresh === false) ? statuses.map(status =>
 		ul(`#tasks-${status}.tasks`, {
@@ -38,13 +40,17 @@ module.exports = ({state, actions}) => section('#view.columns',
 						draggable: 'li.task',
 						ghostClass: "placeholder",
 						dataIdAttr: 'task-id',
-						onAdd: ev => actions.tasks.edit(ev.item.getAttribute('task-id'), {status}, true)
+						onAdd: ev => (status === 'doing' || ev.item.getAttribute('task-status') === 'doing')
+							? actions.tasks.trackTime(ev.item.getAttribute('task-id'), status)
+							: actions.tasks.edit(ev.item.getAttribute('task-id'), {status}, true)
 					})
 			}
 		}, [
 			li(h2(capitalize(labels[status])))
 		].concat(
-			state.tasks.list.filter(task => task.status === status).map((task, index) =>
+			state.tasks.list
+				.filter(task => task.status === status)
+				.map((task, index) =>
 				li('.task', {
 					attrs: {
 						'task-id': task._id,
@@ -54,14 +60,18 @@ module.exports = ({state, actions}) => section('#view.columns',
 						draggable: true
 					}
 				}, [
-					span('.task-title', task.title),
+					span('.task-name', task.name),
 					span('.task-project', task.project),
 					span('.task-status', task.status),
 					span('.task-time', [
-						i('.fa.fa-clock-o'),
-						span('task-ass', moment.utc(task.time.est * 10000).format('H:mm')),
+						task.status === 'doing' ? i('.fa.fa-clock-o') : '',
+						span('task-ass', moment.utc(task.time.ass * 10000 +
+							((task.status === 'doing')
+								? getTimestamp() - task.activities.slice(-1).pop().start
+								: 0
+							) * 1000).format('H:mm:ss')),
 						'/',
-						span('.task-est', moment.utc(task.time.ass * 10000).format('H:mm'))
+						span('.task-est', moment.utc(task.time.est * 10000).format('H:mm'))
 					])
 				])),
 			[
@@ -74,7 +84,7 @@ module.exports = ({state, actions}) => section('#view.columns',
 							clearForm(ev.target);
 						}
 					}
-				}, input('[name="title"][placeholder="Добави Задача"]')))
+				}, input('[name="name"][placeholder="Добави Задача"]')))
 			]
 		))
 	) : []

@@ -18,6 +18,10 @@ const formToData = form => Array.from(form.elements)
 const clearForm = form => Array.from(form.elements)
 	.forEach(el => (el.value = null));
 
+const getTimestamp = () => new Date().getTime() / 1000 | 0;
+
+const latestTime = task => getTimestamp() - task.activities.filter(a => a.type === 'tracking').sort().pop().start;
+
 module.exports = ({state, actions}) => section('#view.table', [
 	ul('.tasks', {
 		hook: {
@@ -38,10 +42,10 @@ module.exports = ({state, actions}) => section('#view.table', [
 					clearForm(ev.target);
 				}
 			}
-		}, input('[name="title"][placeholder="Добави Задача"]')))
+		}, input('[name="name"][placeholder="Добави Задача"]')))
 	].concat(state.tasks.list.map(task =>
 		li('.task', [
-			span('.task-title', [
+			span('.task-name', [
 				i('.fa', {
 					class: {
 						'fa-code': task.type === 'dev',
@@ -49,12 +53,12 @@ module.exports = ({state, actions}) => section('#view.table', [
 						'fa-commenting-o': task.type === 'sync'
 					}
 				}),
-				task.title
+				task.name
 			]),
 			span('.task-project', task.project),
 			span('.task-status', task.status),
 			span('.task-time', [
-				i('.fa.fa-clock-o'),
+				task.status === 'doing' ? i('.fa.fa-clock-o') : '',
 				span('task-ass', moment.utc(task.time.est * 10000).format('H:mm')),
 				'/',
 				span('.task-est', moment.utc(task.time.ass * 10000).format('H:mm'))

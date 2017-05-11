@@ -2720,9 +2720,9 @@ h2 {
   height: 32px;
   clear: both;
   width: 100%; }
-  #ui .table li.task .task-title {
+  #ui .table li.task .task-name {
     width: 45%; }
-    #ui .table li.task .task-title i.fa {
+    #ui .table li.task .task-name i.fa {
       margin-right: 10px; }
   #ui .table li.task .task-project {
     width: 20%; }
@@ -2749,7 +2749,7 @@ h2 {
     display: inline-block;
     width: 100%;
     font-size: 16px; }
-    #ui .columns .tasks li .task-title {
+    #ui .columns .tasks li .task-name {
       width: 100%; }
     #ui .columns .tasks li .task-project {
       width: 50%; }
@@ -2784,7 +2784,7 @@ h2 {
       text-align: center;
       width: 100%;
       border-bottom: 1px dashed #aaa; }
-    #ui .calendar .tasks li .task-title {
+    #ui .calendar .tasks li .task-name {
       width: 100%; }
     #ui .calendar .tasks li .task-project {
       width: 50%; }

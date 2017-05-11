@@ -6,13 +6,20 @@
 		"tasks": {
 			"model": "Task",
 			"schema": {
-				"title" : { "type": "String", "required": true, "minLength": 1, "maxLength": 30 },
+				"name" : { "type": "String", "required": true, "minLength": 1, "maxLength": 30 },
 				"story": "String",
 				"project": "String",
 				"time": {
 					"ass": "Number",
 					"est": "Number"
 				},
+				"activities": [
+					{
+						"start": "Number",
+						"end": "Number",
+						"type": "String"
+					}
+				],
 				"type": "String",
 				"status": "String",
 				"milestone": "String",
@@ -56,11 +63,6 @@
 			},
 			"tasks": {
 				"_meta": {
-					"access": {
-						"admin": "all",
-						"publisher": "own",
-						"user": "list,view"
-					}
 				}
 			}
 		}
