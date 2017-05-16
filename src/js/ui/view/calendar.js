@@ -26,11 +26,23 @@ const getWeekdays = () => {
 const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
 module.exports = ({state, actions}) => section('#view.calendar', getWeekdays().map((day, index) =>
-	ul('.tasks', [
+	ul('.tasks', [].concat(
 		li(label(capitalize(moment(day).format('dddd, D MMM')))),
+		state.tasks.list.reduce((act, {activities, name, project, type, status}) =>
+			[].concat(act, activities.map(act => Object.assign({}, act, {
+				task: {name, project, type, status}
+			}))), [])
+			.filter(act =>
+				act.start >= parseInt(moment(day).format('X'), 10)
+				&& act.start <= parseInt(moment(day).endOf('day').format('X'), 10)
+			).map(act =>
+			li('.task', [
+				span(act.task.name),
+				span({style: {float: 'right'}}, moment.unix(act.start).format('H:mm'))
+			])
+		),
 		li('.add-task', [
 			button('Добави ...')
-			// (index === 3) ? div('.tooltip-container', div('.tooltip')) : ''
 		])
-	])
-));
+	)
+)));

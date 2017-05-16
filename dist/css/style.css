@@ -2333,12 +2333,6 @@
   overflow: visible;
   clip: auto; }
 
-html {
-  box-sizing: border-box; }
-
-*, *::after, *::before {
-  box-sizing: inherit; }
-
 body {
   margin: 0px;
   padding: 0px;
@@ -2346,6 +2340,9 @@ body {
 
 body, input, button, h1, h2, h3, h4 {
   font-family: "Jura"; }
+
+* {
+  box-sizing: border-box; }
 
 .left {
   float: left; }
@@ -2355,6 +2352,24 @@ body, input, button, h1, h2, h3, h4 {
 
 button, a {
   cursor: pointer; }
+
+button.fa, a.fa {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  font-size: inherit;
+  height: inherit;
+  line-height: inherit;
+  background: 0px;
+  opacity: 0.7;
+  transition: transform .1s, opacity .2s;
+  transform: scale(1, 1) translate(0, 0);
+  outline: none; }
+  button.fa:hover, a.fa:hover {
+    transform: scale(1.2, 1.2) translate(0, 0);
+    opacity: 1; }
+  button.fa:active, a.fa:active {
+    transform: scale(1.2, 1.2) translate(0, 1px); }
 
 .tooltip-container {
   position: absolute;
@@ -2410,7 +2425,12 @@ header {
     position: absolute;
     top: 0px;
     left: 50%;
-    margin-left: -32px; }
+    margin-left: -32px;
+    transition: transform .2s;
+    transform: scale(1, 1) translate(0, 0);
+    cursor: pointer; }
+    header img:hover {
+      transform: scale(1.2, 1.2) translate(0, 0); }
   header ul {
     margin: 0px;
     padding: 0px;
@@ -2446,7 +2466,7 @@ header {
         text-align: left;
         width: 0px;
         opacity: 0;
-        transition: width .5s, opacity .2s .3s; }
+        transition: width .5s, opacity .3s .25s; }
       header ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
       header ul li:last-child {
@@ -2465,7 +2485,8 @@ header {
     opacity: 1; } }
 
 #view {
-  animation: fadein .7s;
+  animation: fadein .5s;
+  box-sizing: border-box;
   width: 100%;
   overflow-y: scroll;
   position: absolute;
@@ -2515,6 +2536,7 @@ header {
       display: inline-block;
       height: 32px;
       line-height: 32px;
+      box-sizing: border-box;
       width: 100%;
       font-size: inherit;
       padding: 0px 10px;
@@ -2576,7 +2598,12 @@ h2 {
     position: absolute;
     top: 0px;
     left: 50%;
-    margin-left: -32px; }
+    margin-left: -32px;
+    transition: transform .2s;
+    transform: scale(1, 1) translate(0, 0);
+    cursor: pointer; }
+    #ui header img:hover {
+      transform: scale(1.2, 1.2) translate(0, 0); }
   #ui header ul {
     margin: 0px;
     padding: 0px;
@@ -2612,7 +2639,7 @@ h2 {
         text-align: left;
         width: 0px;
         opacity: 0;
-        transition: width .5s, opacity .2s .3s; }
+        transition: width .5s, opacity .3s .25s; }
       #ui header ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
       #ui header ul li:last-child {
@@ -2631,7 +2658,8 @@ h2 {
     opacity: 1; } }
 
 #ui #view {
-  animation: fadein .7s;
+  animation: fadein .5s;
+  box-sizing: border-box;
   width: 100%;
   overflow-y: scroll;
   position: absolute;
@@ -2681,6 +2709,7 @@ h2 {
       display: inline-block;
       height: 32px;
       line-height: 32px;
+      box-sizing: border-box;
       width: 100%;
       font-size: inherit;
       padding: 0px 10px;

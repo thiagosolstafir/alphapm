@@ -13,6 +13,11 @@ header
 		top: 0px
 		left: 50%
 		margin-left: -32px
+		transition: transform .2s
+		transform: scale(1, 1) translate(0, 0)
+		cursor: pointer
+		&:hover
+			transform: scale(1.2, 1.2) translate(0, 0)
 	ul
 		+header-height(32px)
 		margin: 17px 14px
@@ -36,7 +41,7 @@ header
 				text-align: left
 				width: 0px
 				opacity: 0
-				transition: width .5s, opacity .2s .3s
+				transition: width .5s, opacity .3s .25s
 			&:first-child
 				border-radius: 3px 0px 0px 3px
 			&:last-child

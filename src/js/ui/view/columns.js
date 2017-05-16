@@ -63,16 +63,28 @@ module.exports = ({state, actions}) => section('#view.columns',
 					span('.task-name', task.name),
 					span('.task-project', task.project),
 					span('.task-status', task.status),
-					span('.task-time', [
-						task.status === 'doing' ? i('.fa.fa-clock-o') : '',
-						span('task-ass', moment.utc(task.time.ass * 10000 +
-							((task.status === 'doing')
-								? getTimestamp() - task.activities.slice(-1).pop().start
-								: 0
-							) * 1000).format('H:mm:ss')),
-						'/',
-						span('.task-est', moment.utc(task.time.est * 10000).format('H:mm'))
-					])
+					span('.task-time',
+						(task.status === 'doing')
+							? [
+								i('.fa.fa-clock-o'),
+								span('task-ass', moment.utc(
+									task.activities
+										.filter(act => act.type === 'tracking' && act.end > 0)
+										.reduce((ass, act) => ass + act.end - act.start, 0) * 1000 +
+									(getTimestamp() - task.activities.slice(-1).pop().start) * 1000)
+									.format('H:mm:ss')),
+								'/',
+								span('.task-est', moment.utc(task.est * 10000).format('H:mm'))]
+							: [
+								span('task-ass', moment.utc(
+									task.activities
+										.filter(act => act.type === 'tracking' && act.end > 0)
+										.reduce((ass, act) => ass + act.end - act.start, 0) * 1000
+								).format('H:mm')),
+								'/',
+								span('.task-est', moment.utc(task.est * 10000).format('H:mm'))
+							]
+					)
 				])),
 			[
 				li('.add-task', form({

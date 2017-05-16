@@ -7,6 +7,9 @@ body
 body, input, button, h1, h2, h3, h4
 	font-family: "Jura"
 
+*
+	box-sizing: border-box
+
 .left
 	float: left
 .right
@@ -15,6 +18,22 @@ body, input, button, h1, h2, h3, h4
 button, a
 	cursor: pointer
 
+button.fa, a.fa
+	+no-margin-padding
+	border: 0px
+	font-size: inherit
+	height: inherit
+	line-height: inherit
+	background: 0px
+	opacity: 0.7
+	transition: transform .1s, opacity .2s
+	transform: scale(1, 1) translate(0, 0)
+	outline: none
+	&:hover
+		transform: scale(1.2, 1.2) translate(0, 0)
+		opacity: 1
+	&:active
+		transform: scale(1.2, 1.2) translate(0, 1px)
 
 .tooltip-container
 	position: absolute

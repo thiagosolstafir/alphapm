@@ -23,7 +23,7 @@ const getTimestamp = () => new Date().getTime() / 1000 | 0;
 const latestTime = task => getTimestamp() - task.activities.filter(a => a.type === 'tracking').sort().pop().start;
 
 module.exports = ({state, actions}) => section('#view.table', [
-	ul('.tasks', {
+	(state.tasks.needsRefresh === false) ? ul('.tasks', {
 		hook: {
 			insert: vnode =>
 				new Sortable(vnode.elm, {
@@ -43,7 +43,12 @@ module.exports = ({state, actions}) => section('#view.table', [
 				}
 			}
 		}, input('[name="name"][placeholder="Добави Задача"]')))
-	].concat(state.tasks.list.map(task =>
+	].concat(
+		[].concat(
+			state.tasks.list.filter(task => task.status === 'doing'),
+			state.tasks.list.filter(task => task.status === 'todo'),
+			state.tasks.list.filter(task => task.status === 'backlog')
+		).map(task =>
 		li('.task', [
 			span('.task-name', [
 				i('.fa', {
@@ -57,12 +62,44 @@ module.exports = ({state, actions}) => section('#view.table', [
 			]),
 			span('.task-project', task.project),
 			span('.task-status', task.status),
-			span('.task-time', [
-				task.status === 'doing' ? i('.fa.fa-clock-o') : '',
-				span('task-ass', moment.utc(task.time.est * 10000).format('H:mm')),
-				'/',
-				span('.task-est', moment.utc(task.time.ass * 10000).format('H:mm'))
-			])
+			span('.task-time',
+				(task.status === 'doing')
+					? [
+						i('.fa.fa-clock-o'),
+						span('task-ass', moment.utc(
+							task.activities
+								.filter(act => act.type === 'tracking' && act.end > 0)
+								.reduce((ass, act) => ass + act.end - act.start, 0) * 1000 +
+							(getTimestamp() - task.activities.slice(-1).pop().start) * 1000)
+							.format('H:mm:ss')),
+						'/',
+						span('.task-est', moment.utc(task.est * 10000).format('H:mm')),
+						button('.fa.fa-pause-circle[style="color: #d6c533"]', {
+							on: {
+								click: () => actions.tasks.trackTime(task._id, 'todo')
+							}
+						}),
+						button('.fa.fa-check-circle[style="color: #4faf3a"]', {
+							on: {
+								click: () => actions.tasks.trackTime(task._id, 'done')
+							}
+						})
+					]
+					: [
+						span('task-ass', moment.utc(
+							task.activities
+								.filter(act => act.type === 'tracking' && act.end > 0)
+								.reduce((ass, act) => ass + act.end - act.start, 0) * 1000
+						).format('H:mm')),
+						'/',
+						span('.task-est', moment.utc(task.est * 10000).format('H:mm')),
+						button('.fa.fa-play-circle', {
+							on: {
+								click: () => actions.tasks.trackTime(task._id, 'doing')
+							}
+						})
+					]
+			)
 		])
-	)))
+	))) : []
 ]);

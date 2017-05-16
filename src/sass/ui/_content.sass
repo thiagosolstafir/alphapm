@@ -5,7 +5,8 @@
 		opacity: 1
 
 #view
-	animation: fadein .7s
+	animation: fadein .5s
+	box-sizing: border-box
 	width: 100%
 	overflow-y: scroll
 	position: absolute
@@ -46,6 +47,7 @@
 		&.add-task
 			button, input
 				+header-height(32px)
+				box-sizing: border-box
 				width: 100%
 				font-size: inherit
 				padding: 0px 10px
