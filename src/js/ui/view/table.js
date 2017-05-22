@@ -55,7 +55,9 @@ module.exports = ({state, actions}) => section('#view.table', [
 					class: {
 						'fa-code': task.type === 'dev',
 						'fa-bug': task.type === 'bug',
-						'fa-commenting-o': task.type === 'sync'
+						'fa-commenting-o': task.type === 'sync',
+						'fa-book': task.type === 'research',
+						'fa-road': task.type === 'planning'
 					}
 				}),
 				task.name

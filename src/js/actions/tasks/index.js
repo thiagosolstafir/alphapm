@@ -2,6 +2,7 @@
 
 const {obj} = require('iblokz-data');
 const objectId = require('bson-objectid');
+const {diff, applyChange, applyDiff} = require('deep-diff');
 
 const indexAt = (a, k, v) => a.reduce((index, e, i) => ((e[k] === v) ? i : index), -1);
 console.log(indexAt([{a: 0}, {a: 5}, {a: 7}, {a: 2}], 'a', 0));
@@ -19,9 +20,12 @@ const arrGreatest = (a, k) => a.reduce((g, e) => (g === undefined || g < e[k]) ?
 
 const arrElAt = (a, k, v) => a.filter(e => e[k] === v).pop();
 
+const arrExtract = (a, k) => a.reduce((items, item) => items.concat(item[k] !== undefined && item[k] || []), []);
+
 const initial = {
 	needsRefresh: false,
 	list: [
+/*
 		{
 			_id: '0',
 			name: 'Initial Project Setup',
@@ -66,6 +70,7 @@ const initial = {
 			milestone: 'w15',
 			activities: []
 		}
+*/
 	]
 };
 
@@ -97,6 +102,7 @@ const trackTime = (id, status, timestamp = new Date().getTime() / 1000 | 0) =>
 					? [].concat(
 						task.activities || [],
 						{
+							_id: objectId().str,
 							start: timestamp,
 							type: 'tracking',
 							end: 0
@@ -143,10 +149,27 @@ const trackTime = (id, status, timestamp = new Date().getTime() / 1000 | 0) =>
 
 const refresh = () => state => obj.patch(state, 'tasks', {needsRefresh: false});
 
+const upsert = tasks => state =>
+	diff(tasks, state.tasks.list)
+	? obj.patch(state, 'tasks', {
+		needsRefresh: true,
+		list: [arrExtract(tasks, '_id')].map(ids =>
+			[].concat(
+				state.tasks.list.filter(task => ids.indexOf(task._id) === -1),
+				tasks.map(task => (
+	//				console.log(arrElAt(state.tasks.list, '_id', task._id), task),
+					Object.assign({}, arrElAt(state.tasks.list, '_id', task._id) || {}, task)
+				))
+			)
+		).pop()
+	})
+	: state;
+
 module.exports = {
 	initial,
 	add,
 	edit,
 	trackTime,
-	refresh
+	refresh,
+	upsert
 };

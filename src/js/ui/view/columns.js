@@ -60,7 +60,18 @@ module.exports = ({state, actions}) => section('#view.columns',
 						draggable: true
 					}
 				}, [
-					span('.task-name', task.name),
+					span('.task-name', [
+						i('.fa', {
+							class: {
+								'fa-code': task.type === 'dev',
+								'fa-bug': task.type === 'bug',
+								'fa-commenting-o': task.type === 'sync',
+								'fa-book': task.type === 'research',
+								'fa-road': task.type === 'planning'
+							}
+						}),
+						task.name
+					]),
 					span('.task-project', task.project),
 					span('.task-status', task.status),
 					span('.task-time',

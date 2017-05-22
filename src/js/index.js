@@ -3,6 +3,7 @@
 // lib
 const Rx = require('rx');
 const $ = Rx.Observable;
+const request = require('superagent');
 
 // iblokz
 const vdom = require('iblokz-snabbdom-helpers');
@@ -60,3 +61,24 @@ state$
 	.distinctUntilChanged(state => state.tasks.needsRefresh)
 	.filter(state => state.tasks.needsRefresh)
 	.subscribe(state => actions.tasks.refresh());
+
+// syncing
+state$
+	.distinctUntilChanged(state => state.tasks.list)
+	.subscribe(state => {
+		request
+			.patch('/api/tasks')
+			.send({list: state.tasks.list})
+			.then(res => console.log(res.body));
+	});
+
+// console.log('diff', diff([1, 2, 3], [1, 2, 3, 4]));
+$.interval(5000 /* ms */)
+		.timeInterval()
+		.startWith({})
+		.flatMap(() => $.fromPromise(
+			request
+				.get('/api/tasks')
+		))
+		.filter(res => res.status === 200)
+		.subscribe(res => actions.tasks.upsert(res.body.list));

@@ -6,19 +6,20 @@
   "scripts": {
     "prebuild": "node bin/move-assets.js",
     "build": "npm run build:js && npm run build:sass",
-    "build:js": "browserify src/js/index.js -o dist/js/app.js --debug",
+    "build:js": "browserify --t [ babelify --presets [ es2015] ] src/js/index.js -o dist/js/app.js --debug",
     "build:sass": "node-sass --source-map dist/css/style.css.map --include-path=$(node bin/sass-paths.js) src/sass/style.sass dist/css/style.css",
     "watch": "npm run watch:js & npm run watch:sass & npm run livereload",
-    "watch:js": "watchify -p browserify-hmr src/js/index.js -o dist/js/app.js --debug",
+    "watch:js": "watchify -p browserify-hmr --t [ babelify --presets [ es2015] ] src/js/index.js  -o dist/js/app.js --debug",
     "watch:sass": "nodemon -w src/sass -e sass -x 'npm run build:sass'",
     "livereload": "livereload dist/**/*.css -d",
-    "start": "serve --path=dist & npm run watch"
+    "start": "nodemon server & npm run watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
     "bson-objectid": "^1.1.5",
+    "deep-diff": "^0.3.8",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "iblokz-data": "^1.0.2",
@@ -36,6 +37,8 @@
     "superagent": "^3.3.1"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
     "browserify": "^13.1.1",
     "browserify-hmr": "^0.3.5",
     "eslint": "^3.12.2",

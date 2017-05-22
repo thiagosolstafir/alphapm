@@ -2530,6 +2530,11 @@ header {
         float: left;
         box-sizing: border-box;
         padding: 0 10px; }
+      .tasks li.task .task-name i.fa {
+        line-height: 32px;
+        width: 20px;
+        margin-right: 7px;
+        text-align: center; }
     .tasks li.add-task button, .tasks li.add-task input {
       margin: 0px;
       padding: 0px;
@@ -2703,6 +2708,11 @@ h2 {
         float: left;
         box-sizing: border-box;
         padding: 0 10px; }
+      #ui .tasks li.task .task-name i.fa {
+        line-height: 32px;
+        width: 20px;
+        margin-right: 7px;
+        text-align: center; }
     #ui .tasks li.add-task button, #ui .tasks li.add-task input {
       margin: 0px;
       padding: 0px;
@@ -2751,8 +2761,6 @@ h2 {
   width: 100%; }
   #ui .table li.task .task-name {
     width: 45%; }
-    #ui .table li.task .task-name i.fa {
-      margin-right: 10px; }
   #ui .table li.task .task-project {
     width: 20%; }
   #ui .table li.task .task-status {

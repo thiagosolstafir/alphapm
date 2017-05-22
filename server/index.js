@@ -41,5 +41,8 @@ require('./api/auth')({app, db, config});
 // initis rest endpoints
 restApi.initRoutes(app, config.rest, {}, db);
 
+// tasks additional
+require('./api/tasks')({app, db, config});
+
 // Logging initialization
 app.listen(config.port, () => console.log(`Listening to port ${config.port}`));
