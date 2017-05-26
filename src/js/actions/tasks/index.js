@@ -78,7 +78,7 @@ const add = ({name, project, type, status}) => state => obj.patch(state, 'tasks'
 	list: state.tasks.list.concat({
 		_id: objectId().str,
 		name: name.split(', ')[0],
-		project: project || name.split(', ')[1] || '',
+		project: project || name.split(', ')[1] || state.project || '',
 		type: type || name.split(', ')[2] || 'dev',
 		status: status || 'backlog',
 		est: 0,

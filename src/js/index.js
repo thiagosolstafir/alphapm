@@ -78,7 +78,7 @@ $.interval(5000 /* ms */)
 		.startWith({})
 		.flatMap(() => $.fromPromise(
 			request
-				.get('/api/tasks')
+				.get('/api/tasks?limit=1000')
 		))
 		.filter(res => res.status === 200)
 		.subscribe(res => actions.tasks.upsert(res.body.list));

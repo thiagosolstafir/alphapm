@@ -45,9 +45,15 @@ module.exports = ({state, actions}) => section('#view.table', [
 		}, input('[name="name"][placeholder="Добави Задача"]')))
 	].concat(
 		[].concat(
-			state.tasks.list.filter(task => task.status === 'doing'),
-			state.tasks.list.filter(task => task.status === 'todo'),
-			state.tasks.list.filter(task => task.status === 'backlog')
+			state.tasks.list
+				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => task.status === 'doing'),
+			state.tasks.list
+				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => task.status === 'todo'),
+			state.tasks.list
+				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => task.status === 'backlog')
 		).map(task =>
 		li('.task', [
 			span('.task-name', [

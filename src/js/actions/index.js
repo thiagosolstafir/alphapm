@@ -7,7 +7,8 @@ const tasks = require('./tasks');
 // initial
 const initial = {
 	// view: table, columns, calendar
-	view: 'table'
+	view: 'table',
+	project: false
 };
 
 // actions

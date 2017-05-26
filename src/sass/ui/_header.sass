@@ -18,7 +18,73 @@ header
 		cursor: pointer
 		&:hover
 			transform: scale(1.2, 1.2) translate(0, 0)
-	ul
+	button
+		+header-height(32px)
+		font-size: 16px
+		margin: 17px 5px
+		padding: 0px 7px
+		border: 0px
+		background: #ededed
+		box-shadow: 1px 1px 3px #aaa
+		box-sizing: border-box
+		border-radius: 3px
+		outline: none
+		float: left
+		vertical-align: middle
+		> span, > i
+			+header-height(32px)
+			float: left
+		.fa
+			margin-left: 7px
+			text-align: center
+		&:hover
+			background: #f2f2f2
+	.dropdown
+		position: relative
+		ul
+			+reset
+			clear: both
+			display: block
+			position: absolute
+			top: 34px
+			left: 0px
+			z-index: 99
+			min-width: 100%
+			background: #dfdfdf
+			box-shadow: 1px 1px 3px #aaa
+			box-sizing: border-box
+			border-radius: 3px
+			opacity: 0
+			transition: opacity .05s .5s
+			> li
+				+reset
+				height: 0
+				display: block
+				transition: height .17s .2s, background .5s
+				span
+					height: 0
+					padding: 0px
+					margin: 0px
+					line-height: 28px
+					overflow: hidden
+					transition: height .17s .2s
+		&:hover
+			ul
+				transition: opacity .05s
+				opacity: 1
+				li
+					transition: height .17s
+					height: 28px
+					span
+						height: 28px
+						transition: height .17s
+					&:hover
+						background: #f2f2f2
+					&.active
+						background: #ededed
+
+
+	> ul
 		+header-height(32px)
 		margin: 17px 14px
 		list-style: none

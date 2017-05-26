@@ -2403,6 +2403,7 @@ header {
   margin: 0px;
   padding: 0px;
   display: inline-block;
+  box-sizing: border-box;
   height: 64px;
   line-height: 64px;
   padding: 0px 10px;
@@ -2413,6 +2414,7 @@ header {
     margin: 0px;
     padding: 0px;
     display: inline-block;
+    box-sizing: border-box;
     height: 64px;
     line-height: 64px;
     margin: 0px 30px; }
@@ -2420,6 +2422,7 @@ header {
     margin: 0px;
     padding: 0px;
     display: inline-block;
+    box-sizing: border-box;
     height: 64px;
     line-height: 64px;
     position: absolute;
@@ -2431,10 +2434,90 @@ header {
     cursor: pointer; }
     header img:hover {
       transform: scale(1.2, 1.2) translate(0, 0); }
-  header ul {
+  header button {
     margin: 0px;
     padding: 0px;
     display: inline-block;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    margin: 17px 5px;
+    padding: 0px 7px;
+    border: 0px;
+    background: #ededed;
+    box-shadow: 1px 1px 3px #aaa;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: none;
+    float: left;
+    vertical-align: middle; }
+    header button > span, header button > i {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 32px;
+      line-height: 32px;
+      float: left; }
+    header button .fa {
+      margin-left: 7px;
+      text-align: center; }
+    header button:hover {
+      background: #f2f2f2; }
+  header .dropdown {
+    position: relative; }
+    header .dropdown ul {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      clear: both;
+      display: block;
+      position: absolute;
+      top: 34px;
+      left: 0px;
+      z-index: 99;
+      min-width: 100%;
+      background: #dfdfdf;
+      box-shadow: 1px 1px 3px #aaa;
+      box-sizing: border-box;
+      border-radius: 3px;
+      opacity: 0;
+      transition: opacity .05s .5s; }
+      header .dropdown ul > li {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 0;
+        display: block;
+        transition: height .17s .2s, background .5s; }
+        header .dropdown ul > li span {
+          height: 0;
+          padding: 0px;
+          margin: 0px;
+          line-height: 28px;
+          overflow: hidden;
+          transition: height .17s .2s; }
+    header .dropdown:hover ul {
+      transition: opacity .05s;
+      opacity: 1; }
+      header .dropdown:hover ul li {
+        transition: height .17s;
+        height: 28px; }
+        header .dropdown:hover ul li span {
+          height: 28px;
+          transition: height .17s; }
+        header .dropdown:hover ul li:hover {
+          background: #f2f2f2; }
+        header .dropdown:hover ul li.active {
+          background: #ededed; }
+  header > ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
     height: 32px;
     line-height: 32px;
     margin: 17px 14px;
@@ -2442,40 +2525,42 @@ header {
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px; }
-    header ul li {
+    header > ul li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
+      box-sizing: border-box;
       height: 32px;
       line-height: 32px;
       cursor: pointer;
       text-align: center;
       font-size: 16px;
       transition: background .5s; }
-      header ul li > * {
+      header > ul li > * {
         margin: 0px;
         padding: 0px;
         display: inline-block;
+        box-sizing: border-box;
         height: 32px;
         line-height: 32px;
         float: left; }
-      header ul li i.fa {
+      header > ul li i.fa {
         width: 32px; }
-      header ul li > span {
+      header > ul li > span {
         display: inline-block;
         text-align: left;
         width: 0px;
         opacity: 0;
         transition: width .5s, opacity .3s .25s; }
-      header ul li:first-child {
+      header > ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
-      header ul li:last-child {
+      header > ul li:last-child {
         border-radius: 0px 3px 3px 0px; }
-      header ul li.active {
+      header > ul li.active {
         background: #ededed; }
-        header ul li.active > span {
+        header > ul li.active > span {
           opacity: 1; }
-      header ul li:hover {
+      header > ul li:hover {
         background: #f2f2f2; }
 
 @keyframes fadein {
@@ -2525,6 +2610,7 @@ header {
         margin: 0px;
         padding: 0px;
         display: inline-block;
+        box-sizing: border-box;
         height: 32px;
         line-height: 32px;
         float: left;
@@ -2539,6 +2625,7 @@ header {
       margin: 0px;
       padding: 0px;
       display: inline-block;
+      box-sizing: border-box;
       height: 32px;
       line-height: 32px;
       box-sizing: border-box;
@@ -2563,6 +2650,7 @@ h2 {
   margin: 0px;
   padding: 0px;
   display: inline-block;
+  box-sizing: border-box;
   height: 32px;
   line-height: 32px;
   padding-top: 2px;
@@ -2581,6 +2669,7 @@ h2 {
   margin: 0px;
   padding: 0px;
   display: inline-block;
+  box-sizing: border-box;
   height: 64px;
   line-height: 64px;
   padding: 0px 10px;
@@ -2591,6 +2680,7 @@ h2 {
     margin: 0px;
     padding: 0px;
     display: inline-block;
+    box-sizing: border-box;
     height: 64px;
     line-height: 64px;
     margin: 0px 30px; }
@@ -2598,6 +2688,7 @@ h2 {
     margin: 0px;
     padding: 0px;
     display: inline-block;
+    box-sizing: border-box;
     height: 64px;
     line-height: 64px;
     position: absolute;
@@ -2609,10 +2700,90 @@ h2 {
     cursor: pointer; }
     #ui header img:hover {
       transform: scale(1.2, 1.2) translate(0, 0); }
-  #ui header ul {
+  #ui header button {
     margin: 0px;
     padding: 0px;
     display: inline-block;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    margin: 17px 5px;
+    padding: 0px 7px;
+    border: 0px;
+    background: #ededed;
+    box-shadow: 1px 1px 3px #aaa;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: none;
+    float: left;
+    vertical-align: middle; }
+    #ui header button > span, #ui header button > i {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 32px;
+      line-height: 32px;
+      float: left; }
+    #ui header button .fa {
+      margin-left: 7px;
+      text-align: center; }
+    #ui header button:hover {
+      background: #f2f2f2; }
+  #ui header .dropdown {
+    position: relative; }
+    #ui header .dropdown ul {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      clear: both;
+      display: block;
+      position: absolute;
+      top: 34px;
+      left: 0px;
+      z-index: 99;
+      min-width: 100%;
+      background: #dfdfdf;
+      box-shadow: 1px 1px 3px #aaa;
+      box-sizing: border-box;
+      border-radius: 3px;
+      opacity: 0;
+      transition: opacity .05s .5s; }
+      #ui header .dropdown ul > li {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 0;
+        display: block;
+        transition: height .17s .2s, background .5s; }
+        #ui header .dropdown ul > li span {
+          height: 0;
+          padding: 0px;
+          margin: 0px;
+          line-height: 28px;
+          overflow: hidden;
+          transition: height .17s .2s; }
+    #ui header .dropdown:hover ul {
+      transition: opacity .05s;
+      opacity: 1; }
+      #ui header .dropdown:hover ul li {
+        transition: height .17s;
+        height: 28px; }
+        #ui header .dropdown:hover ul li span {
+          height: 28px;
+          transition: height .17s; }
+        #ui header .dropdown:hover ul li:hover {
+          background: #f2f2f2; }
+        #ui header .dropdown:hover ul li.active {
+          background: #ededed; }
+  #ui header > ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
     height: 32px;
     line-height: 32px;
     margin: 17px 14px;
@@ -2620,40 +2791,42 @@ h2 {
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px; }
-    #ui header ul li {
+    #ui header > ul li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
+      box-sizing: border-box;
       height: 32px;
       line-height: 32px;
       cursor: pointer;
       text-align: center;
       font-size: 16px;
       transition: background .5s; }
-      #ui header ul li > * {
+      #ui header > ul li > * {
         margin: 0px;
         padding: 0px;
         display: inline-block;
+        box-sizing: border-box;
         height: 32px;
         line-height: 32px;
         float: left; }
-      #ui header ul li i.fa {
+      #ui header > ul li i.fa {
         width: 32px; }
-      #ui header ul li > span {
+      #ui header > ul li > span {
         display: inline-block;
         text-align: left;
         width: 0px;
         opacity: 0;
         transition: width .5s, opacity .3s .25s; }
-      #ui header ul li:first-child {
+      #ui header > ul li:first-child {
         border-radius: 3px 0px 0px 3px; }
-      #ui header ul li:last-child {
+      #ui header > ul li:last-child {
         border-radius: 0px 3px 3px 0px; }
-      #ui header ul li.active {
+      #ui header > ul li.active {
         background: #ededed; }
-        #ui header ul li.active > span {
+        #ui header > ul li.active > span {
           opacity: 1; }
-      #ui header ul li:hover {
+      #ui header > ul li:hover {
         background: #f2f2f2; }
 
 @keyframes fadein {
@@ -2703,6 +2876,7 @@ h2 {
         margin: 0px;
         padding: 0px;
         display: inline-block;
+        box-sizing: border-box;
         height: 32px;
         line-height: 32px;
         float: left;
@@ -2717,6 +2891,7 @@ h2 {
       margin: 0px;
       padding: 0px;
       display: inline-block;
+      box-sizing: border-box;
       height: 32px;
       line-height: 32px;
       box-sizing: border-box;
@@ -2741,6 +2916,7 @@ h2 {
   margin: 0px;
   padding: 0px;
   display: inline-block;
+  box-sizing: border-box;
   height: 32px;
   line-height: 32px;
   padding-top: 2px;
@@ -2787,7 +2963,8 @@ h2 {
     width: 100%;
     font-size: 16px; }
     #ui .columns .tasks li .task-name {
-      width: 100%; }
+      width: 100%;
+      height: auto; }
     #ui .columns .tasks li .task-project {
       width: 50%; }
     #ui .columns .tasks li .task-status {
@@ -2815,6 +2992,7 @@ h2 {
       margin: 0px;
       padding: 0px;
       display: inline-block;
+      box-sizing: border-box;
       height: 42px;
       line-height: 42px;
       font-weight: bold;

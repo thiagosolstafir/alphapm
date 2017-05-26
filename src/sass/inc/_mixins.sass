@@ -2,8 +2,13 @@
 	margin: 0px
 	padding: 0px
 
-@mixin header-height($h)
-	+no-margin-padding
-	display: inline-block
-	height: $h
-	line-height: $h
+=reset
+  margin: 0px
+  padding: 0px
+  display: inline-block
+  box-sizing: border-box
+
+=header-height($s)
+  +reset
+  height: $s
+  line-height: $s

@@ -49,6 +49,7 @@ module.exports = ({state, actions}) => section('#view.columns',
 			li(h2(capitalize(labels[status])))
 		].concat(
 			state.tasks.list
+				.filter(task => state.project === false || task.project === state.project)
 				.filter(task => task.status === status)
 				.map((task, index) =>
 				li('.task', {
