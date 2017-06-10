@@ -2461,8 +2461,17 @@ header {
       line-height: 32px;
       float: left; }
     header button .fa {
-      margin-left: 7px;
       text-align: center; }
+      header button .fa:not(:first-child) {
+        margin-left: 7px; }
+      header button .fa::before {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 32px;
+        line-height: 32px;
+        vertical-align: bottom; }
     header button:hover {
       background: #f2f2f2; }
   header .dropdown {
@@ -2475,10 +2484,9 @@ header {
       clear: both;
       display: block;
       position: absolute;
-      top: 34px;
+      top: 36px;
       left: 0px;
       z-index: 99;
-      min-width: 100%;
       background: #dfdfdf;
       box-shadow: 1px 1px 3px #aaa;
       box-sizing: border-box;
@@ -2490,6 +2498,7 @@ header {
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
+        padding: 0px 10px;
         height: 0;
         display: block;
         transition: height .17s .2s, background .5s; }
@@ -2606,7 +2615,7 @@ header {
       .tasks li.task:hover {
         background: #f2f2f2;
         box-shadow: 1px 1px 4px #aaa; }
-      .tasks li.task > * {
+      .tasks li.task > :not(.wrapper) {
         margin: 0px;
         padding: 0px;
         display: inline-block;
@@ -2727,8 +2736,17 @@ h2 {
       line-height: 32px;
       float: left; }
     #ui header button .fa {
-      margin-left: 7px;
       text-align: center; }
+      #ui header button .fa:not(:first-child) {
+        margin-left: 7px; }
+      #ui header button .fa::before {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 32px;
+        line-height: 32px;
+        vertical-align: bottom; }
     #ui header button:hover {
       background: #f2f2f2; }
   #ui header .dropdown {
@@ -2741,10 +2759,9 @@ h2 {
       clear: both;
       display: block;
       position: absolute;
-      top: 34px;
+      top: 36px;
       left: 0px;
       z-index: 99;
-      min-width: 100%;
       background: #dfdfdf;
       box-shadow: 1px 1px 3px #aaa;
       box-sizing: border-box;
@@ -2756,6 +2773,7 @@ h2 {
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
+        padding: 0px 10px;
         height: 0;
         display: block;
         transition: height .17s .2s, background .5s; }
@@ -2872,7 +2890,7 @@ h2 {
       #ui .tasks li.task:hover {
         background: #f2f2f2;
         box-shadow: 1px 1px 4px #aaa; }
-      #ui .tasks li.task > * {
+      #ui .tasks li.task > :not(.wrapper) {
         margin: 0px;
         padding: 0px;
         display: inline-block;
@@ -2930,6 +2948,55 @@ h2 {
   text-align: center;
   background: #d5d5d5;
   color: #111; }
+
+#ui li.task {
+  position: relative; }
+  #ui li.task.editing {
+    visibility: hidden;
+    transition: visibility 0s; }
+    #ui li.task.editing .wrapper {
+      visibility: visible;
+      background: #eee;
+      z-index: 100;
+      opacity: 1;
+      transition: top .7s, left .7s, width .7s, height .7s, margin-left .7s, opacity .1s, background .7s, bottom .7s; }
+      #ui li.task.editing .wrapper .modal {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity .4s .7s, display 0s .7s; }
+  #ui li.task .wrapper {
+    visibility: visible;
+    position: fixed;
+    transition: top .7s, left .7s, width .7s, height .7s, margin-left .7s, opacity .1s .7s, background .7s, bottom .7s;
+    opacity: 0;
+    background: #fafafa;
+    box-shadow: 0px 0px 17px #aaa;
+    z-index: 99; }
+    #ui li.task .wrapper .close-modal {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin-top: -8px;
+      margin-right: -8px;
+      text-align: center;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      border-radius: 100px;
+      background: #eee;
+      box-shadow: 0px 0px 17px #aaa;
+      font-size: 20px; }
+    #ui li.task .wrapper .modal {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .1s;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%; }
+      #ui li.task .wrapper .modal input {
+        user-select: text !important; }
 
 #ui .table li {
   height: 32px;

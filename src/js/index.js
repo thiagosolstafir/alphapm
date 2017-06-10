@@ -5,6 +5,11 @@ const Rx = require('rx');
 const $ = Rx.Observable;
 const request = require('superagent');
 
+// vex code
+const vex = require('vex-js');
+vex.registerPlugin(require('vex-dialog'));
+vex.defaultOptions.className = 'vex-theme-top';
+
 // iblokz
 const vdom = require('iblokz-snabbdom-helpers');
 const {obj, arr} = require('iblokz-data');

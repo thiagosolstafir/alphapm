@@ -10,6 +10,13 @@ const {
 
 const moment = require('moment');
 
+// vex dialog
+const vex = require('vex-js');
+const prompt = (message, cb) => vex.dialog.prompt({
+	message,
+	callback: v => v && v !== '' && cb(v)
+});
+
 module.exports = ({state, actions, views}) => header([
 	ul('.left',
 		views.map(view =>
@@ -38,6 +45,8 @@ module.exports = ({state, actions, views}) => header([
 				li({on: {click: () => actions.set('project', project)}}, span(project))
 			)))
 	]),
+	state.project && button(i('.fa.fa-pencil')) || '',
+	button(i('.fa.fa-plus')),
 	img('[src="assets/img/logo-2.svg"]'),
 	span('.right', moment().format('DD MMMM YYYY, H:mm:ss'))
 ]);

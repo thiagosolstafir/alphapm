@@ -7,6 +7,8 @@ const {
 	table, thead, tbody, tfoot, tr, td, th
 } = require('iblokz-snabbdom-helpers');
 // components
+const taskLi = require('../comp/task-li');
+
 const moment = require('moment');
 const Sortable = require('sortablejs');
 
@@ -38,11 +40,13 @@ module.exports = ({state, actions}) => section('#view.columns',
 					new Sortable(vnode.elm, {
 						group: 'table',
 						draggable: 'li.task',
+						filter: '.editing',
+						preventOnFilter: false,
 						ghostClass: "placeholder",
 						dataIdAttr: 'task-id',
 						onAdd: ev => (status === 'doing' || ev.item.getAttribute('task-status') === 'doing')
 							? actions.tasks.trackTime(ev.item.getAttribute('task-id'), status)
-							: actions.tasks.edit(ev.item.getAttribute('task-id'), {status}, true)
+							: actions.tasks.update(ev.item.getAttribute('task-id'), {status}, true)
 					})
 			}
 		}, [
@@ -51,53 +55,7 @@ module.exports = ({state, actions}) => section('#view.columns',
 			state.tasks.list
 				.filter(task => state.project === false || task.project === state.project)
 				.filter(task => task.status === status)
-				.map((task, index) =>
-				li('.task', {
-					attrs: {
-						'task-id': task._id,
-						'task-status': task.status
-					},
-					props: {
-						draggable: true
-					}
-				}, [
-					span('.task-name', [
-						i('.fa', {
-							class: {
-								'fa-code': task.type === 'dev',
-								'fa-bug': task.type === 'bug',
-								'fa-commenting-o': task.type === 'sync',
-								'fa-book': task.type === 'research',
-								'fa-road': task.type === 'planning'
-							}
-						}),
-						task.name
-					]),
-					span('.task-project', task.project),
-					span('.task-status', task.status),
-					span('.task-time',
-						(task.status === 'doing')
-							? [
-								i('.fa.fa-clock-o'),
-								span('task-ass', moment.utc(
-									task.activities
-										.filter(act => act.type === 'tracking' && act.end > 0)
-										.reduce((ass, act) => ass + act.end - act.start, 0) * 1000 +
-									(getTimestamp() - task.activities.slice(-1).pop().start) * 1000)
-									.format('H:mm:ss')),
-								'/',
-								span('.task-est', moment.utc(task.est * 10000).format('H:mm'))]
-							: [
-								span('task-ass', moment.utc(
-									task.activities
-										.filter(act => act.type === 'tracking' && act.end > 0)
-										.reduce((ass, act) => ass + act.end - act.start, 0) * 1000
-								).format('H:mm')),
-								'/',
-								span('.task-est', moment.utc(task.est * 10000).format('H:mm'))
-							]
-					)
-				])),
+				.map((task, index) => taskLi({task, actions, editing: state.tasks.editing === task._id})),
 			[
 				li('.add-task', form({
 					on: {

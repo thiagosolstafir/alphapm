@@ -12,7 +12,8 @@
     "watch:js": "watchify -p browserify-hmr --t [ babelify --presets [ es2015] ] src/js/index.js  -o dist/js/app.js --debug",
     "watch:sass": "nodemon -w src/sass -e sass -x 'npm run build:sass'",
     "livereload": "livereload dist/**/*.css -d",
-    "start": "nodemon server & npm run watch"
+    "start": "nodemon server & npm run watch",
+    "start:proc": "npm run build && PORT=3000 nodemon server"
   },
   "author": "",
   "license": "ISC",
@@ -34,7 +35,8 @@
     "rx-node": "^1.0.2",
     "snabbdom": "^0.5.4",
     "sortablejs": "^1.5.1",
-    "superagent": "^3.3.1"
+    "superagent": "^3.3.1",
+    "vex-js": "^3.1.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",

@@ -24,54 +24,8 @@ const arrExtract = (a, k) => a.reduce((items, item) => items.concat(item[k] !== 
 
 const initial = {
 	needsRefresh: false,
-	list: [
-/*
-		{
-			_id: '0',
-			name: 'Initial Project Setup',
-			story: '',
-			project: 'AlphaPM',
-			est: 360,
-			type: 'dev',
-			status: 'done',
-			milestone: 'w15',
-			activities: []
-		},
-		{
-			_id: '1',
-			name: 'Sync Session',
-			story: '',
-			project: 'SPP',
-			est: 360,
-			type: 'sync',
-			status: 'done',
-			milestone: 'w15',
-			activities: []
-		},
-		{
-			_id: '2',
-			name: 'Scheduling Test',
-			story: '',
-			project: 'SPP',
-			est: 360,
-			type: 'dev',
-			status: 'done',
-			milestone: 'w15',
-			activities: []
-		},
-		{
-			_id: '3',
-			name: 'Text Parsing Test',
-			story: '',
-			project: 'SPP',
-			est: 360,
-			type: 'dev',
-			status: 'backlog',
-			milestone: 'w15',
-			activities: []
-		}
-*/
-	]
+	editing: null,
+	list: []
 };
 
 const add = ({name, project, type, status}) => state => obj.patch(state, 'tasks', {
@@ -87,7 +41,7 @@ const add = ({name, project, type, status}) => state => obj.patch(state, 'tasks'
 	})
 });
 
-const edit = (id, patch, needsRefresh = false) => state => obj.patch(state, 'tasks', {
+const update = (id, patch, needsRefresh = false) => state => obj.patch(state, 'tasks', {
 	needsRefresh,
 	list: arrPatchAt(state.tasks.list, '_id', id, patch)
 });
@@ -148,6 +102,7 @@ const trackTime = (id, status, timestamp = new Date().getTime() / 1000 | 0) =>
 	});
 
 const refresh = () => state => obj.patch(state, 'tasks', {needsRefresh: false});
+const edit = (editing = null) => state => obj.patch(state, 'tasks', {editing});
 
 const upsert = tasks => state =>
 	diff(tasks, state.tasks.list)
@@ -168,6 +123,7 @@ const upsert = tasks => state =>
 module.exports = {
 	initial,
 	add,
+	update,
 	edit,
 	trackTime,
 	refresh,

@@ -35,8 +35,12 @@ header
 			+header-height(32px)
 			float: left
 		.fa
-			margin-left: 7px
+			&:not(:first-child)
+				margin-left: 7px
 			text-align: center
+			&::before
+				+header-height(32px)
+				vertical-align: bottom
 		&:hover
 			background: #f2f2f2
 	.dropdown
@@ -46,10 +50,9 @@ header
 			clear: both
 			display: block
 			position: absolute
-			top: 34px
+			top: 36px
 			left: 0px
 			z-index: 99
-			min-width: 100%
 			background: #dfdfdf
 			box-shadow: 1px 1px 3px #aaa
 			box-sizing: border-box
@@ -58,6 +61,7 @@ header
 			transition: opacity .05s .5s
 			> li
 				+reset
+				padding: 0px 10px
 				height: 0
 				display: block
 				transition: height .17s .2s, background .5s
