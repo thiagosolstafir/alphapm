@@ -1,7 +1,7 @@
 'use strict';
 
 const {
-	ul, li, i, h2, a,
+	ul, li, i, h2, a, pre,
 	section, header, span, img, p, div,
 	table, thead, tbody, tfoot, tr, td, th,
 	form, frameset, legend, label, input, button
@@ -76,7 +76,7 @@ module.exports = ({task, actions, editing = false}) => li('.task', {
 			},
 			remove: ({elm}) => {
 				syncRect(getParent(elm, 'LI'));
-				elm.addEventListener('transitionend', () => getParent(elm, 'LI').removeChild(elm));
+				setTimeout(() => getParent(elm, 'LI').removeChild(elm), 1000);
 			}
 		}
 	}, [
@@ -86,16 +86,41 @@ module.exports = ({task, actions, editing = false}) => li('.task', {
 					click: () => actions.tasks.edit(null)
 				}
 			}, i('.fa.fa-close')),
-			form(
-				div([i('.fa.fa-pencil'), input({
-					on: {
-						blur: ev => actions.tasks.update(task._id, {name: ev.target.value}, false)
-					},
-					attrs: {
-						value: task.name
-					}
-				})])
-			)
+			h2('[contenteditable="true"]', {
+				on: {blur: ev => actions.tasks.update(task._id, {name: ev.target.textContent}, false)}
+			}, task.name),
+			pre('.task-story[contenteditable="true"][placeholder="Story ..."]', {
+				on: {
+					focus: ev => (ev.target.textContent = task.story || ''),
+					blur: ev => actions.tasks.update(task._id, {story: ev.target.textContent}, false)
+				}
+			}, task.story || 'Story ...'),
+			label('Activities'),
+			ul('.task-activities', task.activities.filter(act => act.end > 0).map(act =>
+				li([
+					span('.act-type', act.type),
+					input('.act-start[type="datetime-local"]', {
+						on: {
+							change: ev => actions.tasks.actUpdate(task._id, act._id, {
+								start: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
+							})
+						},
+						attrs: {
+							value: moment.unix(act.start).format('YYYY-MM-DDTHH:mm')
+						}
+					}),
+					input('.act-end[type="datetime-local"]', {
+						on: {
+							change: ev => actions.tasks.actUpdate(task._id, act._id, {
+								end: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
+							})
+						},
+						attrs: {
+							value: act.end && moment.unix(act.end).format('YYYY-MM-DDTHH:mm')
+						}
+					})
+				])
+			))
 		])
 	]) : ''
 ]);

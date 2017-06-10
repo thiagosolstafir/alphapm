@@ -120,6 +120,15 @@ const upsert = tasks => state =>
 	})
 	: state;
 
+const actUpdate = (taskId, id, patch) => state => obj.patch(state, 'tasks', {
+	needsRefresh: false,
+	list: arrPatchAt(state.tasks.list, '_id', taskId, {
+		activities: arrPatchAt(
+			arrElAt(state.tasks.list, '_id', taskId).activities,
+			'_id', id, patch)
+	})
+});
+
 module.exports = {
 	initial,
 	add,
@@ -127,5 +136,6 @@ module.exports = {
 	edit,
 	trackTime,
 	refresh,
-	upsert
+	upsert,
+	actUpdate
 };
