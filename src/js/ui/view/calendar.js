@@ -25,7 +25,7 @@ const getWeekdays = () => {
 
 const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
-module.exports = ({state, actions}) => section('#view.calendar', getWeekdays().map((day, index) =>
+module.exports = ({state, actions, i18n}) => section('#view.calendar', getWeekdays().map((day, index) =>
 	ul('.tasks', [].concat(
 		li(label(capitalize(moment(day).format('dddd, D MMM')))),
 		state.tasks.list.reduce((act, {activities, name, project, type, status}) =>
@@ -42,7 +42,7 @@ module.exports = ({state, actions}) => section('#view.calendar', getWeekdays().m
 			])
 		),
 		li('.add-task', [
-			button('Добави ...')
+			button(`${i18n.common.add} ...`)
 		])
 	)
 )));

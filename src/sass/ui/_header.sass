@@ -6,8 +6,8 @@ header
 	font-size: 14px
 	span
 		+header-height(64px)
-		margin: 0px 30px
-	img
+		margin: 0px 15px
+	> img.logo
 		+header-height(64px)
 		position: absolute
 		top: 0px
@@ -21,7 +21,7 @@ header
 	button
 		+header-height(32px)
 		font-size: 16px
-		margin: 17px 5px
+		margin: 17px 15px
 		padding: 0px 7px
 		border: 0px
 		background: #ededed
@@ -45,6 +45,9 @@ header
 			background: #f2f2f2
 	.dropdown
 		position: relative
+		img
+			height: 28px
+			width: calc(28px / 3 * 4)
 		ul
 			+reset
 			clear: both
@@ -65,10 +68,10 @@ header
 				height: 0
 				display: block
 				transition: height .17s .2s, background .5s
-				span
+				span, img
+					+reset
+					display: inline-block
 					height: 0
-					padding: 0px
-					margin: 0px
 					line-height: 28px
 					overflow: hidden
 					transition: height .17s .2s
@@ -79,15 +82,18 @@ header
 				li
 					transition: height .17s
 					height: 28px
-					span
+					span, img
 						height: 28px
 						transition: height .17s
 					&:hover
 						background: #f2f2f2
 					&.active
 						background: #ededed
-
-
+	a.dropdown
+		+header-height(28px)
+		margin: 17px 5px
+		ul, li
+			+reset
 	> ul
 		+header-height(32px)
 		margin: 17px 14px

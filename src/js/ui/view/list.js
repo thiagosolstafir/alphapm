@@ -22,7 +22,7 @@ const getTimestamp = () => new Date().getTime() / 1000 | 0;
 
 const latestTime = task => getTimestamp() - task.activities.filter(a => a.type === 'tracking').sort().pop().start;
 
-module.exports = ({state, actions}) => section('#view.table', [
+module.exports = ({state, actions, i18n}) => section('#view.list', [
 	(state.tasks.needsRefresh === false) ? ul('.tasks', {
 		hook: {
 			insert: vnode =>
@@ -42,7 +42,7 @@ module.exports = ({state, actions}) => section('#view.table', [
 					clearForm(ev.target);
 				}
 			}
-		}, input('[name="name"][placeholder="Добави Задача"]')))
+		}, input(`[name="name"][placeholder="${i18n.common.addTask}"]`)))
 	].concat(
 		[].concat(
 			state.tasks.list

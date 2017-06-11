@@ -32,7 +32,7 @@ const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
 const getTimestamp = () => new Date().getTime() / 1000 | 0;
 
-module.exports = ({state, actions}) => section('#view.columns',
+module.exports = ({state, actions, i18n}) => section('#view.columns',
 	(state.tasks.needsRefresh === false) ? statuses.map(status =>
 		ul(`#tasks-${status}.tasks`, {
 			hook: {
@@ -50,7 +50,7 @@ module.exports = ({state, actions}) => section('#view.columns',
 					})
 			}
 		}, [
-			li(h2(capitalize(labels[status])))
+			li(h2(capitalize(i18n.columns[status])))
 		].concat(
 			state.tasks.list
 				.filter(task => state.project === false || task.project === state.project)
@@ -66,7 +66,7 @@ module.exports = ({state, actions}) => section('#view.columns',
 							clearForm(ev.target);
 						}
 					}
-				}, input('[name="name"][placeholder="Добави Задача"]')))
+				}, input(`[name="name"][placeholder="${i18n.common.addTask}"]`)))
 			]
 		))
 	) : []

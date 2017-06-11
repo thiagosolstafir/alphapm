@@ -8,8 +8,9 @@ const projects = require('./projects');
 // initial
 const initial = {
 	// view: table, columns, calendar
-	view: 'table',
-	project: false
+	view: 'list',
+	project: false,
+	lang: 'bg'
 };
 
 // actions

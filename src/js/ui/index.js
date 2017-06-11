@@ -7,36 +7,31 @@ const {
 	table, thead, tbody, tfoot, tr, td, th
 } = require('iblokz-snabbdom-helpers');
 // components
-const moment = require('moment');
-require('moment/locale/bg');
 
 const {obj} = require('iblokz-data');
 
 const views = [{
-	key: 'table',
-	title: 'Дневен Ред',
+	key: 'list',
 	icon: 'tasks'
 }, {
 	key: 'columns',
-	title: 'Канбан',
 	icon: 'columns'
 }, {
 	key: 'calendar',
-	title: 'Календар',
 	icon: 'calendar'
 }];
 
 const uiViews = {
-	table: require('./view/table'),
+	list: require('./view/list'),
 	columns: require('./view/columns'),
 	calendar: require('./view/calendar')
 };
 
 const header = require('./header');
 
-module.exports = ({state, actions}) => section('#ui', [
-	header({state, actions, views}),
+module.exports = ({state, actions, i18n}) => section('#ui', [
+	header({state, actions, views, i18n}),
 	section('.content', [
-		uiViews[state.view]({state, actions})
+		uiViews[state.view]({state, actions, i18n})
 	])
 ]);
