@@ -2,17 +2,26 @@
 	"views": {
 		"list" : "Agenda",
 		"columns": "Kanban",
-		"calendar": "Calendar"
+		"calendar": "Calendario"
 	},
-	"columns": {
-		"backlog": "BACKLOG",
-		"todo": "TODO",
-		"doing": "DOING",
-		"done": "DONE"
+	"task": {
+		"status":  {
+			"backlog": "reserva",
+			"todo": "por hacer",
+			"doing": "en progreso",
+			"done": "hecho"
+		}
 	},
 	"common": {
-		"addTask": "Add Task",
-		"add": "Add",
-		"all": "All"
+		"addTask": "Añadir tarea",
+		"add": "Añadir",
+		"for": "para",
+		"all": "todos",
+		"allProjects": "Todos los proyectos"
+	},
+	"view": {
+		"list": {
+			"showingTasks": "Mostrando tareas que son"
+		}
 	}
 }

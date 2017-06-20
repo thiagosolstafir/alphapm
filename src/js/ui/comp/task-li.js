@@ -45,23 +45,25 @@ const syncRect = el => {
 	wrapperEl.style.marginLeft = '0px';
 };
 
-module.exports = ({task, actions, editing = false}) => li('.task', {
+module.exports = ({task, actions, editing = false, tpl = false}) => li('.task', {
 	class: {editing},
 	on: {dblclick: ev => actions.tasks.edit(task._id)},
 	attrs: {'task-id': task._id, 'task-status': task.status},
 	props: {draggable: !editing}
-}, [
-	span('.task-name', [
-		i(`.fa.${taskTypeIcons[task.type] || 'fa-code'}`), task.name
-	]),
-	span('.task-project', task.project), span('.task-status', task.status),
-	span('.task-time', [].concat(
-		(task.status === 'doing')
-			? [i('.fa.fa-clock-o'), span('task-ass', moment.utc(getCurrentTracking(task)).format('H:mm:ss'))]
-			: span('task-ass', moment.utc(getTrackedTime(task)).format('H:mm')),
-		'/',
-		span('.task-est', moment.utc(task.est * 10000).format('H:mm'))
-	)),
+}, [].concat(
+	tpl && tpl || [
+		span('.task-name', [
+			i(`.fa.${taskTypeIcons[task.type] || 'fa-code'}`), task.name
+		]),
+		span('.task-project', task.project), span('.task-status', task.status),
+		span('.task-time', [].concat(
+			(task.status === 'doing')
+				? [i('.fa.fa-clock-o'), span('task-ass', moment.utc(getCurrentTracking(task)).format('H:mm:ss'))]
+				: span('task-ass', moment.utc(getTrackedTime(task)).format('H:mm')),
+			'/',
+			span('.task-est', moment.utc(task.est * 10000).format('H:mm'))
+		))
+	],
 	(editing) ? div('#wrapper.wrapper', {
 		hook: {
 			insert: ({elm}) => {
@@ -70,8 +72,8 @@ module.exports = ({task, actions, editing = false}) => li('.task', {
 					elm.style.top = '20px';
 					elm.style.bottom = '20px';
 					elm.style.left = '50%';
-					elm.style.width = '500px';
-					elm.style.marginLeft = '-250px';
+					elm.style.width = '600px';
+					elm.style.marginLeft = '-300px';
 				});
 			},
 			remove: ({elm}) => {
@@ -123,4 +125,4 @@ module.exports = ({task, actions, editing = false}) => li('.task', {
 			))
 		])
 	]) : ''
-]);
+));

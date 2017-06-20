@@ -33,7 +33,8 @@ let actions$;
 let i18n = {
 	bg: require('./i18n/bg.json'),
 	en: require('./i18n/en.json'),
-	es: require('./i18n/es.json')
+	es: require('./i18n/es.json'),
+	ko: require('./i18n/ko.json')
 };
 
 // hot reloading
@@ -54,12 +55,14 @@ if (module.hot) {
 	module.hot.accept([
 		"./i18n/bg.json",
 		"./i18n/en.json",
-		"./i18n/es.json"
+		"./i18n/es.json",
+		"./i18n/ko.json"
 	], function() {
 		i18n = {
 			bg: require('./i18n/bg.json'),
 			en: require('./i18n/en.json'),
-			es: require('./i18n/es.json')
+			es: require('./i18n/es.json'),
+			ko: require('./i18n/ko.json')
 		};
 		actions.stream.onNext(state => state);
 	});

@@ -2,11 +2,13 @@
 
 // dom
 const {
-	ul, li, i, form,
+	ul, li, i, form, h,
 	section, header, button, span, img, p, div, input,
 	table, thead, tbody, tfoot, tr, td, th
 } = require('iblokz-snabbdom-helpers');
 // components
+const taskLi = require('../comp/task-li');
+
 const moment = require('moment');
 const Sortable = require('sortablejs');
 
@@ -22,13 +24,27 @@ const getTimestamp = () => new Date().getTime() / 1000 | 0;
 
 const latestTime = task => getTimestamp() - task.activities.filter(a => a.type === 'tracking').sort().pop().start;
 
+const statuses = ['backlog', 'todo', 'doing', 'done'];
+
 module.exports = ({state, actions, i18n}) => section('#view.list', [
+	div('.filter-row', [
+		`${i18n.view.list.showingTasks} `,
+		span('.filter-box', [
+			i18n.task.status.backlog,
+			i18n.task.status.todo,
+			i18n.task.status.doing
+		].join(', ')),
+		` ${i18n.common.for} `,
+		span('.filter-box', state.project || i18n.common.allProjects || 'All Projects')
+	]),
 	(state.tasks.needsRefresh === false) ? ul('.tasks', {
 		hook: {
 			insert: vnode =>
 				new Sortable(vnode.elm, {
 					group: 'table',
 					draggable: 'li.task',
+					filter: '.editing',
+					preventOnFilter: false,
 					ghostClass: "placeholder"
 				})
 		}
@@ -55,7 +71,7 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 				.filter(task => state.project === false || task.project === state.project)
 				.filter(task => task.status === 'backlog')
 		).map(task =>
-		li('.task', [
+		taskLi({task, actions, editing: state.tasks.editing === task._id, tpl: [
 			span('.task-name', [
 				i('.fa', {
 					class: {
@@ -69,7 +85,7 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 				task.name
 			]),
 			span('.task-project', task.project),
-			span('.task-status', task.status),
+			span('.task-status', i18n.task.status[task.status]),
 			span('.task-time',
 				(task.status === 'doing')
 					? [
@@ -108,6 +124,6 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 						})
 					]
 			)
-		])
+		]})
 	))) : []
 ]);

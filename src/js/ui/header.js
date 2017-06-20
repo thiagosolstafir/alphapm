@@ -20,7 +20,8 @@ const prompt = (message, cb) => vex.dialog.prompt({
 const langFlags = {
 	bg: 'bg',
 	en: 'gb',
-	es: 'es'
+	es: 'es',
+	ko: 'kr'
 };
 
 module.exports = ({state, actions, views, i18n}) => header([
@@ -32,17 +33,17 @@ module.exports = ({state, actions, views, i18n}) => header([
 			}, [
 				i(`.fa.fa-${view.icon}`),
 				span({
-					style: {width: (view.key === state.view) ? ((i18n.views[view.key].length * 9) + 7) + 'px' : '0px'}
+					style: {width: (view.key === state.view) ? ((i18n.views[view.key].length * ((state.lang !== 'ko') ? 9 : 16)) + 7) + 'px' : '0px'}
 				}, (view.key === state.view) ? i18n.views[view.key] : '')
 			])
 		)
 	),
 	button('.dropdown', [
-		span(state.project || i18n.common.all),
-		i('.fa.fa-toggle-down'),
+		span(state.project || i18n.common.allProjects),
+		i('.handle.fa.fa-toggle-down'),
 		ul([].concat(
 			state.project !== false
-				? li({on: {click: () => actions.set('project', false)}}, span(i18n.common.all)) : [],
+				? li({on: {click: () => actions.set('project', false)}}, span(i18n.common.allProjects)) : [],
 			state.tasks.list.reduce((projects, task) => (projects.indexOf(task.project) === -1)
 			? [].concat(projects, task.project)
 			: projects, [])
@@ -51,12 +52,10 @@ module.exports = ({state, actions, views, i18n}) => header([
 				li({on: {click: () => actions.set('project', project)}}, span(project))
 			)))
 	]),
-	state.project && button(i('.fa.fa-pencil')) || '',
-	button(i('.fa.fa-plus')),
 	img('.logo[src="assets/img/logo-2.svg"]'),
 	a('.dropdown.right', [
-		img(`[src="assets/img/flags/${langFlags[state.lang || 'bg']}.svg"]`),
-		ul(['bg', 'en', 'es']
+		img(`.handle[src="assets/img/flags/${langFlags[state.lang || 'bg']}.svg"]`),
+		ul(['bg', 'en', 'es', 'ko']
 			.filter(lang => lang !== state.lang)
 			.map(lang =>
 				li({on: {click: () => actions.set('lang', lang)}}, img(`[src="assets/img/flags/${langFlags[lang]}.svg"]`))

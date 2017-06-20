@@ -2443,7 +2443,6 @@ header {
     line-height: 32px;
     font-size: 16px;
     margin: 17px 15px;
-    padding: 0px 7px;
     border: 0px;
     background: #ededed;
     box-shadow: 1px 1px 3px #aaa;
@@ -2459,11 +2458,12 @@ header {
       box-sizing: border-box;
       height: 32px;
       line-height: 32px;
+      padding: 0px 7px;
       float: left; }
     header button .fa {
       text-align: center; }
       header button .fa:not(:first-child) {
-        margin-left: 7px; }
+        padding: 0px 7px; }
       header button .fa::before {
         margin: 0px;
         padding: 0px;
@@ -2515,18 +2515,18 @@ header {
           line-height: 28px;
           overflow: hidden;
           transition: height .17s .2s; }
-    header .dropdown:hover ul {
+    header .dropdown > .handle:hover + ul, header .dropdown > ul:hover {
       transition: opacity .05s;
       opacity: 1; }
-      header .dropdown:hover ul li {
+      header .dropdown > .handle:hover + ul li, header .dropdown > ul:hover li {
         transition: height .17s;
         height: 28px; }
-        header .dropdown:hover ul li span, header .dropdown:hover ul li img {
+        header .dropdown > .handle:hover + ul li span, header .dropdown > .handle:hover + ul li img, header .dropdown > ul:hover li span, header .dropdown > ul:hover li img {
           height: 28px;
           transition: height .17s; }
-        header .dropdown:hover ul li:hover {
+        header .dropdown > .handle:hover + ul li:hover, header .dropdown > ul:hover li:hover {
           background: #f2f2f2; }
-        header .dropdown:hover ul li.active {
+        header .dropdown > .handle:hover + ul li.active, header .dropdown > ul:hover li.active {
           background: #ededed; }
   header a.dropdown {
     margin: 0px;
@@ -2736,7 +2736,6 @@ header {
     line-height: 32px;
     font-size: 16px;
     margin: 17px 15px;
-    padding: 0px 7px;
     border: 0px;
     background: #ededed;
     box-shadow: 1px 1px 3px #aaa;
@@ -2752,11 +2751,12 @@ header {
       box-sizing: border-box;
       height: 32px;
       line-height: 32px;
+      padding: 0px 7px;
       float: left; }
     #ui header button .fa {
       text-align: center; }
       #ui header button .fa:not(:first-child) {
-        margin-left: 7px; }
+        padding: 0px 7px; }
       #ui header button .fa::before {
         margin: 0px;
         padding: 0px;
@@ -2808,18 +2808,18 @@ header {
           line-height: 28px;
           overflow: hidden;
           transition: height .17s .2s; }
-    #ui header .dropdown:hover ul {
+    #ui header .dropdown > .handle:hover + ul, #ui header .dropdown > ul:hover {
       transition: opacity .05s;
       opacity: 1; }
-      #ui header .dropdown:hover ul li {
+      #ui header .dropdown > .handle:hover + ul li, #ui header .dropdown > ul:hover li {
         transition: height .17s;
         height: 28px; }
-        #ui header .dropdown:hover ul li span, #ui header .dropdown:hover ul li img {
+        #ui header .dropdown > .handle:hover + ul li span, #ui header .dropdown > .handle:hover + ul li img, #ui header .dropdown > ul:hover li span, #ui header .dropdown > ul:hover li img {
           height: 28px;
           transition: height .17s; }
-        #ui header .dropdown:hover ul li:hover {
+        #ui header .dropdown > .handle:hover + ul li:hover, #ui header .dropdown > ul:hover li:hover {
           background: #f2f2f2; }
-        #ui header .dropdown:hover ul li.active {
+        #ui header .dropdown > .handle:hover + ul li.active, #ui header .dropdown > ul:hover li.active {
           background: #ededed; }
   #ui header a.dropdown {
     margin: 0px;
@@ -3096,6 +3096,27 @@ header {
             width: 20%; }
           #ui li.task .wrapper .modal .task-activities li .act-start, #ui li.task .wrapper .modal .task-activities li .act-end {
             width: 40%; }
+
+#ui #view.list .filter-row {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px 5px; }
+  #ui #view.list .filter-row .filter-box {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 5px;
+    font-size: 0.8em;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer; }
 
 #ui #view.list li {
   height: 32px;

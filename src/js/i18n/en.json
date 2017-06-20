@@ -4,15 +4,24 @@
 		"columns": "Kanban",
 		"calendar": "Calendar"
 	},
-	"columns": {
-		"backlog": "BACKLOG",
-		"todo": "TODO",
-		"doing": "DOING",
-		"done": "DONE"
+	"task": {
+		"status":  {
+			"backlog": "backlog",
+			"todo": "todo",
+			"doing": "doing",
+			"done": "done"
+		}
 	},
 	"common": {
 		"addTask": "Add Task",
-		"add": "Add",
-		"all": "All"
+		"add": "add",
+		"all": "all",
+		"for": "for",
+		"allProjects": "All Projects"
+	},
+	"view": {
+		"list": {
+			"showingTasks": "Showing tasks that are"
+		}
 	}
 }

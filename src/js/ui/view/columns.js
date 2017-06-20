@@ -18,15 +18,9 @@ const formToData = form => Array.from(form.elements)
 	.reduce((o, el) => ((o[el.name] = el.value), o), {});
 
 const clearForm = form => Array.from(form.elements)
-	.forEach(el => (el.value = undefined));
+	.forEach(el => (el.value = null));
 
 const statuses = ['backlog', 'todo', 'doing', 'done'];
-const labels = {
-	backlog: 'Запас',
-	todo: 'На дневен ред',
-	doing: 'В действие',
-	done: 'Завършени'
-};
 
 const capitalize = chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1);
 
@@ -50,7 +44,7 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 					})
 			}
 		}, [
-			li(h2(capitalize(i18n.columns[status])))
+			li(h2(capitalize(i18n.task.status[status])))
 		].concat(
 			state.tasks.list
 				.filter(task => state.project === false || task.project === state.project)
