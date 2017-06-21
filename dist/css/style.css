@@ -2336,10 +2336,12 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: #dfdfdf; }
+  background: #dfdfdf;
+  color: #333; }
 
 body, input, button, h1, h2, h3, h4 {
-  font-family: "Jura"; }
+  font-family: "Jura";
+  color: #333; }
 
 * {
   box-sizing: border-box; }

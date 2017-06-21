@@ -45,13 +45,13 @@ const syncRect = el => {
 	wrapperEl.style.marginLeft = '0px';
 };
 
-module.exports = ({task, actions, editing = false, tpl = false}) => li('.task', {
+module.exports = ({task, actions, editing = false}, content = false) => li('.task', {
 	class: {editing},
 	on: {dblclick: ev => actions.tasks.edit(task._id)},
 	attrs: {'task-id': task._id, 'task-status': task.status},
 	props: {draggable: !editing}
 }, [].concat(
-	tpl && tpl || [
+	content && content || [
 		span('.task-name', [
 			i(`.fa.${taskTypeIcons[task.type] || 'fa-code'}`), task.name
 		]),
