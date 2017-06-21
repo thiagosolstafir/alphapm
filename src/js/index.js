@@ -19,7 +19,7 @@ vex.defaultOptions.className = 'vex-theme-top';
 const vdom = require('iblokz-snabbdom-helpers');
 const {obj, arr} = require('iblokz-data');
 
-const langs = ['bg', 'en', 'es'];
+const langs = ['bg', 'en', 'es', 'de'];
 
 // util
 const time = require('./util/time');
@@ -34,7 +34,8 @@ let i18n = {
 	bg: require('./i18n/bg.json'),
 	en: require('./i18n/en.json'),
 	es: require('./i18n/es.json'),
-	ko: require('./i18n/ko.json')
+	ko: require('./i18n/ko.json'),
+	de: require('./i18n/de.json')
 };
 
 // hot reloading
@@ -56,13 +57,15 @@ if (module.hot) {
 		"./i18n/bg.json",
 		"./i18n/en.json",
 		"./i18n/es.json",
-		"./i18n/ko.json"
+		"./i18n/ko.json",
+		"./i18n/de.json"
 	], function() {
 		i18n = {
 			bg: require('./i18n/bg.json'),
 			en: require('./i18n/en.json'),
 			es: require('./i18n/es.json'),
-			ko: require('./i18n/ko.json')
+			ko: require('./i18n/ko.json'),
+			de: require('./i18n/de.json')
 		};
 		actions.stream.onNext(state => state);
 	});

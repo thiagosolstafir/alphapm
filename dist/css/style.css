@@ -2336,8 +2336,16 @@
 body {
   margin: 0px;
   padding: 0px;
+  width: 100%;
+  height: 100%;
   background: #dfdfdf;
-  color: #333; }
+  background-image: radial-gradient(ellipse at center, #dfdfdf 0%, #e5e5e5 100%);
+  background-position: center;
+  box-shadow: inset 0 0 300px rgba(153, 153, 153, 0.3);
+  color: #444;
+  position: absolute;
+  top: 0px;
+  left: 0px; }
 
 body, input, button, h1, h2, h3, h4 {
   font-family: "Jura";
@@ -2527,9 +2535,9 @@ header {
           height: 28px;
           transition: height .17s; }
         header .dropdown > .handle:hover + ul li:hover, header .dropdown > ul:hover li:hover {
-          background: #f2f2f2; }
+          background: #efefef; }
         header .dropdown > .handle:hover + ul li.active, header .dropdown > ul:hover li.active {
-          background: #ededed; }
+          background: #eaeaea; }
   header a.dropdown {
     margin: 0px;
     padding: 0px;
@@ -2554,7 +2562,8 @@ header {
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
-    border-radius: 3px; }
+    border-radius: 3px;
+    background: #dfdfdf; }
     header > ul li {
       margin: 0px;
       padding: 0px;
@@ -2631,10 +2640,10 @@ header {
     .tasks li.task {
       user-select: none;
       box-shadow: 1px 1px 3px #bbb;
-      background: #ededed;
+      background: #eaeaea;
       cursor: pointer; }
       .tasks li.task:hover {
-        background: #f2f2f2;
+        background: #efefef;
         box-shadow: 1px 1px 4px #aaa; }
       .tasks li.task > :not(.wrapper) {
         margin: 0px;
@@ -2685,14 +2694,13 @@ header {
       padding-top: 2px;
       line-height: 30px;
       margin: 0px 0px 5px 0px;
-      box-shadow: 1px 1px 3px #999;
+      box-shadow: inset 1px 1px 3px #999;
       box-sizing: border-box;
       border-radius: 3px;
       display: block;
       font-size: 20px;
       text-align: center;
-      background: #d5d5d5;
-      color: #111; }
+      color: #444; }
 
 #ui header {
   margin: 0px;
@@ -2820,9 +2828,9 @@ header {
           height: 28px;
           transition: height .17s; }
         #ui header .dropdown > .handle:hover + ul li:hover, #ui header .dropdown > ul:hover li:hover {
-          background: #f2f2f2; }
+          background: #efefef; }
         #ui header .dropdown > .handle:hover + ul li.active, #ui header .dropdown > ul:hover li.active {
-          background: #ededed; }
+          background: #eaeaea; }
   #ui header a.dropdown {
     margin: 0px;
     padding: 0px;
@@ -2847,7 +2855,8 @@ header {
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
-    border-radius: 3px; }
+    border-radius: 3px;
+    background: #dfdfdf; }
     #ui header > ul li {
       margin: 0px;
       padding: 0px;
@@ -2924,10 +2933,10 @@ header {
     #ui .tasks li.task {
       user-select: none;
       box-shadow: 1px 1px 3px #bbb;
-      background: #ededed;
+      background: #eaeaea;
       cursor: pointer; }
       #ui .tasks li.task:hover {
-        background: #f2f2f2;
+        background: #efefef;
         box-shadow: 1px 1px 4px #aaa; }
       #ui .tasks li.task > :not(.wrapper) {
         margin: 0px;
@@ -2978,14 +2987,13 @@ header {
       padding-top: 2px;
       line-height: 30px;
       margin: 0px 0px 5px 0px;
-      box-shadow: 1px 1px 3px #999;
+      box-shadow: inset 1px 1px 3px #999;
       box-sizing: border-box;
       border-radius: 3px;
       display: block;
       font-size: 20px;
       text-align: center;
-      background: #d5d5d5;
-      color: #111; }
+      color: #444; }
 
 #ui li.task {
   position: relative; }
@@ -3000,14 +3008,14 @@ header {
       transition: top .7s, left .7s, width .7s, height .7s, margin-left .7s, opacity .1s, background .7s, bottom .7s; }
       #ui li.task.editing .wrapper .modal {
         visibility: visible;
-        opacity: 1;
-        transition: opacity .4s .7s, display .4s .7s; }
+        opacity: 0;
+        transition: opacity .4s .7s, visibility .4s .7s; }
   #ui li.task .wrapper {
     visibility: visible;
     position: fixed;
     transition: top .7s, left .7s, width .7s, height .7s, margin-left .7s, opacity .1s .7s, background .7s, bottom .7s;
     opacity: 0;
-    background: #fafafa;
+    background: #f5f5f5;
     box-shadow: 0px 0px 17px #aaa;
     z-index: 99; }
     #ui li.task .wrapper .close-modal {
@@ -3027,7 +3035,7 @@ header {
     #ui li.task .wrapper .modal {
       visibility: hidden;
       opacity: 0;
-      transition: opacity .1s .7s;
+      transition: opacity .1s .7s, visibility .1s;
       position: absolute;
       top: 0px;
       left: 0px;
@@ -3167,12 +3175,13 @@ header {
       width: 50%; }
 
 #ui .calendar .tasks {
-  width: 14%;
+  width: 13.8%;
   height: 100%;
   display: inline-block;
   vertical-align: top;
-  background: #eee;
-  border: 1px solid #ccc; }
+  background: #dfdfdf;
+  margin: 0px 2px;
+  box-shadow: 0px 0px 1px #aaa; }
   #ui .calendar .tasks li {
     display: inline-block;
     width: 100%;

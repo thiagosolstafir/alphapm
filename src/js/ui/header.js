@@ -20,6 +20,7 @@ const prompt = (message, cb) => vex.dialog.prompt({
 const langFlags = {
 	bg: 'bg',
 	en: 'gb',
+	de: 'de',
 	es: 'es',
 	ko: 'kr'
 };
@@ -55,7 +56,7 @@ module.exports = ({state, actions, views, i18n}) => header([
 	img('.logo[src="assets/img/logo-2.svg"]'),
 	a('.dropdown.right', [
 		img(`.handle[src="assets/img/flags/${langFlags[state.lang || 'bg']}.svg"]`),
-		ul(['bg', 'en', 'es', 'ko']
+		ul(Object.keys(langFlags)
 			.filter(lang => lang !== state.lang)
 			.map(lang =>
 				li({on: {click: () => actions.set('lang', lang)}}, img(`[src="assets/img/flags/${langFlags[lang]}.svg"]`))

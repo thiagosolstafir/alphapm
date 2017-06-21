@@ -82,7 +82,13 @@ module.exports = ({task, actions, editing = false}, content = false) => li('.tas
 			}
 		}
 	}, [
-		div('.modal', [
+		div('.modal', {
+			style: {
+				delayed: {
+					opacity: 1
+				}
+			}
+		}, [
 			a('.close-modal', {
 				on: {
 					click: () => actions.tasks.edit(null)

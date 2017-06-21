@@ -13,7 +13,7 @@
     "watch:sass": "nodemon -w src/sass -e sass -x 'npm run build:sass'",
     "livereload": "livereload dist/**/*.css -d",
     "start": "nodemon server & npm run watch",
-    "start:proc": "npm run build && PORT=3000 nodemon server"
+    "start:proc": "npm run build && PORT=3004 nodemon server & xdg-open http://localhost:3004"
   },
   "author": "",
   "license": "ISC",

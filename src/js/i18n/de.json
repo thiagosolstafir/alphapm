@@ -1,0 +1,27 @@
+{
+	"views": {
+		"list" : "Tagesordnung",
+		"columns": "Kanban",
+		"calendar": "Kalendar"
+	},
+	"task": {
+		"status":  {
+			"backlog": "backlog",
+			"todo": "zu tun",
+			"doing": "im gange",
+			"done": "erledigt"
+		}
+	},
+	"common": {
+		"addTask": "Augabe hinzufügen",
+		"add": "hinzufügen",
+		"all": "Alle",
+		"for": "zum",
+		"allProjects": "Alle Projekte"
+	},
+	"view": {
+		"list": {
+			"showingTasks": "Aufgaben anzeigen, die sind"
+		}
+	}
+}
