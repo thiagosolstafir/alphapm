@@ -96,8 +96,8 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 								.reduce((ass, act) => ass + act.end - act.start, 0) * 1000 +
 							(getTimestamp() - task.activities.slice(-1).pop().start) * 1000)
 							.format('H:mm:ss')),
-						'/',
-						span('.task-est', moment.utc(task.est * 10000).format('H:mm')),
+						// '/',
+						// span('.task-est', moment.utc(task.est * 10000).format('H:mm')),
 						button('.fa.fa-pause-circle[style="color: #d6c533"]', {
 							on: {
 								click: () => actions.tasks.trackTime(task._id, 'todo')

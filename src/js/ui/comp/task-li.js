@@ -72,8 +72,8 @@ module.exports = ({task, actions, editing = false}, content = false) => li('.tas
 					elm.style.top = '20px';
 					elm.style.bottom = '20px';
 					elm.style.left = '50%';
-					elm.style.width = '600px';
-					elm.style.marginLeft = '-300px';
+					elm.style.width = '628px';
+					elm.style.marginLeft = '-314px';
 				});
 			},
 			remove: ({elm}) => {

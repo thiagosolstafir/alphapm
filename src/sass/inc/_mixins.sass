@@ -1,7 +1,5 @@
-@mixin no-margin-padding
-	margin: 0px
-	padding: 0px
 
+// basic
 =reset
   margin: 0px
   padding: 0px
@@ -12,3 +10,16 @@
   +reset
   height: $s
   line-height: $s
+
+// media queries
+=phone
+  @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width - 1px})
+    @content
+
+=tablet
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px})
+    @content
+
+=desktop
+  @media (min-width: #{$desktop-width})
+    @content

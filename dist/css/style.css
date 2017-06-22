@@ -2366,6 +2366,8 @@ button, a {
 button.fa, a.fa {
   margin: 0px;
   padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
   border: 0px;
   font-size: inherit;
   height: inherit;
@@ -2409,6 +2411,39 @@ button.fa, a.fa {
       margin-top: -14px;
       margin-left: -14px; }
 
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px; }
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px; }
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border: 0px none #ffffff;
+  border-radius: 50px; }
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff; }
+
+::-webkit-scrollbar-thumb:active {
+  background: #000000; }
+
+::-webkit-scrollbar-track {
+  background: #999;
+  border: 0px none #ffffff;
+  border-radius: 50px; }
+
+::-webkit-scrollbar-track:hover {
+  background: #999; }
+
+::-webkit-scrollbar-track:active {
+  background: #555; }
+
+::-webkit-scrollbar-corner {
+  background: transparent; }
+
 header {
   margin: 0px;
   padding: 0px;
@@ -2416,18 +2451,9 @@ header {
   box-sizing: border-box;
   height: 64px;
   line-height: 64px;
-  padding: 0px 10px;
+  padding: 0px 20px;
   display: block;
-  position: relative;
-  font-size: 14px; }
-  header span {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 64px;
-    line-height: 64px;
-    margin: 0px 15px; }
+  position: relative; }
   header > img.logo {
     margin: 0px;
     padding: 0px;
@@ -2444,6 +2470,24 @@ header {
     cursor: pointer; }
     header > img.logo:hover {
       transform: scale(1.2, 1.2) translate(0, 0); }
+  header ul.toolbar {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    margin: 17px 0px; }
+    header ul.toolbar > li {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 32px;
+      line-height: 32px;
+      padding: 0px 5px;
+      display: block;
+      float: left; }
   header button {
     margin: 0px;
     padding: 0px;
@@ -2451,15 +2495,14 @@ header {
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
+    float: left;
     font-size: 16px;
-    margin: 17px 15px;
     border: 0px;
     background: #ededed;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px;
     outline: none;
-    float: left;
     vertical-align: middle; }
     header button > span, header button > i {
       margin: 0px;
@@ -2468,12 +2511,11 @@ header {
       box-sizing: border-box;
       height: 32px;
       line-height: 32px;
-      padding: 0px 7px;
+      padding: 0px 0px 0px 7px;
       float: left; }
     header button .fa {
+      padding: 0px 7px;
       text-align: center; }
-      header button .fa:not(:first-child) {
-        padding: 0px 7px; }
       header button .fa::before {
         margin: 0px;
         padding: 0px;
@@ -2485,7 +2527,9 @@ header {
     header button:hover {
       background: #f2f2f2; }
   header .dropdown {
-    position: relative; }
+    position: relative;
+    display: inline-block;
+    float: left; }
     header .dropdown img {
       height: 28px;
       width: calc(28px / 3 * 4); }
@@ -2511,7 +2555,6 @@ header {
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
-        padding: 0px 10px;
         height: 0;
         display: block;
         transition: height .17s .2s, background .5s; }
@@ -2525,6 +2568,14 @@ header {
           line-height: 28px;
           overflow: hidden;
           transition: height .17s .2s; }
+        header .dropdown ul > li span {
+          padding: 0px 10px; }
+        header .dropdown ul > li img {
+          display: block;
+          width: 100%;
+          opacity: .3; }
+          header .dropdown ul > li img:hover {
+            opacity: 1; }
     header .dropdown > .handle:hover + ul, header .dropdown > ul:hover {
       transition: opacity .05s;
       opacity: 1; }
@@ -2539,32 +2590,28 @@ header {
         header .dropdown > .handle:hover + ul li.active, header .dropdown > ul:hover li.active {
           background: #eaeaea; }
   header a.dropdown {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 28px;
-    line-height: 28px;
-    margin: 17px 5px; }
+    height: inherit;
+    display: block; }
+    header a.dropdown img {
+      margin: 2px 0px; }
     header a.dropdown ul, header a.dropdown li {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box; }
-  header > ul {
+      width: 100%;
+      background: none;
+      box-shadow: none;
+      border: 0px; }
+  header ul.accordion {
     margin: 0px;
     padding: 0px;
     display: inline-block;
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
-    margin: 17px 14px;
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px;
     background: #dfdfdf; }
-    header > ul li {
+    header ul.accordion li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2575,7 +2622,7 @@ header {
       text-align: center;
       font-size: 16px;
       transition: background .5s; }
-      header > ul li > * {
+      header ul.accordion li > * {
         margin: 0px;
         padding: 0px;
         display: inline-block;
@@ -2583,23 +2630,28 @@ header {
         height: 32px;
         line-height: 32px;
         float: left; }
-      header > ul li i.fa {
+      header ul.accordion li i.fa {
         width: 32px; }
-      header > ul li > span {
+      header ul.accordion li > span {
         display: inline-block;
         text-align: left;
         width: 0px;
         opacity: 0;
         transition: width .5s, opacity .3s .25s; }
-      header > ul li:first-child {
+      header ul.accordion li:first-child {
         border-radius: 3px 0px 0px 3px; }
-      header > ul li:last-child {
+      header ul.accordion li:last-child {
         border-radius: 0px 3px 3px 0px; }
-      header > ul li.active {
+      header ul.accordion li.active {
         background: #ededed; }
-        header > ul li.active > span {
+        header ul.accordion li.active > span {
           opacity: 1; }
-      header > ul li:hover {
+          @media (min-width: 480px) and (max-width: 767px) {
+            header ul.accordion li.active > span {
+              width: 0px !important;
+              opacity: 0;
+              visibility: hidden; } }
+      header ul.accordion li:hover {
         background: #f2f2f2; }
 
 @keyframes fadein {
@@ -2623,8 +2675,9 @@ header {
 .tasks {
   margin: 0px;
   padding: 0px;
-  padding: 5px;
   display: inline-block;
+  box-sizing: border-box;
+  padding: 5px;
   width: 100%;
   list-style: none; }
   .tasks li {
@@ -2710,18 +2763,9 @@ header {
   box-sizing: border-box;
   height: 64px;
   line-height: 64px;
-  padding: 0px 10px;
+  padding: 0px 20px;
   display: block;
-  position: relative;
-  font-size: 14px; }
-  #ui header span {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 64px;
-    line-height: 64px;
-    margin: 0px 15px; }
+  position: relative; }
   #ui header > img.logo {
     margin: 0px;
     padding: 0px;
@@ -2738,6 +2782,24 @@ header {
     cursor: pointer; }
     #ui header > img.logo:hover {
       transform: scale(1.2, 1.2) translate(0, 0); }
+  #ui header ul.toolbar {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    margin: 17px 0px; }
+    #ui header ul.toolbar > li {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 32px;
+      line-height: 32px;
+      padding: 0px 5px;
+      display: block;
+      float: left; }
   #ui header button {
     margin: 0px;
     padding: 0px;
@@ -2745,15 +2807,14 @@ header {
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
+    float: left;
     font-size: 16px;
-    margin: 17px 15px;
     border: 0px;
     background: #ededed;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px;
     outline: none;
-    float: left;
     vertical-align: middle; }
     #ui header button > span, #ui header button > i {
       margin: 0px;
@@ -2762,12 +2823,11 @@ header {
       box-sizing: border-box;
       height: 32px;
       line-height: 32px;
-      padding: 0px 7px;
+      padding: 0px 0px 0px 7px;
       float: left; }
     #ui header button .fa {
+      padding: 0px 7px;
       text-align: center; }
-      #ui header button .fa:not(:first-child) {
-        padding: 0px 7px; }
       #ui header button .fa::before {
         margin: 0px;
         padding: 0px;
@@ -2779,7 +2839,9 @@ header {
     #ui header button:hover {
       background: #f2f2f2; }
   #ui header .dropdown {
-    position: relative; }
+    position: relative;
+    display: inline-block;
+    float: left; }
     #ui header .dropdown img {
       height: 28px;
       width: calc(28px / 3 * 4); }
@@ -2805,7 +2867,6 @@ header {
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
-        padding: 0px 10px;
         height: 0;
         display: block;
         transition: height .17s .2s, background .5s; }
@@ -2819,6 +2880,14 @@ header {
           line-height: 28px;
           overflow: hidden;
           transition: height .17s .2s; }
+        #ui header .dropdown ul > li span {
+          padding: 0px 10px; }
+        #ui header .dropdown ul > li img {
+          display: block;
+          width: 100%;
+          opacity: .3; }
+          #ui header .dropdown ul > li img:hover {
+            opacity: 1; }
     #ui header .dropdown > .handle:hover + ul, #ui header .dropdown > ul:hover {
       transition: opacity .05s;
       opacity: 1; }
@@ -2833,32 +2902,28 @@ header {
         #ui header .dropdown > .handle:hover + ul li.active, #ui header .dropdown > ul:hover li.active {
           background: #eaeaea; }
   #ui header a.dropdown {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 28px;
-    line-height: 28px;
-    margin: 17px 5px; }
+    height: inherit;
+    display: block; }
+    #ui header a.dropdown img {
+      margin: 2px 0px; }
     #ui header a.dropdown ul, #ui header a.dropdown li {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box; }
-  #ui header > ul {
+      width: 100%;
+      background: none;
+      box-shadow: none;
+      border: 0px; }
+  #ui header ul.accordion {
     margin: 0px;
     padding: 0px;
     display: inline-block;
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
-    margin: 17px 14px;
     list-style: none;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px;
     background: #dfdfdf; }
-    #ui header > ul li {
+    #ui header ul.accordion li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2869,7 +2934,7 @@ header {
       text-align: center;
       font-size: 16px;
       transition: background .5s; }
-      #ui header > ul li > * {
+      #ui header ul.accordion li > * {
         margin: 0px;
         padding: 0px;
         display: inline-block;
@@ -2877,23 +2942,28 @@ header {
         height: 32px;
         line-height: 32px;
         float: left; }
-      #ui header > ul li i.fa {
+      #ui header ul.accordion li i.fa {
         width: 32px; }
-      #ui header > ul li > span {
+      #ui header ul.accordion li > span {
         display: inline-block;
         text-align: left;
         width: 0px;
         opacity: 0;
         transition: width .5s, opacity .3s .25s; }
-      #ui header > ul li:first-child {
+      #ui header ul.accordion li:first-child {
         border-radius: 3px 0px 0px 3px; }
-      #ui header > ul li:last-child {
+      #ui header ul.accordion li:last-child {
         border-radius: 0px 3px 3px 0px; }
-      #ui header > ul li.active {
+      #ui header ul.accordion li.active {
         background: #ededed; }
-        #ui header > ul li.active > span {
+        #ui header ul.accordion li.active > span {
           opacity: 1; }
-      #ui header > ul li:hover {
+          @media (min-width: 480px) and (max-width: 767px) {
+            #ui header ul.accordion li.active > span {
+              width: 0px !important;
+              opacity: 0;
+              visibility: hidden; } }
+      #ui header ul.accordion li:hover {
         background: #f2f2f2; }
 
 @keyframes fadein {
@@ -2917,8 +2987,9 @@ header {
 #ui .tasks {
   margin: 0px;
   padding: 0px;
-  padding: 5px;
   display: inline-block;
+  box-sizing: border-box;
+  padding: 5px;
   width: 100%;
   list-style: none; }
   #ui .tasks li {
@@ -3134,6 +3205,9 @@ header {
   height: 32px;
   clear: both;
   width: 100%; }
+  @media (min-width: 480px) and (max-width: 767px) {
+    #ui #view.list li.task {
+      font-size: 0.9em; } }
   #ui #view.list li.task .task-name {
     width: 45%; }
   #ui #view.list li.task .task-project {
@@ -3151,6 +3225,15 @@ header {
   #ui #view.list li.task .task-est {
     width: 10%;
     text-align: right; }
+  @media (min-width: 480px) and (max-width: 767px) {
+    #ui #view.list li.task .task-name {
+      width: 36%; }
+    #ui #view.list li.task .task-project {
+      width: 19%; }
+    #ui #view.list li.task .task-status {
+      width: 20%; }
+    #ui #view.list li.task .task-time {
+      width: 25%; } }
 
 #ui .columns .tasks {
   width: 25%;
@@ -3177,12 +3260,12 @@ header {
       width: 50%; }
 
 #ui .calendar .tasks {
-  width: 13.8%;
+  width: 14.2%;
   height: 100%;
   display: inline-block;
   vertical-align: top;
   background: #dfdfdf;
-  margin: 0px 2px;
+  border: 1px solid #ccc;
   box-shadow: 0px 0px 1px #aaa; }
   #ui .calendar .tasks li {
     display: inline-block;

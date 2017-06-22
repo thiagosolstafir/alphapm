@@ -1,12 +1,8 @@
 header
 	+header-height(64px)
-	padding: 0px 10px
+	padding: 0px 20px
 	display: block
 	position: relative
-	font-size: 14px
-	span
-		+header-height(64px)
-		margin: 0px 15px
 	> img.logo
 		+header-height(64px)
 		position: absolute
@@ -18,25 +14,31 @@ header
 		cursor: pointer
 		&:hover
 			transform: scale(1.2, 1.2) translate(0, 0)
+	ul.toolbar
+		+header-height(32px)
+		margin: 17px 0px
+		> li
+			+header-height(32px)
+			padding: 0px 5px
+			display: block
+			float: left
 	button
 		+header-height(32px)
+		float: left
 		font-size: 16px
-		margin: 17px 15px
 		border: 0px
 		background: #ededed
 		box-shadow: 1px 1px 3px #aaa
 		box-sizing: border-box
 		border-radius: 3px
 		outline: none
-		float: left
 		vertical-align: middle
 		> span, > i
 			+header-height(32px)
-			padding: 0px 7px
+			padding: 0px 0px 0px 7px
 			float: left
 		.fa
-			&:not(:first-child)
-				padding: 0px 7px
+			padding: 0px 7px
 			text-align: center
 			&::before
 				+header-height(32px)
@@ -45,6 +47,8 @@ header
 			background: #f2f2f2
 	.dropdown
 		position: relative
+		display: inline-block
+		float: left
 		img
 			height: 28px
 			width: calc(28px / 3 * 4)
@@ -64,7 +68,6 @@ header
 			transition: opacity .05s .5s
 			> li
 				+reset
-				padding: 0px 10px
 				height: 0
 				display: block
 				transition: height .17s .2s, background .5s
@@ -75,6 +78,14 @@ header
 					line-height: 28px
 					overflow: hidden
 					transition: height .17s .2s
+				span
+					padding: 0px 10px
+				img
+					display: block
+					width: 100%
+					opacity: .3
+					&:hover
+						opacity: 1
 		> .handle:hover + ul, > ul:hover
 			transition: opacity .05s
 			opacity: 1
@@ -88,14 +99,19 @@ header
 					background: #efefef
 				&.active
 					background: #eaeaea
+	
 	a.dropdown
-		+header-height(28px)
-		margin: 17px 5px
+		height: inherit
+		display: block
+		img
+			margin: 2px 0px
 		ul, li
-			+reset
-	> ul
+			width: 100%
+			background: none
+			box-shadow: none
+			border: 0px
+	ul.accordion
 		+header-height(32px)
-		margin: 17px 14px
 		list-style: none
 		box-shadow: 1px 1px 3px #aaa
 		box-sizing: border-box
@@ -126,5 +142,9 @@ header
 				background: #ededed
 				> span
 					opacity: 1
+					+phone
+						width: 0px!important
+						opacity: 0
+						visibility: hidden
 			&:hover
 				background: #f2f2f2
