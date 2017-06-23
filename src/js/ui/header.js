@@ -2,11 +2,12 @@
 
 // dom
 const {
-	ul, li, i, a,
+	ul, li, i, a, form,
 	section, header, button, span, img, p, div, input,
-	table, thead, tbody, tfoot, tr, td, th
+	table, thead, tbody, tfoot, tr, td, th, h1
 } = require('iblokz-snabbdom-helpers');
 // components
+const modal = require('./comp/modal');
 
 const moment = require('moment');
 
@@ -24,6 +25,12 @@ const langFlags = {
 	es: 'es',
 	ko: 'kr'
 };
+
+
+const formToData = form => Array.from(form.elements)
+	// .map(el => (console.log(el.name), el))
+	.filter(el => el.name !== undefined)
+	.reduce((o, el) => ((o[el.name] = el.value), o), {});
 
 module.exports = ({state, actions, views, i18n}) => header([
 	ul('.toolbar.left', [
@@ -65,6 +72,58 @@ module.exports = ({state, actions, views, i18n}) => header([
 				.map(lang =>
 					li({on: {click: () => actions.set('lang', lang)}}, img(`[src="assets/img/flags/${langFlags[lang]}.svg"]`))
 				))
-		]))
+		])),
+		li(
+			a('.btn.modal', {
+				style: {position: 'relative'},
+				class: {opened: state.modal === 'sign-in'},
+				on: {click: () => (state.auth.user)
+					? actions.auth.logout()
+					: (state.modal !== 'sign-in') ? actions.set('modal', 'sign-in') : {}}
+			},
+				(!state.auth.user)
+					? [
+						i('.fa.fa-sign-in'),
+						state.modal === 'sign-in' ? modal({
+							onClose: () => setTimeout(() => actions.set('modal', false)),
+							parent: 'A',
+							pos: {
+								top: '50%',
+								left: '50%',
+								width: '400px',
+								height: '200px',
+								marginTop: '-100px',
+								marginLeft: '-200px'
+							}
+						}, [
+							form('.block', {
+								on: {
+									submit: ev => {
+										ev.preventDefault();
+										setTimeout(actions.set('modal', false));
+										setTimeout(() => {
+											let data = formToData(ev.target);
+											actions.auth.login(data);
+										}, 700);
+									}
+								}
+							}, [
+								h1([
+									i('.fa.fa-sign-in'),
+									span(' Sign In')
+								]),
+								input('[type="text"][name="email"][placeholder="Email"]'),
+								input('[type="password"][name="password"][placeholder="Password"]'),
+								button('Sign In')
+							])
+						]) : ''
+					]
+				: [
+					span(state.auth.user.name || state.auth.user.email),
+					i('.fa.fa-sign-out')
+
+				]
+			)
+		)
 	])
 ]);

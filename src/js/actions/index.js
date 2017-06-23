@@ -10,7 +10,8 @@ const initial = {
 	// view: table, columns, calendar
 	view: 'list',
 	project: false,
-	lang: 'bg'
+	lang: 'bg',
+	modal: false
 };
 
 // actions

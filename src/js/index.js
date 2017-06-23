@@ -26,7 +26,7 @@ const time = require('./util/time');
 
 // app
 const app = require('./util/app');
-let actions = app.adapt(require('./actions'));
+let actions = require('./actions');
 window.actions = actions;
 let ui = require('./ui');
 let actions$;
@@ -38,13 +38,26 @@ let i18n = {
 	de: require('./i18n/de.json')
 };
 
+// services
+// auth
+const auth = require('./services/auth');
+actions.auth = auth.actions;
+
+// adapt actions
+actions = app.adapt(actions);
+
 // hot reloading
 if (module.hot) {
 	// actions
 	actions$ = $.fromEventPattern(
     h => module.hot.accept("./actions", h)
 	).flatMap(() => {
-		actions = app.adapt(require('./actions'));
+		actions = app.adapt(Object.assign({},
+			require('./actions'),
+			{
+				auth: auth.actions
+			}
+		));
 		return actions.stream.startWith(state => state);
 	}).merge(actions.stream);
 	// ui
@@ -78,7 +91,10 @@ const state$ = actions$
 	.startWith(() => actions.initial)
 	.scan((state, change) => change(state), {})
 	.map(state => (console.log(state), state))
-	.share();
+	.publish();
+
+// services hooks
+auth.hook({state$, actions});
 
 // state -> ui
 // const ui$ = time.loop(state$).map(({state}) => ui({state, actions}));
@@ -97,6 +113,11 @@ state$
 	.distinctUntilChanged(state => state.tasks.needsRefresh)
 	.filter(state => state.tasks.needsRefresh)
 	.subscribe(state => actions.tasks.refresh());
+
+state$
+	.distinctUntilChanged(state => state.auth.user)
+	.filter(state => state.auth.user)
+	.subscribe(state => actions.set('modal', false));
 
 // syncing
 state$
@@ -122,3 +143,6 @@ $.interval(5000 /* ms */)
 		))
 		.filter(res => res.status === 200)
 		.subscribe(res => actions.tasks.upsert(res.body.list));
+
+// connect state stream
+state$.connect();

@@ -6,24 +6,26 @@ module.exports = ({app, db, config}) => {
 		// check header or url parameters or post parameters for token
 		let token = req.body.token || req.params.token || req.headers['x-access-token'] || false;
 
-		// console.log(req.body);
+		console.log(req.body, {token});
 
 		req.isAuthenticated = req.isAuthenticated || (() => (req.user !== undefined));
 
 		// decode token
 		if (token) {
 			// verifies secret and checks exp
-			jwt.verify(token, config.jwt.secret, function(err, user) {
+			jwt.verify(token, config.jwt.secret, function(err, r) {
+				console.log({err, user: r._doc});
 				if (err) {
 					// return res.json({success: false, message: 'Failed to authenticate token.'});
 					return next();
 				}
 				// if everything is good, save to request for use in other routes
-				req.user = user;
+				req.user = r._doc;
 				return next();
 			});
+		} else {
+			return next();
 		}
-		next();
 	});
 
 	app.route('/api/auth')

@@ -1,7 +1,7 @@
 
-li.task
+.modal
 	position: relative
-	&.editing
+	&.opened
 		visibility: hidden
 		transition: visibility 0s
 		.wrapper
@@ -9,15 +9,15 @@ li.task
 			background: #eee
 			z-index: 100
 			opacity: 1
-			transition: top .7s, left .7s, width .7s, height .7s, margin-left .7s, opacity .1s, background .7s, bottom .7s
-			.modal
+			transition: top .7s, left .7s, width .7s, height .7s, margin-top .7s, margin-left .7s, opacity .1s, background .7s, bottom .7s
+			.modal-content
 				visibility: visible
 				opacity: 0
 				transition: opacity .4s .7s, visibility .4s .7s
 	.wrapper
 		visibility: visible
 		position: fixed
-		transition: top .7s, left .7s, width .7s, height .7s, margin-left .7s, opacity .1s .7s, background .7s, bottom .7s
+		transition: top .7s, left .7s, width .7s, height .7s, margin-top .7s, margin-left .7s, opacity .1s .7s, background .7s, bottom .7s
 		opacity: 0
 		background: #f5f5f5
 		box-shadow: 0px 0px 17px #aaa
@@ -36,7 +36,7 @@ li.task
 			background: #eee
 			box-shadow: 0px 0px 17px #aaa
 			font-size: 20px
-		.modal
+		.modal-content
 			visibility: hidden
 			opacity: 0
 			transition: opacity .1s .7s, visibility .1s
@@ -90,3 +90,19 @@ li.task
 						width: 20%
 					.act-start, .act-end
 						width: 40%
+
+.block
+	width: 100%
+	padding: 0px 10px
+	margin: 10px 0px
+	> *
+		+header-height(32px)
+		display: block
+		margin: 10px 0px
+		font-size: 18px
+		width: 100%
+	input
+		border: 0px
+		box-shadow: 0px 0px 3px #aaa
+
+

@@ -7,6 +7,7 @@ const {
 	form, frameset, legend, label, input, button
 } = require('iblokz-snabbdom-helpers');
 // components
+const modal = require('./modal');
 
 // lib
 const moment = require('moment');
@@ -29,27 +30,11 @@ const getTrackedTime = task => task.activities
 const getCurrentTracking = task => getTrackedTime(task) +
 	(getTimestamp() - task.activities.slice(-1).pop().start) * 1000;
 
-// modal related
-const getParent = (el, tagName) => (el.parentNode.tagName === tagName)
-	? el.parentNode
-	: getParent(el.parentNode, tagName);
-
-const syncRect = el => {
-	const posRect = el.getBoundingClientRect();
-	console.log(posRect);
-	const wrapperEl = el.querySelector('.wrapper');
-	wrapperEl.style.top = posRect.top + 'px';
-	wrapperEl.style.left = posRect.left + 'px';
-	wrapperEl.style.width = posRect.width + 'px';
-	wrapperEl.style.bottom = (window.innerHeight - posRect.top - posRect.height) + 'px';
-	wrapperEl.style.marginLeft = '0px';
-};
-
-module.exports = ({task, actions, editing = false}, content = false) => li('.task', {
-	class: {editing},
+module.exports = ({task, actions, opened = false}, content = false) => li('.task.modal', {
+	class: {opened},
 	on: {dblclick: ev => actions.tasks.edit(task._id)},
 	attrs: {'task-id': task._id, 'task-status': task.status},
-	props: {draggable: !editing}
+	props: {draggable: !opened}
 }, [].concat(
 	content && content || [
 		span('.task-name', [
@@ -64,71 +49,43 @@ module.exports = ({task, actions, editing = false}, content = false) => li('.tas
 			span('.task-est', moment.utc(task.est * 10000).format('H:mm'))
 		))
 	],
-	(editing) ? div('#wrapper.wrapper', {
-		hook: {
-			insert: ({elm}) => {
-				syncRect(getParent(elm, 'LI'));
-				setTimeout(() => {
-					elm.style.top = '20px';
-					elm.style.bottom = '20px';
-					elm.style.left = '50%';
-					elm.style.width = '628px';
-					elm.style.marginLeft = '-314px';
-				});
-			},
-			remove: ({elm}) => {
-				syncRect(getParent(elm, 'LI'));
-				setTimeout(() => getParent(elm, 'LI').removeChild(elm), 1000);
-			}
-		}
+	(opened) ? modal({
+		onClose: () => actions.tasks.edit(null)
 	}, [
-		div('.modal', {
-			style: {
-				delayed: {
-					opacity: 1
-				}
+		h2('[contenteditable="true"]', {
+			on: {blur: ev => actions.tasks.update(task._id, {name: ev.target.textContent}, false)}
+		}, task.name),
+		pre('.task-story[contenteditable="true"][placeholder="Story ..."]', {
+			on: {
+				focus: ev => (ev.target.textContent = task.story || ''),
+				blur: ev => actions.tasks.update(task._id, {story: ev.target.textContent}, false)
 			}
-		}, [
-			a('.close-modal', {
-				on: {
-					click: () => actions.tasks.edit(null)
-				}
-			}, i('.fa.fa-close')),
-			h2('[contenteditable="true"]', {
-				on: {blur: ev => actions.tasks.update(task._id, {name: ev.target.textContent}, false)}
-			}, task.name),
-			pre('.task-story[contenteditable="true"][placeholder="Story ..."]', {
-				on: {
-					focus: ev => (ev.target.textContent = task.story || ''),
-					blur: ev => actions.tasks.update(task._id, {story: ev.target.textContent}, false)
-				}
-			}, task.story || 'Story ...'),
-			label('Activities'),
-			ul('.task-activities', task.activities.filter(act => act.end > 0).map(act =>
-				li([
-					span('.act-type', act.type),
-					input('.act-start[type="datetime-local"]', {
-						on: {
-							change: ev => actions.tasks.actUpdate(task._id, act._id, {
-								start: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
-							})
-						},
-						attrs: {
-							value: moment.unix(act.start).format('YYYY-MM-DDTHH:mm')
-						}
-					}),
-					input('.act-end[type="datetime-local"]', {
-						on: {
-							change: ev => actions.tasks.actUpdate(task._id, act._id, {
-								end: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
-							})
-						},
-						attrs: {
-							value: act.end && moment.unix(act.end).format('YYYY-MM-DDTHH:mm')
-						}
-					})
-				])
-			))
-		])
+		}, task.story || 'Story ...'),
+		label('Activities'),
+		ul('.task-activities', task.activities.filter(act => act.end > 0).map(act =>
+			li([
+				span('.act-type', act.type),
+				input('.act-start[type="datetime-local"]', {
+					on: {
+						change: ev => actions.tasks.actUpdate(task._id, act._id, {
+							start: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
+						})
+					},
+					attrs: {
+						value: moment.unix(act.start).format('YYYY-MM-DDTHH:mm')
+					}
+				}),
+				input('.act-end[type="datetime-local"]', {
+					on: {
+						change: ev => actions.tasks.actUpdate(task._id, act._id, {
+							end: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
+						})
+					},
+					attrs: {
+						value: act.end && moment.unix(act.end).format('YYYY-MM-DDTHH:mm')
+					}
+				})
+			])
+		))
 	]) : ''
 ));
