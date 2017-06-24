@@ -1,0 +1,66 @@
+.dropdown
+	position: relative
+	display: inline-block
+	float: left
+	ul
+		+reset
+		display: block
+		position: absolute
+		top: 36px
+		left: 0px
+		z-index: 99
+		background: #dfdfdf
+		box-shadow: 1px 1px 3px #aaa
+		box-sizing: border-box
+		border-radius: 3px
+		opacity: 0
+		transition: opacity .05s .5s
+		> li
+			+reset
+			height: 0
+			display: block
+			transition: height .17s .2s, background .5s
+			span, img
+				+reset
+				height: 0
+				line-height: 28px
+				overflow: hidden
+				transition: height .17s .2s
+			span
+				padding: 0px 10px
+				white-space: nowrap
+			img
+				display: block
+				width: 100%
+				opacity: .3
+				&:hover
+					opacity: 1
+	> .handle:hover + ul, > ul:hover
+		transition: opacity .05s
+		opacity: 1
+		li
+			transition: height .17s
+			height: 28px
+			span, img
+				height: 28px
+				transition: height .17s
+			&:hover
+				background: #efefef
+			&.active
+				background: #eaeaea
+
+.dropdown.flags
+	height: inherit
+	display: block
+	img
+		margin: 2px 0px
+		height: 28px
+		width: calc(28px / 3 * 4)
+	ul, li
+		width: 100%
+		background: none
+		box-shadow: none
+		border: 0px
+.right .dropdown ul
+		right: 0px
+		left: initial

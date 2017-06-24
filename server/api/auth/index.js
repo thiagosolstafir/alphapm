@@ -6,7 +6,7 @@ module.exports = ({app, db, config}) => {
 		// check header or url parameters or post parameters for token
 		let token = req.body.token || req.params.token || req.headers['x-access-token'] || false;
 
-		console.log(req.body, {token});
+		// console.log(req.body, {token});
 
 		req.isAuthenticated = req.isAuthenticated || (() => (req.user !== undefined));
 

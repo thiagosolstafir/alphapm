@@ -3,6 +3,7 @@
 const {obj} = require('iblokz-data');
 
 const tasks = require('./tasks');
+const users = require('./users');
 const projects = require('./projects');
 
 // initial
@@ -21,6 +22,7 @@ const toggle = key => state => obj.patch(state, key, obj.sub(state, key));
 module.exports = {
 	initial,
 	tasks,
+	users,
 	projects,
 	set,
 	toggle

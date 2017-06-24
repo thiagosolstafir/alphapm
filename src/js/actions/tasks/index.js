@@ -3,24 +3,7 @@
 const {obj} = require('iblokz-data');
 const objectId = require('bson-objectid');
 const {diff, applyChange, applyDiff} = require('deep-diff');
-
-const indexAt = (a, k, v) => a.reduce((index, e, i) => ((e[k] === v) ? i : index), -1);
-console.log(indexAt([{a: 0}, {a: 5}, {a: 7}, {a: 2}], 'a', 0));
-
-const arrPatchAt = (a, k, v, patch) => [indexAt(a, k, v)]
-	.map(index => [].concat(
-		a.slice(0, index),
-		(patch instanceof Function)
-			? patch(a[index], index)
-			: [Object.assign({}, a[index], patch)],
-		a.slice(index + 1)
-	)).pop();
-
-const arrGreatest = (a, k) => a.reduce((g, e) => (g === undefined || g < e[k]) ? e[k] : g);
-
-const arrElAt = (a, k, v) => a.filter(e => e[k] === v).pop();
-
-const arrExtract = (a, k) => a.reduce((items, item) => items.concat(item[k] !== undefined && item[k] || []), []);
+const collection = require('../../util/collection');
 
 const initial = {
 	needsRefresh: false,
@@ -43,13 +26,13 @@ const add = ({name, project, type, status}) => state => obj.patch(state, 'tasks'
 
 const update = (id, patch, needsRefresh = false) => state => obj.patch(state, 'tasks', {
 	needsRefresh,
-	list: arrPatchAt(state.tasks.list, '_id', id, patch)
+	list: collection.patchAt(state.tasks.list, '_id', id, patch)
 });
 
 const trackTime = (id, status, timestamp = new Date().getTime() / 1000 | 0) =>
 	state => obj.patch(state, 'tasks', {
 		needsRefresh: true,
-		list: arrPatchAt(state.tasks.list, '_id', id, task => Object.assign({}, task, {
+		list: collection.patchAt(state.tasks.list, '_id', id, task => Object.assign({}, task, {
 			status,
 			activities: (status === 'doing')
 				? (task.activities.length === 0 || ((timestamp - task.activities.slice(-1).pop().end) > 60))
@@ -108,12 +91,12 @@ const upsert = tasks => state =>
 	diff(tasks, state.tasks.list)
 	? obj.patch(state, 'tasks', {
 		needsRefresh: true,
-		list: [arrExtract(tasks, '_id')].map(ids =>
+		list: [collection.extract(tasks, '_id')].map(ids =>
 			[].concat(
 				state.tasks.list.filter(task => ids.indexOf(task._id) === -1),
 				tasks.map(task => (
 	//				console.log(arrElAt(state.tasks.list, '_id', task._id), task),
-					Object.assign({}, arrElAt(state.tasks.list, '_id', task._id) || {}, task)
+					Object.assign({}, collection.elementAt(state.tasks.list, '_id', task._id) || {}, task)
 				))
 			)
 		).pop()
@@ -122,10 +105,20 @@ const upsert = tasks => state =>
 
 const actUpdate = (taskId, id, patch) => state => obj.patch(state, 'tasks', {
 	needsRefresh: false,
-	list: arrPatchAt(state.tasks.list, '_id', taskId, {
-		activities: arrPatchAt(
-			arrElAt(state.tasks.list, '_id', taskId).activities,
+	list: collection.patchAt(state.tasks.list, '_id', taskId, {
+		activities: collection.patchAt(
+			collection.elementAt(state.tasks.list, '_id', taskId).activities,
 			'_id', id, patch)
+	})
+});
+
+const toggleUser = (taskId, user) => state => obj.patch(state, 'tasks', {
+	needsRefresh: false,
+	list: collection.patchAt(state.tasks.list, '_id', taskId, {
+		users: [collection.elementAt(state.tasks.list, '_id', taskId).users].map(taskUsers => [].concat(
+			taskUsers.filter(u => u._id !== user._id),
+			collection.indexAt(taskUsers, '_id', user._id) > -1 ? [] : user
+		)).pop()
 	})
 });
 
@@ -137,5 +130,6 @@ module.exports = {
 	trackTime,
 	refresh,
 	upsert,
-	actUpdate
+	actUpdate,
+	toggleUser
 };

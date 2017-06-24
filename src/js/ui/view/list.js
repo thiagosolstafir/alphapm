@@ -71,7 +71,7 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 				.filter(task => state.project === false || task.project === state.project)
 				.filter(task => task.status === 'backlog')
 		).map(task =>
-		taskLi({task, actions, opened: state.tasks.editing === task._id}, [
+		taskLi({task, state, actions, opened: state.tasks.editing === task._id}, [
 			span('.task-name', [
 				i('.fa', {
 					class: {

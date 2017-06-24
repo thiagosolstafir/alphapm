@@ -2444,322 +2444,204 @@ button.fa, a.fa {
 ::-webkit-scrollbar-corner {
   background: transparent; }
 
-header {
-  margin: 0px;
-  padding: 0px;
-  display: inline-block;
-  box-sizing: border-box;
-  height: 64px;
-  line-height: 64px;
-  padding: 0px 20px;
-  display: block;
+.modal {
   position: relative; }
-  header > img.logo {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 64px;
-    line-height: 64px;
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    margin-left: -32px;
-    transition: transform .2s;
-    transform: scale(1, 1) translate(0, 0);
-    cursor: pointer; }
-    header > img.logo:hover {
-      transform: scale(1.2, 1.2) translate(0, 0); }
-  header ul.toolbar {
+  .modal.opened {
+    visibility: hidden;
+    transition: visibility 0s; }
+    .modal.opened .wrapper {
+      visibility: visible;
+      background: #eee;
+      z-index: 100;
+      opacity: 1;
+      transition: top .7s, left .7s, width .7s, height .7s, margin-top .7s, margin-left .7s, opacity .1s, background .7s, bottom .7s; }
+      .modal.opened .wrapper .modal-content {
+        visibility: visible;
+        opacity: 0;
+        transition: opacity .4s .7s, visibility .4s .7s; }
+  .modal .wrapper {
+    visibility: visible;
+    position: fixed;
+    transition: top .7s, left .7s, width .7s, height .7s, margin-top .7s, margin-left .7s, opacity .1s .7s, background .7s, bottom .7s;
+    opacity: 0;
+    background: #f5f5f5;
+    box-shadow: 0px 0px 17px #aaa;
+    z-index: 99; }
+    .modal .wrapper .close-modal {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin-top: -8px;
+      margin-right: -8px;
+      text-align: center;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      border-radius: 100px;
+      background: #eee;
+      box-shadow: 0px 0px 17px #aaa;
+      font-size: 20px; }
+    .modal .wrapper .modal-content {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .1s .7s, visibility .1s;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      cursor: initial; }
+
+.block {
+  width: 100%;
+  padding: 0px 10px;
+  margin: 10px 0px; }
+  .block > * {
     margin: 0px;
     padding: 0px;
     display: inline-block;
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
-    margin: 17px 0px; }
-    header ul.toolbar > li {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box;
-      height: 32px;
-      line-height: 32px;
-      padding: 0px 5px;
-      display: block;
-      float: left; }
-  header button, header .btn {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 32px;
-    line-height: 32px;
-    float: left;
-    font-size: 16px;
+    display: block;
+    margin: 10px 0px;
+    font-size: 18px;
+    width: 100%; }
+  .block input {
     border: 0px;
-    background: #ededed;
+    box-shadow: 0px 0px 3px #aaa; }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: left; }
+  .dropdown ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 36px;
+    left: 0px;
+    z-index: 99;
+    background: #dfdfdf;
     box-shadow: 1px 1px 3px #aaa;
     box-sizing: border-box;
     border-radius: 3px;
-    outline: none;
-    vertical-align: middle; }
-    header button > span, header button > i, header button > img, header .btn > span, header .btn > i, header .btn > img {
+    opacity: 0;
+    transition: opacity .05s .5s; }
+    .dropdown ul > li {
       margin: 0px;
       padding: 0px;
       display: inline-block;
       box-sizing: border-box;
-      height: 32px;
-      line-height: 32px;
-      padding: 0px 0px 0px 7px;
-      float: left; }
-    header button > img:first-child, header .btn > img:first-child {
-      padding: 0px;
-      border-radius: inherit;
-      border: 1px solid #333; }
-    header button > .fa, header .btn > .fa {
-      padding: 0px 7px;
-      text-align: center; }
-      header button > .fa::before, header .btn > .fa::before {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        height: 32px;
-        line-height: 32px;
-        vertical-align: bottom; }
-    header button:hover, header .btn:hover {
-      background: #f2f2f2; }
-  header .dropdown {
-    position: relative;
-    display: inline-block;
-    float: left; }
-    header .dropdown ul {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box;
+      height: 0;
       display: block;
-      position: absolute;
-      top: 36px;
-      left: 0px;
-      z-index: 99;
-      background: #dfdfdf;
-      box-shadow: 1px 1px 3px #aaa;
-      box-sizing: border-box;
-      border-radius: 3px;
-      opacity: 0;
-      transition: opacity .05s .5s; }
-      header .dropdown ul > li {
+      transition: height .17s .2s, background .5s; }
+      .dropdown ul > li span, .dropdown ul > li img {
         margin: 0px;
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
         height: 0;
+        line-height: 28px;
+        overflow: hidden;
+        transition: height .17s .2s; }
+      .dropdown ul > li span {
+        padding: 0px 10px;
+        white-space: nowrap; }
+      .dropdown ul > li img {
         display: block;
-        transition: height .17s .2s, background .5s; }
-        header .dropdown ul > li span, header .dropdown ul > li img {
-          margin: 0px;
-          padding: 0px;
-          display: inline-block;
-          box-sizing: border-box;
-          height: 0;
-          line-height: 28px;
-          overflow: hidden;
-          transition: height .17s .2s; }
-        header .dropdown ul > li span {
-          padding: 0px 10px;
-          white-space: nowrap; }
-        header .dropdown ul > li img {
-          display: block;
-          width: 100%;
-          opacity: .3; }
-          header .dropdown ul > li img:hover {
-            opacity: 1; }
-    header .dropdown > .handle:hover + ul, header .dropdown > ul:hover {
-      transition: opacity .05s;
-      opacity: 1; }
-      header .dropdown > .handle:hover + ul li, header .dropdown > ul:hover li {
-        transition: height .17s;
-        height: 28px; }
-        header .dropdown > .handle:hover + ul li span, header .dropdown > .handle:hover + ul li img, header .dropdown > ul:hover li span, header .dropdown > ul:hover li img {
-          height: 28px;
-          transition: height .17s; }
-        header .dropdown > .handle:hover + ul li:hover, header .dropdown > ul:hover li:hover {
-          background: #efefef; }
-        header .dropdown > .handle:hover + ul li.active, header .dropdown > ul:hover li.active {
-          background: #eaeaea; }
-  header .dropdown.flags {
-    height: inherit;
-    display: block; }
-    header .dropdown.flags img {
-      margin: 2px 0px;
-      height: 28px;
-      width: calc(28px / 3 * 4); }
-    header .dropdown.flags ul, header .dropdown.flags li {
-      width: 100%;
-      background: none;
-      box-shadow: none;
-      border: 0px; }
-  header .right .dropdown ul {
-    right: 0px;
-    left: initial; }
-  header ul.accordion {
+        width: 100%;
+        opacity: .3; }
+        .dropdown ul > li img:hover {
+          opacity: 1; }
+  .dropdown > .handle:hover + ul, .dropdown > ul:hover {
+    transition: opacity .05s;
+    opacity: 1; }
+    .dropdown > .handle:hover + ul li, .dropdown > ul:hover li {
+      transition: height .17s;
+      height: 28px; }
+      .dropdown > .handle:hover + ul li span, .dropdown > .handle:hover + ul li img, .dropdown > ul:hover li span, .dropdown > ul:hover li img {
+        height: 28px;
+        transition: height .17s; }
+      .dropdown > .handle:hover + ul li:hover, .dropdown > ul:hover li:hover {
+        background: #efefef; }
+      .dropdown > .handle:hover + ul li.active, .dropdown > ul:hover li.active {
+        background: #eaeaea; }
+
+.dropdown.flags {
+  height: inherit;
+  display: block; }
+  .dropdown.flags img {
+    margin: 2px 0px;
+    height: 28px;
+    width: calc(28px / 3 * 4); }
+  .dropdown.flags ul, .dropdown.flags li {
+    width: 100%;
+    background: none;
+    box-shadow: none;
+    border: 0px; }
+
+.right .dropdown ul {
+  right: 0px;
+  left: initial; }
+
+ul.accordion {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  list-style: none;
+  box-shadow: 1px 1px 3px #aaa;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background: #dfdfdf; }
+  ul.accordion li {
     margin: 0px;
     padding: 0px;
     display: inline-block;
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
-    list-style: none;
-    box-shadow: 1px 1px 3px #aaa;
-    box-sizing: border-box;
-    border-radius: 3px;
-    background: #dfdfdf; }
-    header ul.accordion li {
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    transition: background .5s; }
+    ul.accordion li > * {
       margin: 0px;
       padding: 0px;
       display: inline-block;
       box-sizing: border-box;
       height: 32px;
       line-height: 32px;
-      cursor: pointer;
-      text-align: center;
-      font-size: 16px;
-      transition: background .5s; }
-      header ul.accordion li > * {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        height: 32px;
-        line-height: 32px;
-        float: left; }
-      header ul.accordion li i.fa {
-        width: 32px; }
-      header ul.accordion li > span {
-        display: inline-block;
-        text-align: left;
-        width: 0px;
-        opacity: 0;
-        transition: width .5s, opacity .3s .25s; }
-      header ul.accordion li:first-child {
-        border-radius: 3px 0px 0px 3px; }
-      header ul.accordion li:last-child {
-        border-radius: 0px 3px 3px 0px; }
-      header ul.accordion li.active {
-        background: #ededed; }
-        header ul.accordion li.active > span {
-          opacity: 1; }
-          @media (min-width: 480px) and (max-width: 767px) {
-            header ul.accordion li.active > span {
-              width: 0px !important;
-              opacity: 0;
-              visibility: hidden; } }
-      header ul.accordion li:hover {
-        background: #f2f2f2; }
-
-@keyframes fadein {
-  from {
-    opacity: 0.3; }
-  to {
-    opacity: 1; } }
-
-#view {
-  animation: fadein .5s;
-  box-sizing: border-box;
-  width: 100%;
-  overflow-y: scroll;
-  position: absolute;
-  padding: 20px;
-  top: 64px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px; }
-
-.tasks {
-  margin: 0px;
-  padding: 0px;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 5px;
-  width: 100%;
-  list-style: none; }
-  .tasks li {
-    display: inline-block;
-    margin: 0px 0px 7px 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    transition: background .5s, box-shadow .5s; }
-    .tasks li.placeholder {
-      opacity: 0.1;
-      margin-bottom: 7px; }
-    .tasks li.task {
-      user-select: none;
-      box-shadow: 1px 1px 3px #bbb;
-      background: #eaeaea;
-      cursor: pointer; }
-      .tasks li.task:hover {
-        background: #efefef;
-        box-shadow: 1px 1px 4px #aaa; }
-      .tasks li.task > :not(.wrapper) {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        height: 32px;
-        line-height: 32px;
-        float: left;
-        box-sizing: border-box;
-        padding: 0 10px; }
-      .tasks li.task .task-name i.fa {
-        line-height: 32px;
-        width: 20px;
-        margin-right: 7px;
-        text-align: center; }
-    .tasks li.add-task button, .tasks li.add-task input {
-      margin: 0px;
-      padding: 0px;
+      float: left; }
+    ul.accordion li i.fa {
+      width: 32px; }
+    ul.accordion li > span {
       display: inline-block;
-      box-sizing: border-box;
-      height: 32px;
-      line-height: 32px;
-      box-sizing: border-box;
-      width: 100%;
-      font-size: inherit;
-      padding: 0px 10px;
-      outline: none;
-      border: 0px;
-      border-radius: 3px;
-      box-shadow: inset 1px 1px 3px #aaa;
-      background: #cfcfcf;
-      opacity: 0.5;
-      transition: opacity .3s; }
-      .tasks li.add-task button:hover, .tasks li.add-task input:hover {
-        opacity: 1;
-        outline: none; }
-    .tasks li.add-task input:focus, .tasks li.add-task input:active {
-      opacity: 1;
-      outline: none; }
-    .tasks li > h2 {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box;
-      height: 32px;
-      line-height: 32px;
-      padding-top: 2px;
-      line-height: 30px;
-      margin: 0px 0px 5px 0px;
-      background: #e0e0e0;
-      box-shadow: 1px 1px 3px #999;
-      box-sizing: border-box;
-      border-radius: 3px;
-      display: block;
-      font-size: 20px;
-      text-align: center;
-      color: #777; }
+      text-align: left;
+      width: 0px;
+      opacity: 0;
+      transition: width .5s, opacity .3s .25s; }
+    ul.accordion li:first-child {
+      border-radius: 3px 0px 0px 3px; }
+    ul.accordion li:last-child {
+      border-radius: 0px 3px 3px 0px; }
+    ul.accordion li.active {
+      background: #ededed; }
+      ul.accordion li.active > span {
+        opacity: 1; }
+        @media (min-width: 480px) and (max-width: 767px) {
+          ul.accordion li.active > span {
+            width: 0px !important;
+            opacity: 0;
+            visibility: hidden; } }
+    ul.accordion li:hover {
+      background: #f2f2f2; }
 
 #ui header {
   margin: 0px;
@@ -2847,134 +2729,6 @@ header {
         vertical-align: bottom; }
     #ui header button:hover, #ui header .btn:hover {
       background: #f2f2f2; }
-  #ui header .dropdown {
-    position: relative;
-    display: inline-block;
-    float: left; }
-    #ui header .dropdown ul {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box;
-      display: block;
-      position: absolute;
-      top: 36px;
-      left: 0px;
-      z-index: 99;
-      background: #dfdfdf;
-      box-shadow: 1px 1px 3px #aaa;
-      box-sizing: border-box;
-      border-radius: 3px;
-      opacity: 0;
-      transition: opacity .05s .5s; }
-      #ui header .dropdown ul > li {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        height: 0;
-        display: block;
-        transition: height .17s .2s, background .5s; }
-        #ui header .dropdown ul > li span, #ui header .dropdown ul > li img {
-          margin: 0px;
-          padding: 0px;
-          display: inline-block;
-          box-sizing: border-box;
-          height: 0;
-          line-height: 28px;
-          overflow: hidden;
-          transition: height .17s .2s; }
-        #ui header .dropdown ul > li span {
-          padding: 0px 10px;
-          white-space: nowrap; }
-        #ui header .dropdown ul > li img {
-          display: block;
-          width: 100%;
-          opacity: .3; }
-          #ui header .dropdown ul > li img:hover {
-            opacity: 1; }
-    #ui header .dropdown > .handle:hover + ul, #ui header .dropdown > ul:hover {
-      transition: opacity .05s;
-      opacity: 1; }
-      #ui header .dropdown > .handle:hover + ul li, #ui header .dropdown > ul:hover li {
-        transition: height .17s;
-        height: 28px; }
-        #ui header .dropdown > .handle:hover + ul li span, #ui header .dropdown > .handle:hover + ul li img, #ui header .dropdown > ul:hover li span, #ui header .dropdown > ul:hover li img {
-          height: 28px;
-          transition: height .17s; }
-        #ui header .dropdown > .handle:hover + ul li:hover, #ui header .dropdown > ul:hover li:hover {
-          background: #efefef; }
-        #ui header .dropdown > .handle:hover + ul li.active, #ui header .dropdown > ul:hover li.active {
-          background: #eaeaea; }
-  #ui header .dropdown.flags {
-    height: inherit;
-    display: block; }
-    #ui header .dropdown.flags img {
-      margin: 2px 0px;
-      height: 28px;
-      width: calc(28px / 3 * 4); }
-    #ui header .dropdown.flags ul, #ui header .dropdown.flags li {
-      width: 100%;
-      background: none;
-      box-shadow: none;
-      border: 0px; }
-  #ui header .right .dropdown ul {
-    right: 0px;
-    left: initial; }
-  #ui header ul.accordion {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 32px;
-    line-height: 32px;
-    list-style: none;
-    box-shadow: 1px 1px 3px #aaa;
-    box-sizing: border-box;
-    border-radius: 3px;
-    background: #dfdfdf; }
-    #ui header ul.accordion li {
-      margin: 0px;
-      padding: 0px;
-      display: inline-block;
-      box-sizing: border-box;
-      height: 32px;
-      line-height: 32px;
-      cursor: pointer;
-      text-align: center;
-      font-size: 16px;
-      transition: background .5s; }
-      #ui header ul.accordion li > * {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        height: 32px;
-        line-height: 32px;
-        float: left; }
-      #ui header ul.accordion li i.fa {
-        width: 32px; }
-      #ui header ul.accordion li > span {
-        display: inline-block;
-        text-align: left;
-        width: 0px;
-        opacity: 0;
-        transition: width .5s, opacity .3s .25s; }
-      #ui header ul.accordion li:first-child {
-        border-radius: 3px 0px 0px 3px; }
-      #ui header ul.accordion li:last-child {
-        border-radius: 0px 3px 3px 0px; }
-      #ui header ul.accordion li.active {
-        background: #ededed; }
-        #ui header ul.accordion li.active > span {
-          opacity: 1; }
-          @media (min-width: 480px) and (max-width: 767px) {
-            #ui header ul.accordion li.active > span {
-              width: 0px !important;
-              opacity: 0;
-              visibility: hidden; } }
-      #ui header ul.accordion li:hover {
-        background: #f2f2f2; }
 
 @keyframes fadein {
   from {
@@ -3078,161 +2832,6 @@ header {
       text-align: center;
       color: #777; }
 
-#ui .modal {
-  position: relative; }
-  #ui .modal.opened {
-    visibility: hidden;
-    transition: visibility 0s; }
-    #ui .modal.opened .wrapper {
-      visibility: visible;
-      background: #eee;
-      z-index: 100;
-      opacity: 1;
-      transition: top .7s, left .7s, width .7s, height .7s, margin-top .7s, margin-left .7s, opacity .1s, background .7s, bottom .7s; }
-      #ui .modal.opened .wrapper .modal-content {
-        visibility: visible;
-        opacity: 0;
-        transition: opacity .4s .7s, visibility .4s .7s; }
-  #ui .modal .wrapper {
-    visibility: visible;
-    position: fixed;
-    transition: top .7s, left .7s, width .7s, height .7s, margin-top .7s, margin-left .7s, opacity .1s .7s, background .7s, bottom .7s;
-    opacity: 0;
-    background: #f5f5f5;
-    box-shadow: 0px 0px 17px #aaa;
-    z-index: 99; }
-    #ui .modal .wrapper .close-modal {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      margin-top: -8px;
-      margin-right: -8px;
-      text-align: center;
-      width: 22px;
-      height: 22px;
-      line-height: 22px;
-      border-radius: 100px;
-      background: #eee;
-      box-shadow: 0px 0px 17px #aaa;
-      font-size: 20px; }
-    #ui .modal .wrapper .modal-content {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity .1s .7s, visibility .1s;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      cursor: initial; }
-      #ui .modal .wrapper .modal-content h2 {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        line-height: 64px;
-        width: 100%;
-        font-size: 28px;
-        text-align: center;
-        outline: none;
-        transition: box-shadow .7s; }
-        #ui .modal .wrapper .modal-content h2:focus {
-          box-shadow: inset 0px -4px 30px #ccc; }
-      #ui .modal .wrapper .modal-content .task-story {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        padding: 0px 10px;
-        width: 100%;
-        white-space: pre-line;
-        min-height: 32px;
-        line-height: 32px;
-        font-family: inherit;
-        display: inline-block;
-        box-sizing: border-box;
-        font-size: 18px;
-        color: #777;
-        outline: none;
-        transition: box-shadow .7s, color .7s, height .7s, min-height .7s; }
-        #ui .modal .wrapper .modal-content .task-story:focus {
-          color: #333;
-          box-shadow: inset 0px 0px 30px #ccc;
-          min-height: 128px; }
-      #ui .modal .wrapper .modal-content label {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        height: 32px;
-        line-height: 32px;
-        padding: 0px 10px;
-        font-weight: bold; }
-      #ui .modal .wrapper .modal-content .task-users {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        padding: 0px 10px;
-        display: block; }
-        #ui .modal .wrapper .modal-content .task-users li {
-          margin: 0px;
-          padding: 0px;
-          display: inline-block;
-          box-sizing: border-box;
-          height: 24px;
-          line-height: 24px; }
-          #ui .modal .wrapper .modal-content .task-users li button {
-            margin: 0px;
-            padding: 0px;
-            display: inline-block;
-            box-sizing: border-box;
-            height: 24px;
-            line-height: 24px;
-            box-shadow: 0px 0px 3px #aaa;
-            width: 24px; }
-      #ui .modal .wrapper .modal-content .task-activities {
-        margin: 0px;
-        padding: 0px;
-        display: inline-block;
-        box-sizing: border-box;
-        display: block; }
-        #ui .modal .wrapper .modal-content .task-activities li {
-          margin: 0px;
-          padding: 0px;
-          display: inline-block;
-          box-sizing: border-box; }
-          #ui .modal .wrapper .modal-content .task-activities li > * {
-            margin: 0px;
-            padding: 0px;
-            display: inline-block;
-            box-sizing: border-box;
-            display: inline-block; }
-          #ui .modal .wrapper .modal-content .task-activities li .act-type {
-            padding: 0px 10px;
-            width: 20%; }
-          #ui .modal .wrapper .modal-content .task-activities li .act-start, #ui .modal .wrapper .modal-content .task-activities li .act-end {
-            width: 40%; }
-
-#ui .block {
-  width: 100%;
-  padding: 0px 10px;
-  margin: 10px 0px; }
-  #ui .block > * {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-    box-sizing: border-box;
-    height: 32px;
-    line-height: 32px;
-    display: block;
-    margin: 10px 0px;
-    font-size: 18px;
-    width: 100%; }
-  #ui .block input {
-    border: 0px;
-    box-shadow: 0px 0px 3px #aaa; }
-
 #ui #view.list .filter-row {
   margin: 0px;
   padding: 0px;
@@ -3254,38 +2853,38 @@ header {
     font-weight: bold;
     cursor: pointer; }
 
-#ui #view.list li {
+#ui #view.list > ul > li {
   height: 32px;
   clear: both;
   width: 100%; }
   @media (min-width: 480px) and (max-width: 767px) {
-    #ui #view.list li.task {
+    #ui #view.list > ul > li.task {
       font-size: 0.9em; } }
-  #ui #view.list li.task .task-name {
+  #ui #view.list > ul > li.task .task-name {
     width: 45%; }
-  #ui #view.list li.task .task-project {
+  #ui #view.list > ul > li.task .task-project {
     width: 20%; }
-  #ui #view.list li.task .task-status {
+  #ui #view.list > ul > li.task .task-status {
     width: 15%; }
-  #ui #view.list li.task .task-time {
+  #ui #view.list > ul > li.task .task-time {
     width: 20%;
     text-align: right; }
-    #ui #view.list li.task .task-time > * {
+    #ui #view.list > ul > li.task .task-time > * {
       margin: 0px 5px; }
-  #ui #view.list li.task .task-ass {
+  #ui #view.list > ul > li.task .task-ass {
     width: 10%;
     text-align: right; }
-  #ui #view.list li.task .task-est {
+  #ui #view.list > ul > li.task .task-est {
     width: 10%;
     text-align: right; }
   @media (min-width: 480px) and (max-width: 767px) {
-    #ui #view.list li.task .task-name {
+    #ui #view.list > ul > li.task .task-name {
       width: 36%; }
-    #ui #view.list li.task .task-project {
+    #ui #view.list > ul > li.task .task-project {
       width: 19%; }
-    #ui #view.list li.task .task-status {
+    #ui #view.list > ul > li.task .task-status {
       width: 20%; }
-    #ui #view.list li.task .task-time {
+    #ui #view.list > ul > li.task .task-time {
       width: 25%; } }
 
 #ui .columns .tasks {
@@ -3350,5 +2949,124 @@ header {
       width: 50%; }
     #ui .calendar .tasks li.add-task {
       position: relative; }
+
+#ui .task-edit h2 {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 64px;
+  width: 100%;
+  font-size: 28px;
+  text-align: center;
+  outline: none;
+  transition: box-shadow .7s; }
+  #ui .task-edit h2:focus {
+    box-shadow: inset 0px -4px 30px #ccc; }
+
+#ui .task-edit .task-story {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  width: 100%;
+  white-space: pre-line;
+  min-height: 32px;
+  line-height: 32px;
+  font-family: inherit;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 18px;
+  color: #777;
+  outline: none;
+  transition: box-shadow .7s, color .7s, height .7s, min-height .7s; }
+  #ui .task-edit .task-story:focus {
+    color: #333;
+    box-shadow: inset 0px 0px 30px #ccc;
+    min-height: 128px; }
+
+#ui .task-edit label {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px 10px;
+  margin: 10px 0px;
+  font-weight: bold;
+  clear: both;
+  display: block; }
+
+#ui .task-edit .task-users {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  display: block; }
+  #ui .task-edit .task-users > li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    width: auto;
+    float: left; }
+    #ui .task-edit .task-users > li > img {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 24px;
+      line-height: 24px; }
+    #ui .task-edit .task-users > li > button {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 24px;
+      line-height: 24px;
+      border: 0px;
+      box-shadow: 0px 0px 3px #aaa;
+      width: 24px;
+      outline: none; }
+      #ui .task-edit .task-users > li > button i.fa {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 24px;
+        line-height: 24px;
+        width: 24px; }
+      #ui .task-edit .task-users > li > button:hover {
+        background: #eee;
+        outline: none; }
+
+#ui .task-edit .task-activities {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  display: block; }
+  #ui .task-edit .task-activities li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box; }
+    #ui .task-edit .task-activities li > * {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      display: inline-block; }
+    #ui .task-edit .task-activities li .act-type {
+      padding: 0px 10px;
+      width: 20%; }
+    #ui .task-edit .task-activities li .act-start, #ui .task-edit .task-activities li .act-end {
+      width: 40%; }
 
 /*# sourceMappingURL=style.css.map */

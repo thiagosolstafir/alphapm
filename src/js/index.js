@@ -3,7 +3,7 @@
 // lib
 const Rx = require('rx');
 const $ = Rx.Observable;
-const request = require('superagent');
+const request = require('./util/request');
 
 // moment
 const moment = require('moment');
@@ -133,16 +133,21 @@ state$
 	.distinctUntilChanged(state => state.lang)
 	.subscribe(state => moment.locale(state.lang));
 
-// console.log('diff', diff([1, 2, 3], [1, 2, 3, 4]));
-$.interval(5000 /* ms */)
-		.timeInterval()
-		.startWith({})
-		.flatMap(() => $.fromPromise(
-			request
-				.get('/api/tasks?limit=1000')
-		))
-		.filter(res => res.status === 200)
+// resources sync
+// tasks
+$.interval(5000 /* ms */).timeInterval().startWith({})
+		.flatMap(() => request
+			.get('/api/tasks?limit=1000')
+			.observe()
+		).filter(res => res.status === 200)
 		.subscribe(res => actions.tasks.upsert(res.body.list));
+// users
+$.interval(10000 /* ms */).timeInterval().startWith({})
+		.flatMap(() => request
+			.get('/api/users?limit=1000')
+			.observe()
+		).filter(res => res.status === 200)
+		.subscribe(res => actions.users.upsert(res.body.list));
 
 // connect state stream
 state$.connect();

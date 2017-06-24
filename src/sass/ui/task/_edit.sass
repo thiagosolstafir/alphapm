@@ -1,0 +1,73 @@
+.task-edit
+	h2
+		+reset
+		line-height: 64px
+		width: 100%
+		font-size: 28px
+		text-align: center
+		outline: none
+		transition: box-shadow .7s
+		&:focus
+			box-shadow: inset 0px -4px 30px #ccc
+	.task-story
+		+reset
+		padding: 0px 10px
+		width: 100%
+		white-space: pre-line
+		min-height: 32px
+		line-height: 32px
+		font-family: inherit
+		display: inline-block
+		box-sizing: border-box
+		font-size: 18px
+		color: #777
+		outline: none
+		transition: box-shadow .7s, color .7s, height .7s, min-height .7s
+		&:focus
+			color: #333
+			box-shadow: inset 0px 0px 30px #ccc
+			min-height: 128px
+	label
+		+header-height(32px)
+		padding: 0px 10px
+		margin: 10px 0px
+		font-weight: bold
+		clear: both
+		display: block
+	.task-users
+		+reset
+		padding: 0px 10px
+		display: block
+		> li
+			+header-height(24px)
+			display: inline-block
+			width: auto
+			float: left
+			> img
+				+header-height(24px)
+			> button
+				+header-height(24px)
+				border: 0px
+				box-shadow: 0px 0px 3px #aaa
+				width: 24px
+				outline: none
+				i.fa
+					+header-height(24px)
+					width: 24px
+				&:hover
+					background: #eee
+					outline: none
+
+	.task-activities
+		+reset
+		display: block
+		li
+			+reset
+			> *
+				+reset
+				display: inline-block
+			.act-type
+				padding: 0px 10px
+				width: 20%
+			.act-start, .act-end
+				width: 40%

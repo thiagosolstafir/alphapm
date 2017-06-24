@@ -6,7 +6,7 @@
 		"tasks": {
 			"model": "Task",
 			"schema": {
-				"name" : { "type": "String", "required": true, "minLength": 1, "maxLength": 30 },
+				"name" : {"type": "String", "required": true, "minLength": 1, "maxLength": 30 },
 				"story": "String",
 				"project": "String",
 				"time": {
@@ -20,11 +20,16 @@
 						"type": "String"
 					}
 				],
+				"users": [{
+					"_id": {"type": "ObjectId", "ref": "User"},
+					"name": "String",
+					"email": "String"
+				}],
 				"type": "String",
 				"status": "String",
 				"milestone": "String",
-				"createdBy" : { "type": "ObjectId", "ref":"User", "required": false},
-				"createdOn": { "type": "Date", "default": "Date.now" }
+				"createdBy" : {"type": "ObjectId", "ref":"User", "required": false},
+				"createdOn": {"type": "Date", "default": "Date.now" }
 			}
 		},
 		"activities": {
@@ -57,7 +62,7 @@
 						"admin": "all",
 						"publisher": "own",
 						"user": "list,view",
-						"anonymous": "create"
+						"anonymous": "create,list"
 					}
 				}
 			},

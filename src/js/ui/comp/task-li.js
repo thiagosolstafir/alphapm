@@ -13,6 +13,9 @@ const modal = require('./modal');
 const moment = require('moment');
 const crypto = require('crypto');
 
+// util
+const collection = require('../../util/collection');
+
 const taskTypeIcons = {
 	dev: 'fa-code',
 	bug: 'fa-bug',
@@ -31,7 +34,7 @@ const getTrackedTime = task => task.activities
 const getCurrentTracking = task => getTrackedTime(task) +
 	(getTimestamp() - task.activities.slice(-1).pop().start) * 1000;
 
-module.exports = ({task, actions, opened = false}, content = false) => li('.task.modal', {
+module.exports = ({task, state, actions, opened = false}, content = false) => li('.task.modal', {
 	class: {opened},
 	on: {dblclick: ev => actions.tasks.edit(task._id)},
 	attrs: {'task-id': task._id, 'task-status': task.status},
@@ -52,7 +55,7 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 	],
 	(opened) ? modal({
 		onClose: () => actions.tasks.edit(null)
-	}, [
+	}, span('.task-edit', [
 		h2('[contenteditable="true"]', {
 			on: {blur: ev => actions.tasks.update(task._id, {name: ev.target.textContent}, false)}
 		}, task.name),
@@ -65,6 +68,9 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 		label('Users'),
 		ul('.task-users', [].concat(
 			task.users ? task.users.map(user => li(img({
+				on: {
+					click: () => actions.tasks.toggleUser(task._id, user)
+				},
 				attrs: {
 					src: `http://www.gravatar.com/avatar/${
 						crypto.createHash('md5').update(user.email).digest("hex")
@@ -72,7 +78,22 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 					title: user.name || user.email
 				}
 			}))) : '',
-			li(button('.fa.fa-plus.dropdown', [
+			li(button('.dropdown', [
+				i('.fa.fa-plus.handle'),
+				// show available users
+				ul(collection.unique(state.users.list, task.users || [])
+					.map(user => li(img({
+						on: {
+							click: () => actions.tasks.toggleUser(task._id, user)
+						},
+						attrs: {
+							src: `http://www.gravatar.com/avatar/${
+								crypto.createHash('md5').update(user.email).digest("hex")
+							}`,
+							title: user.name || user.email
+						}
+					})))
+				)
 			]))
 		)),
 		label('Activities'),
@@ -101,5 +122,5 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 				}) : 'In progress ...'
 			])
 		))
-	]) : ''
+	])) : ''
 ));

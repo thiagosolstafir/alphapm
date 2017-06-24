@@ -49,7 +49,7 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 			state.tasks.list
 				.filter(task => state.project === false || task.project === state.project)
 				.filter(task => task.status === status)
-				.map((task, index) => taskLi({task, actions, opened: state.tasks.editing === task._id})),
+				.map((task, index) => taskLi({task, state, actions, opened: state.tasks.editing === task._id})),
 			[
 				li('.add-task', form({
 					on: {
