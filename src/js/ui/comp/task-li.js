@@ -11,6 +11,7 @@ const modal = require('./modal');
 
 // lib
 const moment = require('moment');
+const crypto = require('crypto');
 
 const taskTypeIcons = {
 	dev: 'fa-code',
@@ -61,8 +62,21 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 				blur: ev => actions.tasks.update(task._id, {story: ev.target.textContent}, false)
 			}
 		}, task.story || 'Story ...'),
+		label('Users'),
+		ul('.task-users', [].concat(
+			task.users ? task.users.map(user => li(img({
+				attrs: {
+					src: `http://www.gravatar.com/avatar/${
+						crypto.createHash('md5').update(user.email).digest("hex")
+					}`,
+					title: user.name || user.email
+				}
+			}))) : '',
+			li(button('.fa.fa-plus.dropdown', [
+			]))
+		)),
 		label('Activities'),
-		ul('.task-activities', task.activities.filter(act => act.end > 0).map(act =>
+		ul('.task-activities', task.activities.map(act =>
 			li([
 				span('.act-type', act.type),
 				input('.act-start[type="datetime-local"]', {
@@ -75,7 +89,7 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 						value: moment.unix(act.start).format('YYYY-MM-DDTHH:mm')
 					}
 				}),
-				input('.act-end[type="datetime-local"]', {
+				act.end > 0 ? input('.act-end[type="datetime-local"]', {
 					on: {
 						change: ev => actions.tasks.actUpdate(task._id, act._id, {
 							end: moment(ev.target.value, 'YYYY-MM-DDTHH:mm').unix()
@@ -84,7 +98,7 @@ module.exports = ({task, actions, opened = false}, content = false) => li('.task
 					attrs: {
 						value: act.end && moment.unix(act.end).format('YYYY-MM-DDTHH:mm')
 					}
-				})
+				}) : 'In progress ...'
 			])
 		))
 	]) : ''

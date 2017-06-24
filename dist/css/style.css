@@ -2504,7 +2504,7 @@ header {
     border-radius: 3px;
     outline: none;
     vertical-align: middle; }
-    header button > span, header button > i, header .btn > span, header .btn > i {
+    header button > span, header button > i, header button > img, header .btn > span, header .btn > i, header .btn > img {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2513,6 +2513,10 @@ header {
       line-height: 32px;
       padding: 0px 0px 0px 7px;
       float: left; }
+    header button > img:first-child, header .btn > img:first-child {
+      padding: 0px;
+      border-radius: inherit;
+      border: 1px solid #333; }
     header button > .fa, header .btn > .fa {
       padding: 0px 7px;
       text-align: center; }
@@ -2530,15 +2534,11 @@ header {
     position: relative;
     display: inline-block;
     float: left; }
-    header .dropdown img {
-      height: 28px;
-      width: calc(28px / 3 * 4); }
     header .dropdown ul {
       margin: 0px;
       padding: 0px;
       display: inline-block;
       box-sizing: border-box;
-      clear: both;
       display: block;
       position: absolute;
       top: 36px;
@@ -2563,13 +2563,13 @@ header {
           padding: 0px;
           display: inline-block;
           box-sizing: border-box;
-          display: inline-block;
           height: 0;
           line-height: 28px;
           overflow: hidden;
           transition: height .17s .2s; }
         header .dropdown ul > li span {
-          padding: 0px 10px; }
+          padding: 0px 10px;
+          white-space: nowrap; }
         header .dropdown ul > li img {
           display: block;
           width: 100%;
@@ -2589,16 +2589,21 @@ header {
           background: #efefef; }
         header .dropdown > .handle:hover + ul li.active, header .dropdown > ul:hover li.active {
           background: #eaeaea; }
-  header a.dropdown {
+  header .dropdown.flags {
     height: inherit;
     display: block; }
-    header a.dropdown img {
-      margin: 2px 0px; }
-    header a.dropdown ul, header a.dropdown li {
+    header .dropdown.flags img {
+      margin: 2px 0px;
+      height: 28px;
+      width: calc(28px / 3 * 4); }
+    header .dropdown.flags ul, header .dropdown.flags li {
       width: 100%;
       background: none;
       box-shadow: none;
       border: 0px; }
+  header .right .dropdown ul {
+    right: 0px;
+    left: initial; }
   header ul.accordion {
     margin: 0px;
     padding: 0px;
@@ -2816,7 +2821,7 @@ header {
     border-radius: 3px;
     outline: none;
     vertical-align: middle; }
-    #ui header button > span, #ui header button > i, #ui header .btn > span, #ui header .btn > i {
+    #ui header button > span, #ui header button > i, #ui header button > img, #ui header .btn > span, #ui header .btn > i, #ui header .btn > img {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2825,6 +2830,10 @@ header {
       line-height: 32px;
       padding: 0px 0px 0px 7px;
       float: left; }
+    #ui header button > img:first-child, #ui header .btn > img:first-child {
+      padding: 0px;
+      border-radius: inherit;
+      border: 1px solid #333; }
     #ui header button > .fa, #ui header .btn > .fa {
       padding: 0px 7px;
       text-align: center; }
@@ -2842,15 +2851,11 @@ header {
     position: relative;
     display: inline-block;
     float: left; }
-    #ui header .dropdown img {
-      height: 28px;
-      width: calc(28px / 3 * 4); }
     #ui header .dropdown ul {
       margin: 0px;
       padding: 0px;
       display: inline-block;
       box-sizing: border-box;
-      clear: both;
       display: block;
       position: absolute;
       top: 36px;
@@ -2875,13 +2880,13 @@ header {
           padding: 0px;
           display: inline-block;
           box-sizing: border-box;
-          display: inline-block;
           height: 0;
           line-height: 28px;
           overflow: hidden;
           transition: height .17s .2s; }
         #ui header .dropdown ul > li span {
-          padding: 0px 10px; }
+          padding: 0px 10px;
+          white-space: nowrap; }
         #ui header .dropdown ul > li img {
           display: block;
           width: 100%;
@@ -2901,16 +2906,21 @@ header {
           background: #efefef; }
         #ui header .dropdown > .handle:hover + ul li.active, #ui header .dropdown > ul:hover li.active {
           background: #eaeaea; }
-  #ui header a.dropdown {
+  #ui header .dropdown.flags {
     height: inherit;
     display: block; }
-    #ui header a.dropdown img {
-      margin: 2px 0px; }
-    #ui header a.dropdown ul, #ui header a.dropdown li {
+    #ui header .dropdown.flags img {
+      margin: 2px 0px;
+      height: 28px;
+      width: calc(28px / 3 * 4); }
+    #ui header .dropdown.flags ul, #ui header .dropdown.flags li {
       width: 100%;
       background: none;
       box-shadow: none;
       border: 0px; }
+  #ui header .right .dropdown ul {
+    right: 0px;
+    left: initial; }
   #ui header ul.accordion {
     margin: 0px;
     padding: 0px;
@@ -3158,11 +3168,35 @@ header {
         line-height: 32px;
         padding: 0px 10px;
         font-weight: bold; }
+      #ui .modal .wrapper .modal-content .task-users {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 0px 10px;
+        display: block; }
+        #ui .modal .wrapper .modal-content .task-users li {
+          margin: 0px;
+          padding: 0px;
+          display: inline-block;
+          box-sizing: border-box;
+          height: 24px;
+          line-height: 24px; }
+          #ui .modal .wrapper .modal-content .task-users li button {
+            margin: 0px;
+            padding: 0px;
+            display: inline-block;
+            box-sizing: border-box;
+            height: 24px;
+            line-height: 24px;
+            box-shadow: 0px 0px 3px #aaa;
+            width: 24px; }
       #ui .modal .wrapper .modal-content .task-activities {
         margin: 0px;
         padding: 0px;
         display: inline-block;
-        box-sizing: border-box; }
+        box-sizing: border-box;
+        display: block; }
         #ui .modal .wrapper .modal-content .task-activities li {
           margin: 0px;
           padding: 0px;

@@ -10,6 +10,7 @@ const {
 const modal = require('./comp/modal');
 
 const moment = require('moment');
+const crypto = require('crypto');
 
 // vex dialog
 const vex = require('vex-js');
@@ -65,7 +66,7 @@ module.exports = ({state, actions, views, i18n}) => header([
 	img('.logo[src="assets/img/logo-2.svg"]'),
 	ul('.toolbar.right', [
 		li(span(moment().format('DD.MM.YY H:mm'))),
-		li(a('.dropdown', [
+		li(a('.dropdown.flags', [
 			img(`.handle[src="assets/img/flags/${langFlags[state.lang || 'bg']}.svg"]`),
 			ul(Object.keys(langFlags)
 				.filter(lang => lang !== state.lang)
@@ -76,10 +77,14 @@ module.exports = ({state, actions, views, i18n}) => header([
 		li(
 			a('.btn.modal', {
 				style: {position: 'relative'},
-				class: {opened: state.modal === 'sign-in'},
-				on: {click: () => (state.auth.user)
-					? actions.auth.logout()
-					: (state.modal !== 'sign-in') ? actions.set('modal', 'sign-in') : {}}
+				class: {
+					opened: state.modal === 'sign-in',
+					dropdown: state.auth.user
+				},
+				on: {
+					click: () => (!state.auth.user && state.modal !== 'sign-in')
+						? actions.set('modal', 'sign-in') : {}
+				}
 			},
 				(!state.auth.user)
 					? [
@@ -119,9 +124,25 @@ module.exports = ({state, actions, views, i18n}) => header([
 						]) : ''
 					]
 				: [
-					span(state.auth.user.name || state.auth.user.email),
-					i('.fa.fa-sign-out')
-
+					img('.handle', {
+						attrs: {
+							src: `http://www.gravatar.com/avatar/${
+								crypto.createHash('md5').update(state.auth.user.email).digest("hex")
+							}`,
+							title: state.auth.user.name || state.auth.user.email
+						}
+					}),
+					ul([
+						li(span('Edit Profile')),
+						li(span('Change Picture')),
+						li({
+							on: {
+								click: () => setTimeout(() => actions.auth.logout())
+							}
+						}, [
+							span([ i('.fa.fa-sign-out'), ' Sign out'])
+						])
+					])
 				]
 			)
 		)

@@ -33,10 +33,14 @@ header
 		border-radius: 3px
 		outline: none
 		vertical-align: middle
-		> span, > i
+		> span, > i, > img
 			+header-height(32px)
 			padding: 0px 0px 0px 7px
 			float: left
+		> img:first-child
+			padding: 0px
+			border-radius: inherit
+			border: 1px solid #333
 		> .fa
 			padding: 0px 7px
 			text-align: center
@@ -49,12 +53,8 @@ header
 		position: relative
 		display: inline-block
 		float: left
-		img
-			height: 28px
-			width: calc(28px / 3 * 4)
 		ul
 			+reset
-			clear: both
 			display: block
 			position: absolute
 			top: 36px
@@ -73,13 +73,13 @@ header
 				transition: height .17s .2s, background .5s
 				span, img
 					+reset
-					display: inline-block
 					height: 0
 					line-height: 28px
 					overflow: hidden
 					transition: height .17s .2s
 				span
 					padding: 0px 10px
+					white-space: nowrap
 				img
 					display: block
 					width: 100%
@@ -100,16 +100,21 @@ header
 				&.active
 					background: #eaeaea
 	
-	a.dropdown
+	.dropdown.flags
 		height: inherit
 		display: block
 		img
 			margin: 2px 0px
+			height: 28px
+			width: calc(28px / 3 * 4)
 		ul, li
 			width: 100%
 			background: none
 			box-shadow: none
 			border: 0px
+	.right .dropdown ul
+      right: 0px
+      left: initial
 	ul.accordion
 		+header-height(32px)
 		list-style: none
