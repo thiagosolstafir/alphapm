@@ -115,11 +115,11 @@ module.exports = ({state, actions, views, i18n}) => header([
 							}, [
 								h1([
 									i('.fa.fa-sign-in'),
-									span(' Sign In')
+									span([' ', i18n.auth.signIn])
 								]),
 								input('[type="text"][name="email"][placeholder="Email"]'),
 								input('[type="password"][name="password"][placeholder="Password"]'),
-								button('Sign In')
+								button(i18n.auth.signIn)
 							])
 						]) : ''
 					]
@@ -133,14 +133,14 @@ module.exports = ({state, actions, views, i18n}) => header([
 						}
 					}),
 					ul([
-						li(span('Edit Profile')),
-						li(span('Change Picture')),
+						li(span(i18n.auth.editProfile)),
+						li(span(i18n.auth.changePicture)),
 						li({
 							on: {
 								click: () => setTimeout(() => actions.auth.logout())
 							}
 						}, [
-							span([ i('.fa.fa-sign-out'), ' Sign out'])
+							span([i('.fa.fa-sign-out'), ' ', i18n.auth.signOut])
 						])
 					])
 				]

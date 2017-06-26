@@ -23,5 +23,11 @@
 		"list": {
 			"showingTasks": "Mostrando tareas que son"
 		}
+	},
+	"auth": {
+		"signIn": "Iniciar sesión",
+		"signOut": "Salir",
+		"editProfile": "Editar el perfil",
+		"changePicture": "Cambiar la imagen"
 	}
 }

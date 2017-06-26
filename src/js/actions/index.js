@@ -6,12 +6,19 @@ const tasks = require('./tasks');
 const users = require('./users');
 const projects = require('./projects');
 
+const supportedLanguages = ['bg', 'en', 'es', 'de', 'es', 'ko'];
+const getBrowserLang = () => [(navigator.languages
+  ? navigator.languages[0]
+  : (navigator.language || navigator.userLanguage)
+).slice(0, 2)]
+	.map(lang => supportedLanguages.indexOf(lang) > -1 ? lang : 'en').pop();
+
 // initial
 const initial = {
 	// view: table, columns, calendar
 	view: 'list',
 	project: false,
-	lang: 'bg',
+	lang: getBrowserLang(),
 	modal: false
 };
 

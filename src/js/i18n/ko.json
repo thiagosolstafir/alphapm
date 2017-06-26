@@ -23,5 +23,11 @@
 		"list": {
 			"showingTasks": "Showing tasks that are"
 		}
+	},
+	"auth": {
+		"signIn": "Sign in",
+		"signOut": "Sign out",
+		"editProfile": "Edit profile",
+		"changePicture": "Change picture"
 	}
 }

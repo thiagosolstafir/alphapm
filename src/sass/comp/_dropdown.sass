@@ -6,6 +6,7 @@
 		+reset
 		display: block
 		position: absolute
+		visibility: hidden
 		top: 36px
 		left: 0px
 		z-index: 99
@@ -14,7 +15,7 @@
 		box-sizing: border-box
 		border-radius: 3px
 		opacity: 0
-		transition: opacity .05s .5s
+		transition: opacity .05s .5s, visibility .05s .5s
 		> li
 			+reset
 			height: 0
@@ -36,7 +37,8 @@
 				&:hover
 					opacity: 1
 	> .handle:hover + ul, > ul:hover
-		transition: opacity .05s
+		transition: opacity .05s, visibility .05s
+		visibility: visible
 		opacity: 1
 		li
 			transition: height .17s

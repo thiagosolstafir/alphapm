@@ -100,6 +100,7 @@ auth.hook({state$, actions});
 // const ui$ = time.loop(state$).map(({state}) => ui({state, actions}));
 //	.map(uiPatch => (console.log({uiPatch}), uiPatch));
 // const ui$ = state$.map(state => ui({state, actions}));
+console.log(i18n);
 const ui$ = $.combineLatest(
 	state$,
 	$.interval(500),

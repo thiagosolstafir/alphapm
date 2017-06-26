@@ -2522,6 +2522,7 @@ button.fa, a.fa {
     box-sizing: border-box;
     display: block;
     position: absolute;
+    visibility: hidden;
     top: 36px;
     left: 0px;
     z-index: 99;
@@ -2530,7 +2531,7 @@ button.fa, a.fa {
     box-sizing: border-box;
     border-radius: 3px;
     opacity: 0;
-    transition: opacity .05s .5s; }
+    transition: opacity .05s .5s, visibility .05s .5s; }
     .dropdown ul > li {
       margin: 0px;
       padding: 0px;
@@ -2558,7 +2559,8 @@ button.fa, a.fa {
         .dropdown ul > li img:hover {
           opacity: 1; }
   .dropdown > .handle:hover + ul, .dropdown > ul:hover {
-    transition: opacity .05s;
+    transition: opacity .05s, visibility .05s;
+    visibility: visible;
     opacity: 1; }
     .dropdown > .handle:hover + ul li, .dropdown > ul:hover li {
       transition: height .17s;
@@ -3011,8 +3013,9 @@ ul.accordion {
     padding: 0px;
     display: inline-block;
     box-sizing: border-box;
-    height: 24px;
-    line-height: 24px;
+    height: 28px;
+    line-height: 28px;
+    margin: 0px 10px 0px 0px;
     display: inline-block;
     width: auto;
     float: left; }
@@ -3021,27 +3024,28 @@ ul.accordion {
       padding: 0px;
       display: inline-block;
       box-sizing: border-box;
-      height: 24px;
-      line-height: 24px; }
+      height: 28px;
+      line-height: 28px;
+      cursor: pointer; }
     #ui .task-edit .task-users > li > button {
       margin: 0px;
       padding: 0px;
       display: inline-block;
       box-sizing: border-box;
-      height: 24px;
-      line-height: 24px;
+      height: 28px;
+      line-height: 28px;
       border: 0px;
       box-shadow: 0px 0px 3px #aaa;
-      width: 24px;
+      width: 28px;
       outline: none; }
       #ui .task-edit .task-users > li > button i.fa {
         margin: 0px;
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
-        height: 24px;
-        line-height: 24px;
-        width: 24px; }
+        height: 28px;
+        line-height: 28px;
+        width: 28px; }
       #ui .task-edit .task-users > li > button:hover {
         background: #eee;
         outline: none; }

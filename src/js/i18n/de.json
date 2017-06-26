@@ -23,5 +23,11 @@
 		"list": {
 			"showingTasks": "Aufgaben anzeigen, die sind"
 		}
+	},
+	"auth": {
+		"signIn": "Anmelden",
+		"signOut": "Abmelden",
+		"editProfile": "Profil bearbeiten",
+		"changePicture": "Bild ändern"
 	}
 }

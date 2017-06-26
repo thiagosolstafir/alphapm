@@ -23,5 +23,11 @@
 		"list": {
 			"showingTasks": "Показват се задачи които са"
 		}
+	},
+	"auth": {
+		"signIn": "Вход",
+		"signOut": "Изход",
+		"editProfile": "Редакция профил",
+		"changePicture": "Промяна снимка"
 	}
 }
