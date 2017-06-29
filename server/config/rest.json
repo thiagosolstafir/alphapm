@@ -43,6 +43,12 @@
 				"client": "String",
 				"team": "String",
 				"rate": "Number",
+				"users": [{
+					"_id": {"type": "ObjectId", "ref": "User"},
+					"name": "String",
+					"email": "String",
+					"role": "String"
+				}],
 				"createdBy" : {"type": "ObjectId", "ref":"User", "required": false},
 				"createdAt": {"type": "Date", "default": "Date.now" }
 			}

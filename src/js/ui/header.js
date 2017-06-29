@@ -8,10 +8,10 @@ const {
 } = require('iblokz-snabbdom-helpers');
 // components
 const modal = require('./comp/modal');
+const userImg = require('./comp/user-img');
 
 // lib
 const moment = require('moment');
-const crypto = require('crypto');
 
 // util
 const {obj} = require('iblokz-data');
@@ -128,14 +128,7 @@ module.exports = ({state, actions, views, i18n}) => header([
 						]) : ''
 					]
 				: [
-					img('.handle', {
-						attrs: {
-							src: `http://www.gravatar.com/avatar/${
-								crypto.createHash('md5').update(state.auth.user.email).digest("hex")
-							}`,
-							title: state.auth.user.name || state.auth.user.email
-						}
-					}),
+					userImg({user: state.auth.user, selector: '.handle'}),
 					ul([
 						li(span(i18n.auth.editProfile)),
 						li(span(i18n.auth.changePicture)),

@@ -43,6 +43,7 @@ restApi.initRoutes(app, config.rest, {}, db);
 
 // tasks additional
 require('./api/tasks')({app, db, config});
+require('./api/projects')({app, db, config});
 
 // migrations
 require('./db-migrations/2017-06-29-01')({app, db, config});

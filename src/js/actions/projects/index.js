@@ -14,7 +14,10 @@ const add = name => state => obj.patch(state, 'projects', {
 		state.projects.list,
 		{
 			_id: objectId().str,
-			name
+			name,
+			users: [],
+			createdAt: new Date(),
+			createdBy: state.auth.user && state.auth.user._id || null
 		}
 	)
 });

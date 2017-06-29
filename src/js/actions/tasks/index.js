@@ -11,18 +11,31 @@ const initial = {
 	list: []
 };
 
-const add = ({name, project, type, status}) => state => obj.patch(state, 'tasks', {
-	list: state.tasks.list.concat({
-		_id: objectId().str,
-		name: name.split(', ')[0],
-		project: project || name.split(', ')[1] || state.project || '',
-		type: type || name.split(', ')[2] || 'dev',
-		status: status || 'backlog',
-		est: 0,
-		createdAt: new Date(),
-		activities: []
+const getOrCreateProject = (name, list) => collection.elementAt(list, 'name', name || 'Personal') || {
+	_id: objectId().str,
+	name
+};
+
+const add = ({name, project, type, status}) => state => [
+	getOrCreateProject(project || name.split(', ')[1] || state.project.name, state.projects.list)
+].map(project =>
+	obj.patch(obj.patch(state, 'tasks', {
+		list: state.tasks.list.concat({
+			_id: objectId().str,
+			name: name.split(', ')[0],
+			project,
+			type: type || name.split(', ')[2] || 'dev',
+			users: [],
+			status: status || 'backlog',
+			est: 0,
+			createdAt: new Date(),
+			createdBy: state.auth.user && state.auth.user._id || null,
+			activities: []
+		})
+	}), 'projects', {
+		list: collection.patchAt(state.projects.list, 'name', project.name, project)
 	})
-});
+).pop();
 
 const update = (id, patch, needsRefresh = false) => state => obj.patch(state, 'tasks', {
 	needsRefresh,

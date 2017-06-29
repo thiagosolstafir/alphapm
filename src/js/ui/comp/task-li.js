@@ -8,10 +8,10 @@ const {
 } = require('iblokz-snabbdom-helpers');
 // components
 const modal = require('./modal');
+const userImg = require('./user-img');
 
 // lib
 const moment = require('moment');
-const crypto = require('crypto');
 
 // util
 const collection = require('../../util/collection');
@@ -44,6 +44,7 @@ module.exports = ({task, state, actions, opened = false}, content = false) => li
 		span('.task-name', [
 			i(`.fa.${taskTypeIcons[task.type] || 'fa-code'}`), task.name
 		]),
+		span('.task-users', (task.users || []).map(user => userImg({user}))),
 		span('.task-project', task.project.name || task.project), span('.task-status', task.status),
 		span('.task-time', [].concat(
 			(task.status === 'doing')
@@ -67,31 +68,17 @@ module.exports = ({task, state, actions, opened = false}, content = false) => li
 		}, task.story || 'Story ...'),
 		label('Users'),
 		ul('.task-users', [].concat(
-			task.users ? task.users.map(user => li(img({
-				on: {
-					click: () => actions.tasks.toggleUser(task._id, user)
-				},
-				attrs: {
-					src: `http://www.gravatar.com/avatar/${
-						crypto.createHash('md5').update(user.email).digest("hex")
-					}`,
-					title: user.name || user.email
-				}
+			task.users ? task.users.map(user => li(userImg({
+				user,
+				click: () => actions.tasks.toggleUser(task._id, user)
 			}))) : '',
 			li(button('.dropdown', [
 				i('.fa.fa-plus.handle'),
 				// show available users
 				ul(collection.unique(state.users.list, task.users || [])
-					.map(user => li(img({
-						on: {
-							click: () => actions.tasks.toggleUser(task._id, user)
-						},
-						attrs: {
-							src: `http://www.gravatar.com/avatar/${
-								crypto.createHash('md5').update(user.email).digest("hex")
-							}`,
-							title: user.name || user.email
-						}
+					.map(user => li(userImg({
+						user,
+						click: () => actions.tasks.toggleUser(task._id, user)
 					})))
 				)
 			]))

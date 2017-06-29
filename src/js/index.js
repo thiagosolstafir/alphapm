@@ -18,6 +18,7 @@ vex.defaultOptions.className = 'vex-theme-top';
 // iblokz
 const vdom = require('iblokz-snabbdom-helpers');
 const {obj, arr} = require('iblokz-data');
+// window.obj = obj;
 
 const langs = ['bg', 'en', 'es', 'de'];
 
@@ -121,12 +122,22 @@ state$
 	.subscribe(state => actions.set('modal', false));
 
 // syncing
+// tasks
 state$
 	.distinctUntilChanged(state => state.tasks.list)
 	.subscribe(state => {
 		request
 			.patch('/api/tasks')
 			.send({list: state.tasks.list})
+			.then(res => console.log(res.body));
+	});
+// projects
+state$
+	.distinctUntilChanged(state => state.projects.list)
+	.subscribe(state => {
+		request
+			.patch('/api/projects')
+			.send({list: state.projects.list})
 			.then(res => console.log(res.body));
 	});
 
