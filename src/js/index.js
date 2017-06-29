@@ -149,6 +149,13 @@ $.interval(10000 /* ms */).timeInterval().startWith({})
 			.observe()
 		).filter(res => res.status === 200)
 		.subscribe(res => actions.users.upsert(res.body.list));
+// projects
+$.interval(10000 /* ms */).timeInterval().startWith({})
+		.flatMap(() => request
+			.get('/api/projects?limit=1000')
+			.observe()
+		).filter(res => res.status === 200)
+		.subscribe(res => actions.projects.upsert(res.body.list));
 
 // connect state stream
 state$.connect();

@@ -9,8 +9,12 @@ const {
 // components
 const modal = require('./comp/modal');
 
+// lib
 const moment = require('moment');
 const crypto = require('crypto');
+
+// util
+const {obj} = require('iblokz-data');
 
 // vex dialog
 const vex = require('vex-js');
@@ -49,17 +53,17 @@ module.exports = ({state, actions, views, i18n}) => header([
 			)
 		)),
 		li(button('.dropdown', [
-			span(state.project || i18n.common.allProjects),
+			span(state.project !== false && state.project.name || state.project || i18n.common.allProjects),
 			i('.handle.fa.fa-toggle-down'),
 			ul([].concat(
 				state.project !== false
-					? li({on: {click: () => actions.set('project', false)}}, span(i18n.common.allProjects)) : [],
-				state.tasks.list.reduce((projects, task) => (projects.indexOf(task.project) === -1)
-				? [].concat(projects, task.project)
-				: projects, [])
-				.filter(project => project !== state.project)
+					? li({on: {click: () => actions.resetProject()}}, span(i18n.common.allProjects)) : [],
+				(obj.sub(state, ['projects', 'list']) || state.tasks.list.reduce((projects, task) => (projects.indexOf(task.project) === -1)
+					? [].concat(projects, task.project)
+					: projects, []))
+				.filter(project => state.project === false || (project._id && project._id !== state.project._id) || (!project._id && project !== state.project))
 				.map(project =>
-					li({on: {click: () => actions.set('project', project)}}, span(project))
+					li({on: {click: () => actions.set('project', project)}}, span(project.name || project))
 				)))
 		]))
 	]),

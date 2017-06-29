@@ -47,7 +47,7 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 			li(h2(capitalize(i18n.task.status[status])))
 		].concat(
 			state.tasks.list
-				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => state.project === false || (task.project.name || task.project) === (state.project.name || state.project))
 				.filter(task => task.status === status)
 				.map((task, index) => taskLi({task, state, actions, opened: state.tasks.editing === task._id})),
 			[

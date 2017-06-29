@@ -25,6 +25,7 @@ const initial = {
 // actions
 const set = (key, value) => state => obj.patch(state, key, value);
 const toggle = key => state => obj.patch(state, key, obj.sub(state, key));
+const resetProject = () => state => Object.assign({}, state, {project: false});
 
 module.exports = {
 	initial,
@@ -32,5 +33,6 @@ module.exports = {
 	users,
 	projects,
 	set,
-	toggle
+	toggle,
+	resetProject
 };

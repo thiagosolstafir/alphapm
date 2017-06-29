@@ -62,13 +62,13 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 	].concat(
 		[].concat(
 			state.tasks.list
-				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => state.project === false || (task.project.name || task.project) === (state.project.name || state.project))
 				.filter(task => task.status === 'doing'),
 			state.tasks.list
-				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => state.project === false || (task.project.name || task.project) === (state.project.name || state.project))
 				.filter(task => task.status === 'todo'),
 			state.tasks.list
-				.filter(task => state.project === false || task.project === state.project)
+				.filter(task => state.project === false || (task.project.name || task.project) === (state.project.name || state.project))
 				.filter(task => task.status === 'backlog')
 		).map(task =>
 		taskLi({task, state, actions, opened: state.tasks.editing === task._id}, [
@@ -84,7 +84,7 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 				}),
 				task.name
 			]),
-			span('.task-project', task.project),
+			span('.task-project', task.project.name || task.project),
 			span('.task-status', i18n.task.status[task.status]),
 			span('.task-time',
 				(task.status === 'doing')

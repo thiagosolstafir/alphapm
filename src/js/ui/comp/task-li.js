@@ -44,7 +44,7 @@ module.exports = ({task, state, actions, opened = false}, content = false) => li
 		span('.task-name', [
 			i(`.fa.${taskTypeIcons[task.type] || 'fa-code'}`), task.name
 		]),
-		span('.task-project', task.project), span('.task-status', task.status),
+		span('.task-project', task.project.name || task.project), span('.task-status', task.status),
 		span('.task-time', [].concat(
 			(task.status === 'doing')
 				? [i('.fa.fa-clock-o'), span('task-ass', moment.utc(getCurrentTracking(task)).format('H:mm:ss'))]

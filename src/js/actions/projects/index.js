@@ -2,18 +2,8 @@
 
 const {obj} = require('iblokz-data');
 const objectId = require('bson-objectid');
-
-const indexAt = (a, k, v) => a.reduce((index, e, i) => ((e[k] === v) ? i : index), -1);
-console.log(indexAt([{a: 0}, {a: 5}, {a: 7}, {a: 2}], 'a', 0));
-
-const arrPatchAt = (a, k, v, patch) => [indexAt(a, k, v)]
-	.map(index => [].concat(
-		a.slice(0, index),
-		(patch instanceof Function)
-			? patch(a[index], index)
-			: [Object.assign({}, a[index], patch)],
-		a.slice(index + 1)
-	)).pop();
+const {diff, applyChange, applyDiff} = require('deep-diff');
+const collection = require('../../util/collection');
 
 const initial = {
 	list: []
@@ -30,11 +20,27 @@ const add = name => state => obj.patch(state, 'projects', {
 });
 
 const edit = (id, patch) => state => obj.patch(state, 'projects', {
-	list: arrPatchAt(state.projects.list, '_id', id, patch)
+	list: collection.patchAt(state.projects.list, '_id', id, patch)
 });
+
+const upsert = list => state =>
+	diff(list, state.projects.list)
+	? obj.patch(state, 'projects', {
+		list: [collection.extract(list, '_id')].map(ids =>
+			[].concat(
+				state.projects.list.filter(project => ids.indexOf(project._id) === -1),
+				list.map(project => (
+	//				console.log(arrElAt(state.projects.list, '_id', project._id), project),
+					Object.assign({}, collection.elementAt(state.projects.list, '_id', project._id) || {}, project)
+				))
+			)
+		).pop()
+	})
+	: state;
 
 module.exports = {
 	initial,
 	add,
-	edit
+	edit,
+	upsert
 };

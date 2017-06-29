@@ -6,9 +6,12 @@
 		"tasks": {
 			"model": "Task",
 			"schema": {
-				"name" : {"type": "String", "required": true, "minLength": 1, "maxLength": 30 },
+				"name" : {"type": "String", "required": true, "minLength": 1, "maxLength": 70 },
 				"story": "String",
-				"project": "String",
+				"project": {
+					"_id": {"type": "ObjectId", "ref": "Project"},
+					"name": "String"
+				},
 				"time": {
 					"ass": "Number",
 					"est": "Number"
@@ -29,7 +32,19 @@
 				"status": "String",
 				"milestone": "String",
 				"createdBy" : {"type": "ObjectId", "ref":"User", "required": false},
-				"createdOn": {"type": "Date", "default": "Date.now" }
+				"createdAt": {"type": "Date", "default": "Date.now" }
+			}
+		},
+		"projects": {
+			"model": "Project",
+			"schema": {
+				"name": "String",
+				"scope" : "String",
+				"client": "String",
+				"team": "String",
+				"rate": "Number",
+				"createdBy" : {"type": "ObjectId", "ref":"User", "required": false},
+				"createdAt": {"type": "Date", "default": "Date.now" }
 			}
 		},
 		"activities": {
@@ -67,6 +82,10 @@
 				}
 			},
 			"tasks": {
+				"_meta": {
+				}
+			},
+			"projects": {
 				"_meta": {
 				}
 			}

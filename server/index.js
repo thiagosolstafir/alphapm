@@ -44,5 +44,8 @@ restApi.initRoutes(app, config.rest, {}, db);
 // tasks additional
 require('./api/tasks')({app, db, config});
 
+// migrations
+require('./db-migrations/2017-06-29-01')({app, db, config});
+
 // Logging initialization
 app.listen(config.port, () => console.log(`Listening to port ${config.port}`));
