@@ -17,7 +17,7 @@ const getOrCreateProject = (name, list) => collection.elementAt(list, 'name', na
 };
 
 const add = ({name, project, type, status}) => state => [
-	getOrCreateProject(project || name.split(', ')[1] || state.project.name, state.projects.list)
+	getOrCreateProject(project || name.split(', ')[1] || state.project.name || 'Personal', state.projects.list)
 ].map(project =>
 	obj.patch(obj.patch(state, 'tasks', {
 		list: state.tasks.list.concat({
