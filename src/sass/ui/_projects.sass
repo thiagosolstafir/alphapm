@@ -1,0 +1,58 @@
+.projects
+	h2
+		+header-height(32px)
+		padding-top: 2px
+		line-height: 30px
+		margin: 0px 0px 3px 0px
+		background: #e0e0e0
+		box-shadow: 1px 1px 3px #999
+		box-sizing: border-box
+		border-radius: 3px
+		display: block
+		font-size: 20px
+		text-align: center
+		color: #777
+	ul
+		+reset
+		width: 100%
+		margin: 7px 0px
+		li
+			+header-height(64px)
+			display: inline-block
+			margin: 0px 7px 7px 0px
+			&:nth-child(4n)
+				margin-right: 0px
+			box-sizing: border-box
+			border-radius: 3px
+			transition: background .5s, box-shadow .5s
+			user-select: none
+			box-shadow: 1px 1px 3px #bbb
+			background: #eaeaea
+			cursor: pointer
+			width: 24.6%
+			> *
+				float: left
+			.project-name
+				+header-height(64px)
+				padding: 0px 10px
+				width: 70%
+				font-size: 18px
+				box-sizing: border-box
+			.project-data
+				+reset
+				height: 100%
+				line-height: 32px
+				width: 30%
+				box-sizing: border-box
+				> *
+					+header-height(32px)
+					font-size: 14px
+					float: left
+					width: 100%
+					text-align: right
+					padding: 0px 7px
+				.project-actions
+					a.btn
+						+header-height(32px)
+						width: 33%
+

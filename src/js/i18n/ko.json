@@ -2,6 +2,7 @@
 	"views": {
 		"list" : "비망록",
 		"columns": "간판",
+		"projects": "계획",
 		"calendar": "달력"
 	},
 	"task": {

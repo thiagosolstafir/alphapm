@@ -2689,6 +2689,10 @@ ul.accordion {
       padding: 0px 5px;
       display: block;
       float: left; }
+      #ui header ul.toolbar > li > a.fa {
+        font-size: 18px;
+        width: 20px;
+        text-align: center; }
   #ui header button, #ui header .btn {
     margin: 0px;
     padding: 0px;
@@ -2924,6 +2928,94 @@ ul.accordion {
         margin: 0px 3px; }
     #ui .columns .tasks li .task-est, #ui .columns .tasks li .task-ass {
       width: 50%; }
+
+#ui .projects h2 {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  padding-top: 2px;
+  line-height: 30px;
+  margin: 0px 0px 3px 0px;
+  background: #e0e0e0;
+  box-shadow: 1px 1px 3px #999;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  color: #777; }
+
+#ui .projects ul {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 7px 0px; }
+  #ui .projects ul li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 64px;
+    line-height: 64px;
+    display: inline-block;
+    margin: 0px 7px 7px 0px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    transition: background .5s, box-shadow .5s;
+    user-select: none;
+    box-shadow: 1px 1px 3px #bbb;
+    background: #eaeaea;
+    cursor: pointer;
+    width: 24.6%; }
+    #ui .projects ul li:nth-child(4n) {
+      margin-right: 0px; }
+    #ui .projects ul li > * {
+      float: left; }
+    #ui .projects ul li .project-name {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 64px;
+      line-height: 64px;
+      padding: 0px 10px;
+      width: 70%;
+      font-size: 18px;
+      box-sizing: border-box; }
+    #ui .projects ul li .project-data {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      height: 100%;
+      line-height: 32px;
+      width: 30%;
+      box-sizing: border-box; }
+      #ui .projects ul li .project-data > * {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 32px;
+        line-height: 32px;
+        font-size: 14px;
+        float: left;
+        width: 100%;
+        text-align: right;
+        padding: 0px 7px; }
+      #ui .projects ul li .project-data .project-actions a.btn {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 32px;
+        line-height: 32px;
+        width: 33%; }
 
 #ui .calendar .tasks {
   width: 14.2%;

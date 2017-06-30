@@ -17,6 +17,9 @@ const views = [{
 	key: 'columns',
 	icon: 'columns'
 }, {
+	key: 'projects',
+	icon: 'briefcase'
+}, {
 	key: 'calendar',
 	icon: 'calendar'
 }];
@@ -24,6 +27,7 @@ const views = [{
 const uiViews = {
 	list: require('./view/list'),
 	columns: require('./view/columns'),
+	projects: require('./view/projects'),
 	calendar: require('./view/calendar')
 };
 

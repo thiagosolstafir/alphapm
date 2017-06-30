@@ -2,6 +2,7 @@
 	"views": {
 		"list" : "Tagesordnung",
 		"columns": "Kanban",
+		"projects": "Projekte",
 		"calendar": "Kalendar"
 	},
 	"task": {

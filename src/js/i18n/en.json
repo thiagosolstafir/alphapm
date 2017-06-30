@@ -2,6 +2,7 @@
 	"views": {
 		"list" : "Agenda",
 		"columns": "Kanban",
+		"projects": "Projects",
 		"calendar": "Calendar"
 	},
 	"task": {

@@ -2,6 +2,7 @@
 	"views": {
 		"list" : "Дневен Ред",
 		"columns": "Канбан",
+		"projects": "Проекти",
 		"calendar": "Календар"
 	},
 	"task": {

@@ -52,24 +52,27 @@ module.exports = ({state, actions, views, i18n}) => header([
 				])
 			)
 		)),
-		li(button('.dropdown', [
-			span(state.project !== false && state.project.name || state.project || i18n.common.allProjects),
-			i('.handle.fa.fa-toggle-down'),
-			ul([].concat(
-				state.project !== false
-					? li({on: {click: () => actions.resetProject()}}, span(i18n.common.allProjects)) : [],
-				(obj.sub(state, ['projects', 'list']) || state.tasks.list.reduce((projects, task) => (projects.indexOf(task.project) === -1)
-					? [].concat(projects, task.project)
-					: projects, []))
-				.filter(project => state.project === false || (project._id && project._id !== state.project._id) || (!project._id && project !== state.project))
-				.map(project =>
-					li({on: {click: () => actions.set('project', project)}}, span(project.name || project))
-				)))
-		]))
+		(['list', 'columns', 'calendar'].indexOf(state.view) > -1)
+			? li(button('.dropdown', [
+				span(state.project !== false && state.project.name || state.project || i18n.common.allProjects),
+				i('.handle.fa.fa-toggle-down'),
+				ul([].concat(
+					state.project !== false
+						? li({on: {click: () => actions.resetProject()}}, span(i18n.common.allProjects)) : [],
+					(obj.sub(state, ['projects', 'list']) || state.tasks.list.reduce((projects, task) => (projects.indexOf(task.project) === -1)
+						? [].concat(projects, task.project)
+						: projects, []))
+					.filter(project => state.project === false || (project._id && project._id !== state.project._id) || (!project._id && project !== state.project))
+					.map(project =>
+						li({on: {click: () => actions.set('project', project)}}, span(project.name || project))
+					)))
+			]))
+			: ''
 	]),
 	img('.logo[src="assets/img/logo-2.svg"]'),
 	ul('.toolbar.right', [
 		li(span(moment().format('DD.MM.YY H:mm'))),
+		li(a('.fa.fa-bell-o')),
 		li(a('.dropdown.flags', [
 			img(`.handle[src="assets/img/flags/${langFlags[state.lang || 'bg']}.svg"]`),
 			ul(Object.keys(langFlags)
