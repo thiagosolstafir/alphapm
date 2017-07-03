@@ -15,6 +15,7 @@
 	},
 	"common": {
 		"addTask": "Augabe hinzufügen",
+		"addProject": "Projekt hinzufügen",
 		"add": "hinzufügen",
 		"all": "Alle",
 		"for": "zum",

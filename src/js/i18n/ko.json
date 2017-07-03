@@ -15,10 +15,11 @@
 	},
 	"common": {
 		"addTask": "할 일 추가",
+		"addProject": "계획 추가",
 		"add": "더하다",
 		"all": "모든",
 		"for": "for",
-		"allProjects": "All Projects"
+		"allProjects": "모든 계획"
 	},
 	"view": {
 		"list": {

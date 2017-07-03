@@ -15,6 +15,7 @@
 	},
 	"common": {
 		"addTask": "Add Task",
+		"addProject": "Add Project",
 		"add": "add",
 		"all": "all",
 		"for": "for",

@@ -2929,7 +2929,7 @@ ul.accordion {
     #ui .columns .tasks li .task-est, #ui .columns .tasks li .task-ass {
       width: 50%; }
 
-#ui .projects h2 {
+#ui .projects .group > h2 {
   margin: 0px;
   padding: 0px;
   display: inline-block;
@@ -2948,14 +2948,14 @@ ul.accordion {
   text-align: center;
   color: #777; }
 
-#ui .projects ul {
+#ui .projects .group > ul {
   margin: 0px;
   padding: 0px;
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
   margin: 7px 0px; }
-  #ui .projects ul li {
+  #ui .projects .group > ul > li {
     margin: 0px;
     padding: 0px;
     display: inline-block;
@@ -2972,11 +2972,11 @@ ul.accordion {
     background: #eaeaea;
     cursor: pointer;
     width: 24.6%; }
-    #ui .projects ul li:nth-child(4n) {
+    #ui .projects .group > ul > li:nth-child(4n) {
       margin-right: 0px; }
-    #ui .projects ul li > * {
+    #ui .projects .group > ul > li > * {
       float: left; }
-    #ui .projects ul li .project-name {
+    #ui .projects .group > ul > li .project-name {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2987,7 +2987,7 @@ ul.accordion {
       width: 70%;
       font-size: 18px;
       box-sizing: border-box; }
-    #ui .projects ul li .project-data {
+    #ui .projects .group > ul > li .project-data {
       margin: 0px;
       padding: 0px;
       display: inline-block;
@@ -2996,7 +2996,7 @@ ul.accordion {
       line-height: 32px;
       width: 30%;
       box-sizing: border-box; }
-      #ui .projects ul li .project-data > * {
+      #ui .projects .group > ul > li .project-data > * {
         margin: 0px;
         padding: 0px;
         display: inline-block;
@@ -3008,14 +3008,91 @@ ul.accordion {
         width: 100%;
         text-align: right;
         padding: 0px 7px; }
-      #ui .projects ul li .project-data .project-actions a.btn {
+      #ui .projects .group > ul > li .project-data .project-users img {
         margin: 0px;
         padding: 0px;
         display: inline-block;
         box-sizing: border-box;
-        height: 32px;
-        line-height: 32px;
-        width: 33%; }
+        height: 24px;
+        line-height: 24px;
+        margin: 4px 0px 4px 4px; }
+    #ui .projects .group > ul > li.add-project {
+      padding: 0px;
+      box-shadow: inset 1px 1px 3px #aaa;
+      background: #cfcfcf;
+      opacity: 0.5;
+      transition: opacity .3s; }
+      #ui .projects .group > ul > li.add-project:hover {
+        opacity: 1;
+        outline: none; }
+      #ui .projects .group > ul > li.add-project form {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        width: 100%; }
+      #ui .projects .group > ul > li.add-project input {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 64px;
+        line-height: 64px;
+        width: 100%;
+        padding: 0px 10px;
+        border: 0px;
+        background: none;
+        font-size: 18px;
+        box-sizing: border-box;
+        outline: none; }
+    #ui .projects .group > ul > li .project-edit .project-users {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      box-sizing: border-box;
+      padding: 0px 10px;
+      display: block; }
+      #ui .projects .group > ul > li .project-edit .project-users > li {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 28px;
+        line-height: 28px;
+        margin: 0px 10px 0px 0px;
+        display: inline-block;
+        width: auto;
+        float: left; }
+        #ui .projects .group > ul > li .project-edit .project-users > li > img {
+          margin: 0px;
+          padding: 0px;
+          display: inline-block;
+          box-sizing: border-box;
+          height: 28px;
+          line-height: 28px;
+          cursor: pointer; }
+        #ui .projects .group > ul > li .project-edit .project-users > li > button {
+          margin: 0px;
+          padding: 0px;
+          display: inline-block;
+          box-sizing: border-box;
+          height: 28px;
+          line-height: 28px;
+          border: 0px;
+          box-shadow: 0px 0px 3px #aaa;
+          width: 28px;
+          outline: none; }
+          #ui .projects .group > ul > li .project-edit .project-users > li > button i.fa {
+            margin: 0px;
+            padding: 0px;
+            display: inline-block;
+            box-sizing: border-box;
+            height: 28px;
+            line-height: 28px;
+            width: 28px; }
+          #ui .projects .group > ul > li .project-edit .project-users > li > button:hover {
+            background: #eee;
+            outline: none; }
 
 #ui .calendar .tasks {
   width: 14.2%;

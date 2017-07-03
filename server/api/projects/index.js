@@ -5,9 +5,13 @@ const ObjectID = require('mongodb').ObjectID;
 const upsert = (docs, collection, db) => {
 	var bulk = db.connection.db.collection(collection).initializeUnorderedBulkOp();
 	docs
-		.map(doc => Object.assign({}, doc, doc._id
-			?	{_id: new ObjectID(doc._id)}
-			: {}
+		.map(doc => Object.assign({}, doc,
+			doc._id
+				?	{_id: new ObjectID(doc._id)}
+				: {},
+			doc.createdBy
+				?	{createdBy: new ObjectID(doc.createdBy)}
+				: {}
 		))
 		.forEach(doc => {
 			bulk.find({_id: doc._id}).upsert().replaceOne(doc);

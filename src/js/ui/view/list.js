@@ -9,16 +9,11 @@ const {
 // components
 const taskLi = require('../comp/task-li');
 
+// lib
 const moment = require('moment');
 const Sortable = require('sortablejs');
-
-const formToData = form => Array.from(form.elements)
-	// .map(el => (console.log(el.name), el))
-	.filter(el => el.name !== undefined)
-	.reduce((o, el) => ((o[el.name] = el.value), o), {});
-
-const clearForm = form => Array.from(form.elements)
-	.forEach(el => (el.value = null));
+// util
+const dom = require('../../util/dom');
 
 const getTimestamp = () => new Date().getTime() / 1000 | 0;
 
@@ -53,9 +48,9 @@ module.exports = ({state, actions, i18n}) => section('#view.list', [
 			on: {
 				submit: ev => {
 					ev.preventDefault();
-					const data = formToData(ev.target);
+					const data = dom.formToData(ev.target);
 					actions.tasks.add(data);
-					clearForm(ev.target);
+					dom.clearForm(ev.target);
 				}
 			}
 		}, input(`[name="name"][placeholder="${i18n.common.addTask}"]`)))

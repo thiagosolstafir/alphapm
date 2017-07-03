@@ -52,22 +52,6 @@
 				"createdBy" : {"type": "ObjectId", "ref":"User", "required": false},
 				"createdAt": {"type": "Date", "default": "Date.now" }
 			}
-		},
-		"activities": {
-			"model": "Activity",
-			"schema": {
-				"date" : { "type": "Date", "default": "Date.now" },
-				"type" : "String",
-				"user" : {
-					"id" : { "type" : "ObjectId", "ref": "User" },
-					"name" : "String"
-				},
-				"subject": {
-					"collection": "String",
-					"id": "ObjectId"
-				},
-				"changes": "Mixed"
-			}
 		}
 	},
 	"routes": {

@@ -6,23 +6,28 @@ const {diff, applyChange, applyDiff} = require('deep-diff');
 const collection = require('../../util/collection');
 
 const initial = {
-	list: []
+	list: [],
+	editing: null
 };
 
-const add = name => state => obj.patch(state, 'projects', {
+const add = project => state => obj.patch(state, 'projects', {
 	list: [].concat(
 		state.projects.list,
-		{
-			_id: objectId().str,
-			name,
-			users: [],
-			createdAt: new Date(),
-			createdBy: state.auth.user && state.auth.user._id || null
-		}
+		Object.assign({},
+			project,
+			{
+				_id: objectId().str,
+				users: [],
+				createdAt: new Date(),
+				createdBy: state.auth.user && state.auth.user._id || null
+			}
+		)
 	)
 });
 
-const edit = (id, patch) => state => obj.patch(state, 'projects', {
+const edit = (editing = null) => state => obj.patch(state, 'projects', {editing});
+
+const update = (id, patch) => state => obj.patch(state, 'projects', {
 	list: collection.patchAt(state.projects.list, '_id', id, patch)
 });
 
@@ -41,9 +46,21 @@ const upsert = list => state =>
 	})
 	: state;
 
+const toggleUser = (projectId, user) => state => obj.patch(state, 'projects', {
+	needsRefresh: false,
+	list: collection.patchAt(state.projects.list, '_id', projectId, {
+		users: [collection.elementAt(state.projects.list, '_id', projectId).users].map(projectUsers => [].concat(
+			projectUsers.filter(u => u._id !== user._id),
+			collection.indexAt(projectUsers, '_id', user._id) > -1 ? [] : user
+		)).pop()
+	})
+});
+
 module.exports = {
 	initial,
 	add,
 	edit,
-	upsert
+	update,
+	upsert,
+	toggleUser
 };
