@@ -11,6 +11,13 @@
 			"todo": "zu tun",
 			"doing": "im gange",
 			"done": "erledigt"
+		},
+		"filters": {
+			"donePeriod": {
+				"all": "Alle",
+				"thisWeek": "In dieser Woche",
+				"thisMonth": "In diesem Monat"
+			}
 		}
 	},
 	"common": {

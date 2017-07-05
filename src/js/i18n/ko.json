@@ -11,6 +11,13 @@
 			"todo": "할 것",
 			"doing": "진행 중",
 			"done": "끝난"
+		},
+		"filters": {
+			"donePeriod": {
+				"all": "All",
+				"thisWeek": "This Week",
+				"thisMonth": "This Month"
+			}
 		}
 	},
 	"common": {

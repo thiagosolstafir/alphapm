@@ -11,6 +11,13 @@
 			"todo": "todo",
 			"doing": "doing",
 			"done": "done"
+		},
+		"filters": {
+			"donePeriod": {
+				"all": "All",
+				"thisWeek": "This Week",
+				"thisMonth": "This Month"
+			}
 		}
 	},
 	"common": {

@@ -11,6 +11,13 @@
 			"todo": "por hacer",
 			"doing": "en progreso",
 			"done": "hecho"
+		},
+		"filters": {
+			"donePeriod": {
+				"all": "Todos",
+				"thisWeek": "En este semana",
+				"thisMonth": "En este mes"
+			}
 		}
 	},
 	"common": {

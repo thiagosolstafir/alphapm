@@ -2,7 +2,7 @@
 
 // dom
 const {
-	ul, li, i, h2, form,
+	ul, li, i, h2, form, a,
 	section, header, button, span, img, p, div, input,
 	table, thead, tbody, tfoot, tr, td, th
 } = require('iblokz-snabbdom-helpers');
@@ -39,11 +39,37 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 					})
 			}
 		}, [
-			li(h2(capitalize(i18n.task.status[status])))
+			li(h2([
+				capitalize(i18n.task.status[status]),
+				status === 'done' ? span('.right', a('.dropdown', [
+					i('.fa.fa-ellipsis-h.handle'),
+					ul(['all', 'thisWeek', 'thisMonth'].map(period =>
+						li('.text-left', {
+							on: {
+								click: () => actions.set(['tasks', 'filters', 'donePeriod'], period)
+							}
+						}, span([
+							i('.fa', {
+								class: {
+									'fa-check-circle-o': state.tasks.filters.donePeriod === period,
+									'fa-circle-o': state.tasks.filters.donePeriod !== period
+								}
+							}),
+							' ',
+							i18n.task.filters.donePeriod[period] || ''
+						]))
+					))
+				])) : ''
+			]))
 		].concat(
 			state.tasks.list
 				.filter(task => state.project === false || (task.project.name || task.project) === (state.project.name || state.project))
 				.filter(task => task.status === status)
+				// done period
+				.filter(task => status !== 'done' || state.tasks.filters.donePeriod === 'all'
+					|| state.tasks.filters.donePeriod === 'thisWeek' && task.activities.length > 0 && task.activities.slice(-1).pop().end >= moment().startOf('isoweek').unix()
+					|| state.tasks.filters.donePeriod === 'thisMonth' && task.activities.length > 0 && task.activities.slice(-1).pop().end >= moment().startOf('month').unix()
+				)
 				.map((task, index) => taskLi({task, state, actions, opened: state.tasks.editing === task._id})),
 			[
 				li('.add-task', form({

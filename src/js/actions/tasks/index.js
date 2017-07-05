@@ -8,6 +8,10 @@ const collection = require('../../util/collection');
 const initial = {
 	needsRefresh: false,
 	editing: null,
+	filters: {
+		donePeriod: 'thisWeek',
+		agendaTypes: ['todo', 'doing']
+	},
 	list: []
 };
 

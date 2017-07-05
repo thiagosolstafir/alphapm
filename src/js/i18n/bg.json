@@ -11,6 +11,13 @@
 			"todo": "на дневен ред",
 			"doing": "в действие",
 			"done": "завършени"
+		},
+		"filters": {
+			"donePeriod": {
+				"all": "Всички",
+				"thisWeek": "Тази Седмица",
+				"thisMonth": "Този Месец"
+			}
 		}
 	},
 	"common": {
