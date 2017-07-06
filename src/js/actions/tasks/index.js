@@ -10,7 +10,8 @@ const initial = {
 	editing: null,
 	filters: {
 		donePeriod: 'thisWeek',
-		agendaTypes: ['todo', 'doing']
+		agendaStatus: ['todo', 'doing'],
+		search: ''
 	},
 	list: []
 };

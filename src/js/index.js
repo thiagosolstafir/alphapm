@@ -121,6 +121,10 @@ state$
 	.filter(state => state.auth.user)
 	.subscribe(state => actions.set('modal', false));
 
+state$
+	.distinctUntilChanged(state => state.view)
+	.subscribe(state => actions.set(['tasks', 'filters', 'search'], ''));
+
 // syncing
 // tasks
 state$

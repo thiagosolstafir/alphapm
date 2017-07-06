@@ -2355,16 +2355,22 @@ body, input, button, h1, h2, h3, h4 {
   box-sizing: border-box; }
 
 .left {
-  float: left !important; }
+  float: left; }
 
 .text-left {
   text-align: left; }
 
 .right {
-  float: right !important; }
+  float: right; }
 
 .text-right {
   text-align: right; }
+
+.small {
+  font-size: 0.8em; }
+
+.big {
+  font-size: 1.2em; }
 
 button, a {
   cursor: pointer; }
@@ -2592,7 +2598,7 @@ button.fa, a.fa {
     box-shadow: none;
     border: 0px; }
 
-.right .dropdown ul {
+[class*='right'] .dropdown ul {
   right: 0px;
   left: initial; }
 
@@ -2832,8 +2838,7 @@ ul.accordion {
       box-sizing: border-box;
       height: 32px;
       line-height: 32px;
-      padding: 2px 5px 0px 5px;
-      line-height: 30px;
+      padding: 0px 5px 0px 5px;
       margin: 0px 0px 5px 0px;
       background: #e0e0e0;
       box-shadow: 1px 1px 3px #999;
@@ -2859,11 +2864,10 @@ ul.accordion {
     box-sizing: border-box;
     height: 32px;
     line-height: 32px;
-    padding: 0px 5px;
-    font-size: 0.8em;
     font-family: inherit;
     font-weight: bold;
-    cursor: pointer; }
+    cursor: pointer;
+    float: none; }
 
 #ui #view.list > ul > li {
   height: 32px;
@@ -2907,7 +2911,8 @@ ul.accordion {
   #ui .columns .tasks li {
     display: inline-block;
     width: 100%;
-    font-size: 16px; }
+    font-size: 16px;
+    position: relative; }
     #ui .columns .tasks li .task-name {
       width: 60%;
       height: auto; }
@@ -2934,6 +2939,25 @@ ul.accordion {
         margin: 0px 3px; }
     #ui .columns .tasks li .task-est, #ui .columns .tasks li .task-ass {
       width: 50%; }
+    #ui .columns .tasks li > h2 {
+      vertical-align: middle; }
+      #ui .columns .tasks li > h2 > span {
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 32px;
+        line-height: 32px;
+        vertical-align: middle; }
+      #ui .columns .tasks li > h2 .dropdown {
+        float: none; }
+        #ui .columns .tasks li > h2 .dropdown .handle {
+          margin: 0px;
+          padding: 0px;
+          display: inline-block;
+          box-sizing: border-box;
+          height: 32px;
+          line-height: 32px; }
 
 #ui .projects .group > h2 {
   margin: 0px;

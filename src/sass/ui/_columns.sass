@@ -8,6 +8,7 @@
 			display: inline-block
 			width: 100%
 			font-size: 16px
+			position: relative
 			.task-name
 				width: 60%
 				height: auto
@@ -29,3 +30,13 @@
 					margin: 0px 3px
 			.task-est, .task-ass
 				width: 50%
+			> h2
+				vertical-align: middle
+				> span
+					+header-height(32px)
+					vertical-align: middle
+				.dropdown
+					float: none
+					.handle
+						+header-height(32px)
+

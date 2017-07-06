@@ -39,10 +39,11 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 					})
 			}
 		}, [
-			li(h2([
-				capitalize(i18n.task.status[status]),
-				status === 'done' ? span('.right', a('.dropdown', [
-					i('.fa.fa-ellipsis-h.handle'),
+			li(h2([].concat(
+				span(capitalize(i18n.task.status[status])),
+				status === 'done' ? [' ', a('.dropdown', [
+					span('.handle.small',
+						`(${i18n.task.filters.donePeriod[state.tasks.filters.donePeriod]})` || ''),
 					ul(['all', 'thisWeek', 'thisMonth'].map(period =>
 						li('.text-left', {
 							on: {
@@ -51,7 +52,7 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 						}, span([
 							i('.fa', {
 								class: {
-									'fa-check-circle-o': state.tasks.filters.donePeriod === period,
+									'fa-dot-circle-o': state.tasks.filters.donePeriod === period,
 									'fa-circle-o': state.tasks.filters.donePeriod !== period
 								}
 							}),
@@ -59,8 +60,8 @@ module.exports = ({state, actions, i18n}) => section('#view.columns',
 							i18n.task.filters.donePeriod[period] || ''
 						]))
 					))
-				])) : ''
-			]))
+				])] : ''
+			)))
 		].concat(
 			state.tasks.list
 				.filter(task => state.project === false || (task.project.name || task.project) === (state.project.name || state.project))

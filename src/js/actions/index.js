@@ -1,6 +1,6 @@
 'use strict';
 
-const {obj} = require('iblokz-data');
+const {obj, arr} = require('iblokz-data');
 
 const tasks = require('./tasks');
 const users = require('./users');
@@ -24,7 +24,8 @@ const initial = {
 
 // actions
 const set = (key, value) => state => obj.patch(state, key, value);
-const toggle = key => state => obj.patch(state, key, obj.sub(state, key));
+const toggle = key => state => obj.patch(state, key, !obj.sub(state, key));
+const arrToggle = (key, value) => state => obj.patch(state, key, arr.toggle(obj.sub(state, key), value));
 const resetProject = () => state => Object.assign({}, state, {project: false});
 
 module.exports = {
@@ -34,5 +35,6 @@ module.exports = {
 	projects,
 	set,
 	toggle,
+	arrToggle,
 	resetProject
 };
